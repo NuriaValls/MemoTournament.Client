@@ -5,6 +5,6 @@ import java.awt.BorderLayout;
 import model.MainClient;
 import model.UserClient;
 
-public class Windows extends JFrame{	
+public class Window extends JFrame{	
 
 }

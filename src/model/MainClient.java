@@ -1,6 +1,6 @@
 package model;
 
-import vista.Windows;
+import vista.Window;
 import control.ButtonController;
 
 public class MainClient {
