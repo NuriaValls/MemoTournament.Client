@@ -1,9 +1,9 @@
-package control;
+package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import vista.Window;
-public class ButtonController {
+import view.Window;
+public class MainViewController {
 
 }

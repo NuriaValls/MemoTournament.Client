@@ -1,6 +1,6 @@
 package model;
 
-import model.MainClient;
+import model.MTMainClient;
 
 public class UserClient {
 	private String nickName;

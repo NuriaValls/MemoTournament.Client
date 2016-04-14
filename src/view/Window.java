@@ -1,8 +1,8 @@
-package vista;
+package view;
 
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
-import model.MainClient;
+import model.MTMainClient;
 import model.UserClient;
 
 public class Window extends JFrame{	
