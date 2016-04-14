@@ -1,5 +1,7 @@
 package model;
 
+import model.MainClient;
+
 public class UserClient {
 	private String nickName;
 	private String password;
