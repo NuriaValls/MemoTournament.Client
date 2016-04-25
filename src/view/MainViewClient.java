@@ -27,11 +27,12 @@ public class MainViewClient extends JFrame{
 	private JPanel jpButtonMenu;
 	
 	private static JButton jbRegister = new JButton("Register");
+	private static JButton jbGuest = new JButton("Enter as a Guest");
 	private static JButton jbNewGame = new JButton("New Game");
 	private static JButton jbRanking = new JButton("Show Ranking");
 	private static JButton jbLogOut = new JButton("Log Out");
 	private static JButton jbBack = new JButton("Back");
-	private static JButton jbGoToMenu = new JButton("Go to Menu");
+	private static JButton jbGoToMenu = new JButton("Log In");
 	private static JButton jbStartGame = new JButton("Start Game");
 	
 	public MainViewClient(){
@@ -61,6 +62,7 @@ public class MainViewClient extends JFrame{
 		
 		jpButtonMenu.add(jbGoToMenu);
 		jpButtonMenu.add(jbRegister);
+		jpButtonMenu.add(jbGuest);
 		jpButtonMenu.add(jbBack);
 		jpButtonMenu.add(jbNewGame);
 		jpButtonMenu.add(jbStartGame);
@@ -81,10 +83,12 @@ public class MainViewClient extends JFrame{
 	}
 	
 	public void registerController(MainViewControllerC actionListener){
+		jbGoToMenu.addActionListener(actionListener);
 		jbRegister.addActionListener(actionListener);
-		//jbLogIn.addActionListener(actionListener);
-		//jbGuest.addActionListener(actionListener);
+		jbGuest.addActionListener(actionListener);
+		jbBack.addActionListener(actionListener);
 		jbNewGame.addActionListener(actionListener);
+		jbStartGame.addActionListener(actionListener);
 		jbRanking.addActionListener(actionListener);
 		jbLogOut.addActionListener(actionListener);
 	}
@@ -111,5 +115,72 @@ public class MainViewClient extends JFrame{
 	
 	public void createRankingCard(){
 		
+	}
+	
+	public static void showRegister(){
+		cardLayout.show(jpMenu, "2");
+		
+		jbBack.setVisible(true);
+		jbGoToMenu.setText("Register Profile");
+		
+		jbGuest.setVisible(false);
+		jbRegister.setVisible(false);
+	}
+	public static void showInitialMenu(){
+		cardLayout.show(jpMenu, "3");
+		
+		jbBack.setVisible(false);
+		jbGoToMenu.setVisible(false);
+		jbGuest.setVisible(false);
+		jbRegister.setVisible(false);
+		
+		jbNewGame.setVisible(true);
+		jbRanking.setVisible(true);
+		jbLogOut.setVisible(true);
+	}
+	
+	public static void showRanking(){
+		cardLayout.show(jpMenu, "6");
+		
+		jbNewGame.setVisible(false);
+		jbRanking.setVisible(false);
+		jbLogOut.setVisible(false);
+		
+		jbGoToMenu.setText("Menu");
+		jbGoToMenu.setVisible(true);
+	}
+	
+	public static void showLogIn(){
+		cardLayout.show(jpMenu, "1");
+		
+		jbNewGame.setVisible(false);
+		jbRanking.setVisible(false);
+		jbLogOut.setVisible(false);
+		
+		jbGoToMenu.setText("Log In");
+		jbGoToMenu.setVisible(true);
+		jbRegister.setVisible(true);
+		jbGuest.setVisible(true);
+	}
+	
+	public static void showSelectGame(){
+		cardLayout.show(jpMenu, "4");
+		
+		jbNewGame.setVisible(false);
+		jbRanking.setVisible(false);
+		jbLogOut.setVisible(false);
+		
+		jbGoToMenu.setText("Back");
+		jbGoToMenu.setVisible(true);
+		jbStartGame.setVisible(true);
+	}
+	
+	public static void showGame(){
+		cardLayout.show(jpMenu, "5");
+		
+		jbStartGame.setVisible(false);
+		
+		jbGoToMenu.setText("End Game");
+		jbGoToMenu.setVisible(true);
 	}
 }
