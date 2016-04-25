@@ -182,5 +182,7 @@ public class MainViewClient extends JFrame{
 		
 		jbGoToMenu.setText("End Game");
 		jbGoToMenu.setVisible(true);
+		
+		//Prova
 	}
 }
