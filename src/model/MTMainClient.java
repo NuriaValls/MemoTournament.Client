@@ -2,7 +2,7 @@ package model;
 
 import javax.swing.SwingUtilities;
 
-import view.Window;
+import view.MainViewClient;
 
 public class MTMainClient {
 	
