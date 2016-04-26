@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controller.MainViewControllerC;
@@ -97,7 +98,11 @@ public class MainViewClient extends JFrame{
 	}
 	
 	public void createLogInCard(){
-		
+		JPanel prova = new JPanel();
+		JLabel provaaa = new JLabel("hola");
+		provaaa.setSize(50,40);
+		prova.add(provaaa);
+		jpLogInCard.add(prova);
 	}
 	
 	public void createInitialMenuCard(){
