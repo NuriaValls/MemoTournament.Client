@@ -132,6 +132,7 @@ public class MainViewClient extends JFrame{
 		jbGoToMenu.setVisible(false);
 		jbGuest.setVisible(false);
 		jbRegister.setVisible(false);
+		jbStartGame.setVisible(false);
 		
 		jbNewGame.setVisible(true);
 		jbRanking.setVisible(true);
