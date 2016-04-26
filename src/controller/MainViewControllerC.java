@@ -55,8 +55,14 @@ public class MainViewControllerC implements ActionListener{
 		
 		if(((JButton)e.getSource()).getText().equals("End Game")){
 			//sortir de la partida sense acabarla
-			
-			
+			MainViewClient.showInitialMenu();
+		}
+		
+		if(((JButton)e.getSource()).getText().equals("Back")){
+			MainViewClient.showLogIn();
+		}
+		
+		if(((JButton)e.getSource()).getText().equals("Back to Menu")){
 			MainViewClient.showInitialMenu();
 		}
 	}

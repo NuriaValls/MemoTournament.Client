@@ -79,7 +79,6 @@ public class MainViewClient extends JFrame{
 		
 		add(jpButtonMenu, BorderLayout.SOUTH);
 		add(jpMenu, BorderLayout.NORTH);
-		pack();
 	}
 	
 	public void registerController(MainViewControllerC actionListener){
@@ -156,6 +155,7 @@ public class MainViewClient extends JFrame{
 		jbNewGame.setVisible(false);
 		jbRanking.setVisible(false);
 		jbLogOut.setVisible(false);
+		jbBack.setVisible(false);
 		
 		jbGoToMenu.setText("Log In");
 		jbGoToMenu.setVisible(true);
@@ -170,7 +170,7 @@ public class MainViewClient extends JFrame{
 		jbRanking.setVisible(false);
 		jbLogOut.setVisible(false);
 		
-		jbGoToMenu.setText("Back");
+		jbGoToMenu.setText("Back to Menu");
 		jbGoToMenu.setVisible(true);
 		jbStartGame.setVisible(true);
 	}
@@ -182,7 +182,5 @@ public class MainViewClient extends JFrame{
 		
 		jbGoToMenu.setText("End Game");
 		jbGoToMenu.setVisible(true);
-		
-		//Prova
 	}
 }
