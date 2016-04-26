@@ -1,14 +1,19 @@
 package view;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+
 import controller.MainViewControllerC;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Component;
 
 import model.MTMainClient;
 import model.UserClient;
@@ -40,7 +45,7 @@ public class MainViewClient extends JFrame{
 		setTitle("Memory Torunament -Client-");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		setSize(400,300);
+		setSize(1000,500);
 		
 		createLogInCard();
 		createRegisterCard();
@@ -98,11 +103,26 @@ public class MainViewClient extends JFrame{
 	}
 	
 	public void createLogInCard(){
-		JPanel prova = new JPanel();
-		JLabel provaaa = new JLabel("hola");
-		provaaa.setSize(50,40);
-		prova.add(provaaa);
-		jpLogInCard.add(prova);
+		
+		//jpLogInCard.setBackground( Color.BLUE );
+		
+		JPanel titol = new JPanel();
+		
+		titol.setLayout(new BoxLayout(titol, BoxLayout.PAGE_AXIS));
+	
+		JLabel nomtitol = new JLabel("MemoTournament");
+		nomtitol.setFont(new java.awt.Font("Geneva", 1, 50));
+		titol.add(Box.createVerticalStrut(20));
+		titol.add(nomtitol);	
+		JLabel textinfo = new JLabel("Test your memory and see how quickly you can clear the board by matching up the pairs.");
+		textinfo.setFont(new java.awt.Font("Geneva", 3, 14));
+		textinfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+		titol.add(Box.createVerticalStrut(30));
+		nomtitol.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		titol.add(textinfo);
+		
+		jpLogInCard.add(titol);
 	}
 	
 	public void createInitialMenuCard(){
