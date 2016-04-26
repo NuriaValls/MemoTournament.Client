@@ -1,12 +1,13 @@
 package view;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
+import javax.swing.JTextArea;
 
 import controller.MainViewControllerC;
 
@@ -14,6 +15,7 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.GridLayout;
 
 import model.MTMainClient;
 import model.UserClient;
@@ -45,7 +47,7 @@ public class MainViewClient extends JFrame{
 		setTitle("Memory Torunament -Client-");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		setSize(1000,500);
+		setSize(1000,550);
 		
 		createLogInCard();
 		createRegisterCard();
@@ -112,17 +114,44 @@ public class MainViewClient extends JFrame{
 	
 		JLabel nomtitol = new JLabel("MemoTournament");
 		nomtitol.setFont(new java.awt.Font("Geneva", 1, 50));
-		titol.add(Box.createVerticalStrut(20));
+		titol.add(Box.createVerticalStrut(15));
 		titol.add(nomtitol);	
 		JLabel textinfo = new JLabel("Test your memory and see how quickly you can clear the board by matching up the pairs.");
-		textinfo.setFont(new java.awt.Font("Geneva", 3, 14));
+		textinfo.setFont(new java.awt.Font("Geneva", 3, 16));
 		textinfo.setAlignmentX(Component.CENTER_ALIGNMENT);
-		titol.add(Box.createVerticalStrut(30));
+		titol.add(Box.createVerticalStrut(25));
 		nomtitol.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		titol.add(textinfo);
 		
+		titol.add(textinfo);
+		titol.add(Box.createVerticalStrut(75));
+		
+	
+		JPanel login = new JPanel();
+		//login.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+		login.setLayout(new BoxLayout(login, BoxLayout.PAGE_AXIS));
+		
+		JLabel jlnickname = new JLabel("Nickname");
+		jlnickname.setFont(new java.awt.Font("Geneva", 1, 14));
+		JTextArea jtanickname = new JTextArea();
+		JPanel jpnickname = new JPanel();
+		jpnickname.setLayout(new GridLayout(1,6));
+		jpnickname.add(new JPanel());
+		jpnickname.add(new JPanel());
+		jpnickname.add(jlnickname);
+		jpnickname.add(jtanickname);
+		jpnickname.add(new JPanel());
+		jpnickname.add(new JPanel());
+		
+		jpnickname.setAlignmentX(Component.CENTER_ALIGNMENT);
+		login.add(jpnickname);
+		login.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		titol.add(login);
+		
+	
 		jpLogInCard.add(titol);
+		
 	}
 	
 	public void createInitialMenuCard(){
