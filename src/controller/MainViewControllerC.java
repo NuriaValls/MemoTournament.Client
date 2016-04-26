@@ -12,6 +12,8 @@ public class MainViewControllerC implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+		String message = new String();
+		
 		if(((JButton)e.getSource()).getText().equals("Register")){
 			MainViewClient.showRegister();
 		}
@@ -29,6 +31,7 @@ public class MainViewControllerC implements ActionListener{
 		
 		if(((JButton)e.getSource()).getText().equals("Register Profile")){
 			//registrar l'usuari i entrar com a usuari al menu
+			message = "ADD:Ruru/nunu";
 			MainViewClient.showInitialMenu();
 		}
 		

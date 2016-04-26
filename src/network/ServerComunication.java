@@ -113,4 +113,28 @@ public class ServerComunication extends Thread{
 			e.printStackTrace();
 		}
 	}
+	
+	public static void sendStart(String message){
+		try {
+			sServer = new Socket("127.0.0.1",5200);
+			dataIn = new DataInputStream(sServer.getInputStream());
+			dataOut = new DataOutputStream(sServer.getOutputStream());
+			dataOut.writeUTF(message);
+			
+			String answer = new String();
+			answer = dataIn.readUTF();
+			if(answer.startsWith("OK:")){
+				//MainViewControllerC.makeDialog("The count back for the competition has started!");
+			}
+			
+			dataOut.close();
+			dataIn.close();
+			sServer.close();
+			
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
