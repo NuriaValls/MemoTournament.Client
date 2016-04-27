@@ -268,17 +268,8 @@ public class MainViewClient extends JFrame{
 	}
 	
 	public void createRankingCard(){
-		JTextArea jta = null;
-		JPanel panel = new JPanel(new GridLayout(1,1));	
-		jta.setEditable(false);
-		JScrollPane scrollPane = new JScrollPane(jta);
-		scrollPane.setBorder(BorderFactory.createTitledBorder("XXXXXXXXXX"));
-		panel.add(scrollPane);
-		this.getContentPane().add(panel, BorderLayout.CENTER);
-		setTitle("RANKING");
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(800, 600);
-		jpRankingCard.add(panel);
+		
+		
 	}
 	
 	public static void showRegister(){
