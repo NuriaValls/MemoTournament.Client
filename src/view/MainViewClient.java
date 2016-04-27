@@ -4,6 +4,7 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -173,15 +174,27 @@ public class MainViewClient extends JFrame{
 		jppassword.add(new JPanel());
 		//jppassword.add(new JPanel());
 		
+		JLabel jlage = new JLabel("Age");
+		String [] agestring = { "1-10", "11-20", "21-30", "31-40", "41-50", "51-60", "61-70", "71-80", "81-90", "91-99"};
+		JComboBox agelist = new JComboBox(agestring);
+		JPanel jpage = new JPanel();
+		jpage.setLayout(new GridLayout(1,4));
+		jpage.add(new JPanel());
+		jpage.add(jlage);
+		jpage.add(agelist);
+		jpage.add(new JPanel());
+		
 		jpnickname.setAlignmentX(Component.CENTER_ALIGNMENT);
 		jpname.setAlignmentX(Component.CENTER_ALIGNMENT);
 		jplastname.setAlignmentX(Component.CENTER_ALIGNMENT);
 		jppassword.setAlignmentX(Component.CENTER_ALIGNMENT);
+		jpage.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		register.add(jpname);
 		register.add(jplastname);
 		register.add(jpnickname);
 		register.add(jppassword);
+		register.add(jpage);
 		
 		register.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
@@ -256,7 +269,17 @@ public class MainViewClient extends JFrame{
 	}
 	
 	public void createInitialMenuCard(){
+
+		JPanel titol = new JPanel();
 		
+		titol.setLayout(new BoxLayout(titol, BoxLayout.PAGE_AXIS));
+	
+		JLabel nomtitol = new JLabel("Menu");
+		nomtitol.setFont(new java.awt.Font("Geneva", 1, 40));
+		titol.add(Box.createVerticalStrut(15));
+		titol.add(nomtitol);
+		
+		jpInitialMenuCard.add(titol);
 	}
 	
 	public void createSelectGameCard(){
@@ -268,7 +291,7 @@ public class MainViewClient extends JFrame{
 	}
 	
 	public void createRankingCard(){
-		JPanel panel = new JPanel(new GridLayout(1,2));	
+		/*JPanel panel = new JPanel(new GridLayout(1,2));	
 		JTextArea jta = new JTextArea();
 		jta.setEditable(false);
 		JScrollPane scrollPane = new JScrollPane(jta);
@@ -281,7 +304,7 @@ public class MainViewClient extends JFrame{
 		}
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		jpRankingCard.add(panel);
+		jpRankingCard.add(panel);*/
 		
 	}
 	
