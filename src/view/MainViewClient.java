@@ -7,7 +7,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 import controller.MainViewControllerC;
 
@@ -102,6 +104,89 @@ public class MainViewClient extends JFrame{
 	
 	public void createRegisterCard(){
 		
+		JPanel titol = new JPanel();
+		
+		titol.setLayout(new BoxLayout(titol, BoxLayout.PAGE_AXIS));
+	
+		JLabel nomtitol = new JLabel("Register");
+		nomtitol.setFont(new java.awt.Font("Geneva", 1, 40));
+		titol.add(Box.createVerticalStrut(15));
+		titol.add(nomtitol);
+		JLabel textinfo = new JLabel("sdfghjklkjhgfdsasdfghjklñlkjhgtfrdeswasdfghjl");
+		textinfo.setFont(new java.awt.Font("Geneva", 3, 16));
+		textinfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+		titol.add(Box.createVerticalStrut(25));
+		nomtitol.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		titol.add(textinfo);
+		titol.add(Box.createVerticalStrut(65));
+		
+		JPanel register = new JPanel();
+		register.setLayout(new BoxLayout(register, BoxLayout.PAGE_AXIS));
+		
+		JLabel jlname = new JLabel("Name");
+		jlname.setFont(new java.awt.Font("Geneva", 1, 14));
+		JTextField jtfname = new JTextField();
+		JPanel jpname = new JPanel();
+		jpname.setLayout(new GridLayout(1,4));
+		//jpname.add(new JPanel());
+		jpname.add(new JPanel());
+		jpname.add(jlname);
+		jpname.add(jtfname);
+		jpname.add(new JPanel());
+		//jpname.add(new JPanel());
+		
+		JLabel jllastname = new JLabel("Last Name");
+		jllastname.setFont(new java.awt.Font("Geneva", 1, 14));
+		JTextField jtflastname = new JTextField();
+		JPanel jplastname = new JPanel();
+		jplastname.setLayout(new GridLayout(1,4));
+		//jplastname.add(new JPanel());
+		jplastname.add(new JPanel());
+		jplastname.add(jllastname);
+		jplastname.add(jtflastname);
+		jplastname.add(new JPanel());
+		//jplastname.add(new JPanel());
+		
+		JLabel jlnickname = new JLabel("Nickname");
+		jlnickname.setFont(new java.awt.Font("Geneva", 1, 14));
+		JTextField jtfnickname = new JTextField();
+		JPanel jpnickname = new JPanel();
+		jpnickname.setLayout(new GridLayout(1,4));
+		//jpnickname.add(new JPanel());
+		jpnickname.add(new JPanel());
+		jpnickname.add(jlnickname);
+		jpnickname.add(jtfnickname);
+		jpnickname.add(new JPanel());
+		//jpnickname.add(new JPanel());
+		
+		JLabel jlpassword = new JLabel("Password");
+		jlpassword.setFont(new java.awt.Font("Geneva", 1, 14));
+		JPasswordField jpfpassword = new JPasswordField();
+		JPanel jppassword = new JPanel();
+		jppassword.setLayout(new GridLayout(1,4));
+		//jppassword.add(new JPanel());
+		jppassword.add(new JPanel());
+		jppassword.add(jlpassword);
+		jppassword.add(jpfpassword);
+		jppassword.add(new JPanel());
+		//jppassword.add(new JPanel());
+		
+		jpnickname.setAlignmentX(Component.CENTER_ALIGNMENT);
+		jpname.setAlignmentX(Component.CENTER_ALIGNMENT);
+		jplastname.setAlignmentX(Component.CENTER_ALIGNMENT);
+		jppassword.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		register.add(jpname);
+		register.add(jplastname);
+		register.add(jpnickname);
+		register.add(jppassword);
+		
+		register.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		titol.add(register);
+		
+		jpRegisterCard.add(titol);
 	}
 	
 	public void createLogInCard(){
@@ -133,23 +218,38 @@ public class MainViewClient extends JFrame{
 		
 		JLabel jlnickname = new JLabel("Nickname");
 		jlnickname.setFont(new java.awt.Font("Geneva", 1, 14));
-		JTextArea jtanickname = new JTextArea();
+		JTextField jtfnickname = new JTextField();
 		JPanel jpnickname = new JPanel();
 		jpnickname.setLayout(new GridLayout(1,6));
 		jpnickname.add(new JPanel());
 		jpnickname.add(new JPanel());
 		jpnickname.add(jlnickname);
-		jpnickname.add(jtanickname);
+		jpnickname.add(jtfnickname);
 		jpnickname.add(new JPanel());
 		jpnickname.add(new JPanel());
 		
+		
+		JLabel jlpassword = new JLabel("Password");
+		jlpassword.setFont(new java.awt.Font("Geneva", 1, 14));
+		JPasswordField jpfpassword = new JPasswordField();
+		JPanel jppassword = new JPanel();
+		jppassword.setLayout(new GridLayout(1,6));
+		jppassword.add(new JPanel());
+		jppassword.add(new JPanel());
+		jppassword.add(jlpassword);
+		jppassword.add(jpfpassword);
+		jppassword.add(new JPanel());
+		jppassword.add(new JPanel());
+		
 		jpnickname.setAlignmentX(Component.CENTER_ALIGNMENT);
+		jppassword.setAlignmentX(Component.CENTER_ALIGNMENT);
 		login.add(jpnickname);
+		login.add(jppassword);
+		
 		login.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		titol.add(login);
 		
-	
 		jpLogInCard.add(titol);
 		
 	}
