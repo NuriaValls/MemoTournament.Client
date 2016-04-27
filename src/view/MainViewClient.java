@@ -3,12 +3,14 @@ package view;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -113,14 +115,8 @@ public class MainViewClient extends JFrame{
 		JLabel nomtitol = new JLabel("Register");
 		nomtitol.setFont(new java.awt.Font("Geneva", 1, 40));
 		titol.add(Box.createVerticalStrut(15));
-		titol.add(nomtitol);
-		JLabel textinfo = new JLabel("sdfghjklkjhgfdsasdfghjklñlkjhgtfrdeswasdfghjl");
-		textinfo.setFont(new java.awt.Font("Geneva", 3, 16));
-		textinfo.setAlignmentX(Component.CENTER_ALIGNMENT);
-		titol.add(Box.createVerticalStrut(25));
 		nomtitol.setAlignmentX(Component.CENTER_ALIGNMENT);
-		
-		titol.add(textinfo);
+		titol.add(nomtitol);
 		titol.add(Box.createVerticalStrut(65));
 		
 		JPanel register = new JPanel();
@@ -131,48 +127,40 @@ public class MainViewClient extends JFrame{
 		JTextField jtfname = new JTextField();
 		JPanel jpname = new JPanel();
 		jpname.setLayout(new GridLayout(1,4));
-		//jpname.add(new JPanel());
 		jpname.add(new JPanel());
 		jpname.add(jlname);
 		jpname.add(jtfname);
 		jpname.add(new JPanel());
-		//jpname.add(new JPanel());
 		
 		JLabel jllastname = new JLabel("Last Name");
 		jllastname.setFont(new java.awt.Font("Geneva", 1, 14));
 		JTextField jtflastname = new JTextField();
 		JPanel jplastname = new JPanel();
 		jplastname.setLayout(new GridLayout(1,4));
-		//jplastname.add(new JPanel());
 		jplastname.add(new JPanel());
 		jplastname.add(jllastname);
 		jplastname.add(jtflastname);
 		jplastname.add(new JPanel());
-		//jplastname.add(new JPanel());
 		
 		JLabel jlnickname = new JLabel("Nickname");
 		jlnickname.setFont(new java.awt.Font("Geneva", 1, 14));
 		JTextField jtfnickname = new JTextField();
 		JPanel jpnickname = new JPanel();
 		jpnickname.setLayout(new GridLayout(1,4));
-		//jpnickname.add(new JPanel());
 		jpnickname.add(new JPanel());
 		jpnickname.add(jlnickname);
 		jpnickname.add(jtfnickname);
 		jpnickname.add(new JPanel());
-		//jpnickname.add(new JPanel());
 		
 		JLabel jlpassword = new JLabel("Password");
 		jlpassword.setFont(new java.awt.Font("Geneva", 1, 14));
 		JPasswordField jpfpassword = new JPasswordField();
 		JPanel jppassword = new JPanel();
 		jppassword.setLayout(new GridLayout(1,4));
-		//jppassword.add(new JPanel());
 		jppassword.add(new JPanel());
 		jppassword.add(jlpassword);
 		jppassword.add(jpfpassword);
 		jppassword.add(new JPanel());
-		//jppassword.add(new JPanel());
 		
 		JLabel jlage = new JLabel("Age");
 		String [] agestring = { "1-10", "11-20", "21-30", "31-40", "41-50", "51-60", "61-70", "71-80", "81-90", "91-99"};
@@ -284,6 +272,100 @@ public class MainViewClient extends JFrame{
 	
 	public void createSelectGameCard(){
 		
+		JPanel titol = new JPanel();
+		
+		titol.setLayout(new BoxLayout(titol, BoxLayout.PAGE_AXIS));
+	
+		JLabel nomtitol = new JLabel("New Game");
+		nomtitol.setFont(new java.awt.Font("Geneva", 1, 40));
+		nomtitol.setAlignmentX(Component.CENTER_ALIGNMENT);
+		titol.add(Box.createVerticalStrut(15));
+		titol.add(nomtitol);
+		titol.add(Box.createVerticalStrut(65));
+		
+		JPanel mode = new JPanel();
+		mode.setLayout(new BoxLayout(mode, BoxLayout.PAGE_AXIS));
+		
+		JLabel jlselectmode = new JLabel("Select Mode");
+		jlselectmode.setFont(new java.awt.Font("Geneva", 1, 14));
+		JRadioButton jrbmemoria = new JRadioButton("Memoria");
+		JPanel jpselectmode = new JPanel();
+		jpselectmode.setLayout(new GridLayout(1,4));
+		jpselectmode.add(new JPanel());
+		jpselectmode.add(jlselectmode);
+		jpselectmode.add(jrbmemoria);
+		jpselectmode.add(new JPanel());
+		
+		
+		JRadioButton jrbcontra = new JRadioButton("Contrarellotge");
+		JPanel jpselect = new JPanel();
+		jpselect.setLayout(new GridLayout(1,4));
+		jpselect.add(new JPanel());
+		jpselect.add(new JPanel());
+		jpselect.add(jrbcontra);
+		jpselect.add(new JPanel());
+		
+		ButtonGroup groupmode = new ButtonGroup();
+	    groupmode.add(jrbmemoria);
+	    groupmode.add(jrbcontra);
+		
+		
+		jpselectmode.setAlignmentX(Component.CENTER_ALIGNMENT);
+		jpselect.setAlignmentX(Component.CENTER_ALIGNMENT);
+		mode.add(jpselectmode);
+		mode.add(jpselect);
+		
+		mode.setAlignmentX(Component.CENTER_ALIGNMENT);
+		titol.add(mode);
+		titol.add(Box.createVerticalStrut(25));
+		
+		JPanel difficulty = new JPanel();
+		difficulty.setLayout(new BoxLayout(difficulty, BoxLayout.PAGE_AXIS));
+		
+		JLabel jlselectdiff = new JLabel("Select Difficulty");
+		jlselectdiff.setFont(new java.awt.Font("Geneva", 1, 14));
+		JRadioButton jrbeasy = new JRadioButton("Easy");
+		JPanel jpeasy = new JPanel();
+		jpeasy.setLayout(new GridLayout(1,4));
+		jpeasy.add(new JPanel());
+		jpeasy.add(jlselectdiff);
+		jpeasy.add(jrbeasy);
+		jpeasy.add(new JPanel());
+		
+		
+		JRadioButton jrbmedium = new JRadioButton("Medium");
+		JPanel jpmedium = new JPanel();
+		jpmedium.setLayout(new GridLayout(1,4));
+		jpmedium.add(new JPanel());
+		jpmedium.add(new JPanel());
+		jpmedium.add(jrbmedium);
+		jpmedium.add(new JPanel());
+		
+		JRadioButton jrbhard = new JRadioButton("Hard");
+		JPanel jphard = new JPanel();
+		jphard.setLayout(new GridLayout(1,4));
+		jphard.add(new JPanel());
+		jphard.add(new JPanel());
+		jphard.add(jrbhard);
+		jphard.add(new JPanel());
+		
+		ButtonGroup groupdiff = new ButtonGroup();
+	    groupdiff.add(jrbeasy);
+	    groupdiff.add(jrbmedium);
+	    groupdiff.add(jrbhard);
+		
+		
+	    jpeasy.setAlignmentX(Component.CENTER_ALIGNMENT);
+		jpmedium.setAlignmentX(Component.CENTER_ALIGNMENT);
+		jphard.setAlignmentX(Component.CENTER_ALIGNMENT);
+		difficulty.add(jpeasy);
+		difficulty.add(jpmedium);
+		difficulty.add(jphard);
+		
+		difficulty.setAlignmentX(Component.CENTER_ALIGNMENT);
+		titol.add(difficulty);
+		
+		jpSelectGameCard.add(titol);
 	}
 	
 	public void createGameCard(){
@@ -291,6 +373,18 @@ public class MainViewClient extends JFrame{
 	}
 	
 	public void createRankingCard(){
+		
+		JPanel titol = new JPanel();
+		
+		titol.setLayout(new BoxLayout(titol, BoxLayout.PAGE_AXIS));
+	
+		JLabel nomtitol = new JLabel("Ranking");
+		nomtitol.setFont(new java.awt.Font("Geneva", 1, 40));
+		titol.add(Box.createVerticalStrut(15));
+		titol.add(nomtitol);	
+		
+		jpRankingCard.add(titol);
+		
 		/*JPanel panel = new JPanel(new GridLayout(1,2));	
 		JTextArea jta = new JTextArea();
 		jta.setEditable(false);
