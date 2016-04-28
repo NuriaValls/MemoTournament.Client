@@ -1,6 +1,8 @@
 package model;
 
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 import controller.MainViewControllerC;
 import view.MainViewClient;
@@ -21,7 +23,6 @@ public class MTMainClient {
 				clientView.setVisible(true);
 				
 			}
-			
 		});
 	}
 }

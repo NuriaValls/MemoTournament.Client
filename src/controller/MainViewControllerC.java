@@ -10,7 +10,7 @@ import view.MainViewClient;
 
 public class MainViewControllerC implements ActionListener{
 
-	private MainViewClient view;
+	private static MainViewClient view;
 	
 	public MainViewControllerC(MainViewClient view){
 		this.view = view;
@@ -83,6 +83,6 @@ public class MainViewControllerC implements ActionListener{
 	}
 	
 	public static void makeDialog(String message, boolean type){
-		
+		view.makeDialog(message,type);
 	}
 }
