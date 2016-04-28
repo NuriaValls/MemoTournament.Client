@@ -470,4 +470,12 @@ public class MainViewClient extends JFrame{
 		jbGoToMenu.setText("End Game");
 		jbGoToMenu.setVisible(true);
 	}
+	
+	public static void makeDialog(String message, boolean type){
+		if(type){
+			Dialog.DialogOK(message);
+		}else{
+			Dialog.DialogKO(message);
+		}
+	}
 }

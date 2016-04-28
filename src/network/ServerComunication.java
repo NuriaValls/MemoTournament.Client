@@ -14,7 +14,9 @@ public class ServerComunication extends Thread{
 	private static DataInputStream dataIn;
 	private static DataOutputStream dataOut;
 	
-	public static void sendAddUser(String message){
+	public static boolean sendAddUser(String message){
+		boolean next = false;
+		
 		try {
 			sServer = new Socket("127.0.0.1",5200);
 			dataIn = new DataInputStream(sServer.getInputStream());
@@ -24,9 +26,10 @@ public class ServerComunication extends Thread{
 			String answer = new String();
 			answer = dataIn.readUTF();
 			if(answer.equals("OK")){
-				//MainViewControllerC.makeDialog("The user has been successfully registered!");
+				MainViewControllerC.makeDialog("The user has been successfully registered!",true);
+				next = true;
 			}else{
-				//MainViewControllerC.makeDialog("The user name is already taken!");
+				MainViewControllerC.makeDialog("The user name is already taken!",false);
 			}
 			
 			dataOut.close();
@@ -38,9 +41,13 @@ public class ServerComunication extends Thread{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		return next;
 	}
 	
-	public static void sendLogUser(String message){
+	public static boolean sendLogUser(String message){
+		boolean next = false; 
+		
 		try {
 			sServer = new Socket("127.0.0.1",5200);
 			dataIn = new DataInputStream(sServer.getInputStream());
@@ -50,9 +57,10 @@ public class ServerComunication extends Thread{
 			String answer = new String();
 			answer = dataIn.readUTF();
 			if(answer.equals("OK")){
-				//MainViewControllerC.makeDialog("The user has been successfully logged in!");
+				MainViewControllerC.makeDialog("The user has been successfully logged in!",true);
+				next = true;
 			}else{
-				//MainViewControllerC.makeDialog("The user name or password is wrong!");
+				MainViewControllerC.makeDialog("The user name or password is wrong!",false);
 			}
 			
 			dataOut.close();
@@ -64,6 +72,8 @@ public class ServerComunication extends Thread{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		return next;
 	}
 	
 	public static void sendRanking(String message){
@@ -98,9 +108,9 @@ public class ServerComunication extends Thread{
 			String answer = new String();
 			answer = dataIn.readUTF();
 			if(answer.equals("OK")){
-				//MainViewControllerC.makeDialog("The user has been successfully updated!");
+				MainViewControllerC.makeDialog("The user has been successfully updated!",true);
 			}else{
-				//MainViewControllerC.makeDialog("The user could not be updated!");
+				MainViewControllerC.makeDialog("The user could not be updated!",false);
 			}
 			
 			dataOut.close();
@@ -124,7 +134,7 @@ public class ServerComunication extends Thread{
 			String answer = new String();
 			answer = dataIn.readUTF();
 			if(answer.startsWith("OK:")){
-				//MainViewControllerC.makeDialog("The count back for the competition has started!");
+				MainViewControllerC.makeDialog("The count back for the competition has started!",true);
 			}
 			
 			dataOut.close();

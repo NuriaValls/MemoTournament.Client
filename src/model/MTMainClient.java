@@ -15,7 +15,7 @@ public class MTMainClient {
 			public void run() {
 				
 				MainViewClient clientView = new MainViewClient();
-				MainViewControllerC controller = new MainViewControllerC();
+				MainViewControllerC controller = new MainViewControllerC(clientView);
 				
 				clientView.registerController(controller);
 				clientView.setVisible(true);
