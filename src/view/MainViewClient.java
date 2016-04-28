@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -21,6 +22,7 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
 import model.MTMainClient;
@@ -375,31 +377,33 @@ public class MainViewClient extends JFrame{
 	public void createRankingCard(){
 		
 		JPanel titol = new JPanel();
-		
-		titol.setLayout(new BoxLayout(titol, BoxLayout.PAGE_AXIS));
-	
+		//titol.setLayout(new BoxLayout(titol, BoxLayout.PAGE_AXIS));
 		JLabel nomtitol = new JLabel("Ranking");
 		nomtitol.setFont(new java.awt.Font("Geneva", 1, 40));
-		titol.add(Box.createVerticalStrut(15));
+		//titol.add(Box.createVerticalStrut(15));
 		titol.add(nomtitol);	
+		titol.setLayout(new FlowLayout());
+		jpRankingCard.add(titol, BorderLayout.PAGE_START);
+		//getContentPane().add(titol, BorderLayout.PAGE_START);
+		//taula ranking
+		String[] columnNames = {"NickName", "Punctuation"};
+		Object[][] data = {{"Pedro", "890"}};		
+		JTable ranking = new JTable(data,columnNames);
 		
-		jpRankingCard.add(titol);
+		//Panell i textarea ranking
+		JPanel pRanking = new JPanel();	
+				
+		JScrollPane scrollPane = new JScrollPane(ranking);
+		scrollPane.add(ranking);
+		scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		pRanking.add(scrollPane);
 		
-		/*JPanel panel = new JPanel(new GridLayout(1,2));	
-		JTextArea jta = new JTextArea();
-		jta.setEditable(false);
-		JScrollPane scrollPane = new JScrollPane(jta);
-		scrollPane.setBorder(BorderFactory.createTitledBorder("XXXXXXXXXX"));
-		panel.add(scrollPane);
-		panel.setSize(1000, 500);
-		//this.getContentPane().add(panel, BorderLayout.CENTER);
-		for(int i = 0;i<150;i++ ){
-			jta.append("hola\n");
-		}
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		pRanking.add(ranking);
+		pRanking.setLayout(new FlowLayout());
+		jpRankingCard.setLayout(new BoxLayout(jpRankingCard,BoxLayout.PAGE_AXIS));
 		
-		jpRankingCard.add(panel);*/
-		
+		jpRankingCard.add(pRanking, BorderLayout.CENTER);
+
 	}
 	
 	public static void showRegister(){
