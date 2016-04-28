@@ -15,6 +15,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import controller.MainViewControllerC;
 
@@ -376,33 +378,50 @@ public class MainViewClient extends JFrame{
 	
 	public void createRankingCard(){
 		
-		JPanel titol = new JPanel();
-		//titol.setLayout(new BoxLayout(titol, BoxLayout.PAGE_AXIS));
-		JLabel nomtitol = new JLabel("Ranking");
-		nomtitol.setFont(new java.awt.Font("Geneva", 1, 40));
-		//titol.add(Box.createVerticalStrut(15));
-		titol.add(nomtitol);	
-		titol.setLayout(new FlowLayout());
-		jpRankingCard.add(titol, BorderLayout.PAGE_START);
-		//getContentPane().add(titol, BorderLayout.PAGE_START);
-		//taula ranking
-		String[] columnNames = {"NickName", "Punctuation"};
-		Object[][] data = {{"Pedro", "890"}};		
-		JTable ranking = new JTable(data,columnNames);
+		JPanel title = new JPanel();
+		JLabel nameTitle = new JLabel("Top 10 Ranking");
+		nameTitle.setFont(new java.awt.Font("Geneva", 1, 40));
+		title.add(nameTitle);	
+		title.setLayout(new FlowLayout());
+		jpRankingCard.add(title, BorderLayout.PAGE_START);
 		
-		//Panell i textarea ranking
 		JPanel pRanking = new JPanel();	
-				
-		JScrollPane scrollPane = new JScrollPane(ranking);
-		scrollPane.add(ranking);
-		scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		pRanking.add(scrollPane);
+		GridLayout glRanking = new GridLayout(11,2);
+		pRanking.setLayout(glRanking);
 		
-		pRanking.add(ranking);
-		pRanking.setLayout(new FlowLayout());
+		//pRanking.add(top10);
+
+		JLabel nickName = new JLabel("NICKNAME");
+		nickName.setBorder(BorderFactory.createLineBorder(Color.black));
+		pRanking.add(nickName);
+		//pRanking.setBorder(new EmptyBorder(10, 10, 10, 10));
+		JLabel punctuation = new JLabel("PUNTUACIO");
+		punctuation.setBorder(BorderFactory.createLineBorder(Color.black));
+		pRanking.add(punctuation);
+		
+		
+		for(int i=0; i<20; i++){
+			nickName = new JLabel("POL");
+			//pRanking.add(nickName);
+			nickName.setBorder(BorderFactory.createLineBorder(Color.black));
+			pRanking.add(nickName);
+			i++;
+			punctuation = new JLabel("350");
+			punctuation.setBorder(BorderFactory.createLineBorder(Color.black));
+			pRanking.add(punctuation);
+			//pRanking.add(punctuation);
+		}
+			
+		//JScrollPane scrollPane = new JScrollPane();
+		//scrollPane.setBorder(BorderFactory.createTitledBorder("Llista Paraules"));
+		//pRanking.add(scrollPane);
+		
+		//pRanking.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		//pRanking.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		//pRanking.setLayout(new FlowLayout());
 		jpRankingCard.setLayout(new BoxLayout(jpRankingCard,BoxLayout.PAGE_AXIS));
-		
-		jpRankingCard.add(pRanking, BorderLayout.CENTER);
+		//jpRankingCard.add(pRanking, BorderLayout.CENTER);
+		jpRankingCard.add(pRanking);
 
 	}
 	
