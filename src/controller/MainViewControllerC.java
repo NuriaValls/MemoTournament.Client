@@ -5,10 +5,17 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import network.ServerComunication;
 import view.MainViewClient;
 
 public class MainViewControllerC implements ActionListener{
 
+	private MainViewClient view;
+	
+	public MainViewControllerC(MainViewClient view){
+		this.view = view;
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -21,7 +28,10 @@ public class MainViewControllerC implements ActionListener{
 		if(((JButton)e.getSource()).getText().equals("Log In")){
 			//comprovar si l'usuari esta registrat
 			//si ho esta:
-			MainViewClient.showInitialMenu();
+			message = "LOG:Ruru/nunu";
+			if(ServerComunication.sendLogUser(message)){
+				MainViewClient.showInitialMenu();
+			}
 		}
 		
 		if(((JButton)e.getSource()).getText().equals("Enter as a Guest")){
@@ -32,7 +42,9 @@ public class MainViewControllerC implements ActionListener{
 		if(((JButton)e.getSource()).getText().equals("Register Profile")){
 			//registrar l'usuari i entrar com a usuari al menu
 			message = "ADD:Ruru/nunu";
-			MainViewClient.showInitialMenu();
+			if (ServerComunication.sendAddUser(message)){
+				MainViewClient.showInitialMenu();
+			}
 		}
 		
 		if(((JButton)e.getSource()).getText().equals("Show Ranking")){
@@ -70,4 +82,7 @@ public class MainViewControllerC implements ActionListener{
 		}
 	}
 	
+	public static void makeDialog(String message, boolean type){
+		
+	}
 }
