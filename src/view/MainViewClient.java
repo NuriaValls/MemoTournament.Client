@@ -56,8 +56,8 @@ public class MainViewClient extends JFrame{
 	public MainViewClient(){
 		setTitle("Memory Torunament -Client-");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
 		setSize(1000,550);
+		setLocationRelativeTo(null);
 		
 		createLogInCard();
 		createRegisterCard();
