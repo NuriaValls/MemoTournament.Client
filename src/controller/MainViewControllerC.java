@@ -28,7 +28,7 @@ public class MainViewControllerC implements ActionListener{
 		if(((JButton)e.getSource()).getText().equals("Log In")){
 			//comprovar si l'usuari esta registrat
 			//si ho esta:
-			message = "LOG:Ruru/nunu";
+			message = "LOG:Ruru/:3";
 			if(ServerComunication.sendLogUser(message)){
 				MainViewClient.showInitialMenu();
 			}
@@ -41,7 +41,7 @@ public class MainViewControllerC implements ActionListener{
 		
 		if(((JButton)e.getSource()).getText().equals("Register Profile")){
 			//registrar l'usuari i entrar com a usuari al menu
-			message = "ADD:Ruru/nunu";
+			message = "ADD:Mama/nunu";
 			if (ServerComunication.sendAddUser(message)){
 				MainViewClient.showInitialMenu();
 			}
