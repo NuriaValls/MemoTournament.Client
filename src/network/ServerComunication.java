@@ -14,6 +14,36 @@ public class ServerComunication extends Thread{
 	private static DataInputStream dataIn;
 	private static DataOutputStream dataOut;
 	
+	public void run(){
+		String message = new String();
+		boolean started = false;
+		
+		while(!started){
+			
+		
+			try {
+				sServer = new Socket("127.0.0.1",5200);
+				dataIn = new DataInputStream(sServer.getInputStream());
+				
+				message = dataIn.readUTF();
+				
+				if(message.startsWith("START")){
+					MainViewControllerC.makeDialog("A new competition has started!",true);
+					started = true;
+				}
+				
+				dataOut.close();
+				dataIn.close();
+				sServer.close();
+				
+			} catch (UnknownHostException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	public static boolean sendAddUser(String message){
 		boolean next = false;
 		
