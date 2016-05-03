@@ -41,7 +41,7 @@ public class MainViewControllerC implements ActionListener{
 		
 		if(((JButton)e.getSource()).getText().equals("Register Profile")){
 			//registrar l'usuari i entrar com a usuari al menu
-			message = "ADD:Luis/nunu";
+			message = "ADD:Julia/hola guapa";
 			if (ServerComunication.sendAddUser(message)){
 				MainViewClient.showInitialMenu();
 			}
