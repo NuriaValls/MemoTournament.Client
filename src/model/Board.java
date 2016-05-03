@@ -30,6 +30,17 @@ public class Board extends JFrame{
             cardVals.add(i);
             cardVals.add(i);
         } //HAY QUE CAMBIARLO POR IMAGENES
+        
+        switch (difficulty){
+        	case 1: setImagesEasy();
+        			break;
+        	case 2: setImagesNormal();
+        			break;
+        	case 3: setImagesHard();
+        			break;
+        	default: System.out.println("An error has ocurred when determining the difficulty level");		
+			break;
+        }
        
         Collections.shuffle(cardVals); //suffles the list of elements
 

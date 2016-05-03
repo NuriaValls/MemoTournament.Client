@@ -6,8 +6,13 @@ public class Card extends JButton{
    
 	private static final long serialVersionUID = 1L;
 	private final int id;
+	private String name;
 	private int ai = 0; //# times shown, for AI purpose
     private boolean matched = false;
+    private boolean faceUp=false;
+    private ImageIcon imgFace;
+    
+    private static ImageIcon imgBack = new ImageIcon("back.gif");
 
     public Card(int id){
     	this.id = id;
@@ -25,14 +30,15 @@ public class Card extends JButton{
         return this.matched; 
     }
     
-    public void showText(){
-    	this.setText(String.valueOf(id));
+    public void showImage(){
+    	super.setIcon(imgFace);
+		faceUp = true;
     }
     
-    public void hideText(){
-    	this.setText("");
+    public void hideImage(){
+    	super.setIcon(imgBack);
+		faceUp=false;
     }
-    
     
     public void incrementai(){
     	this.ai = ai++;
