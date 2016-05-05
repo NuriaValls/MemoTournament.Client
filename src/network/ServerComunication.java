@@ -17,13 +17,15 @@ public class ServerComunication extends Thread{
 	public void run(){
 		String message = new String();
 		boolean started = false;
-		
+		System.out.println(started);
 		while(!started){
 			
 		
 			try {
+				System.out.println("1");
 				sServer = new Socket("127.0.0.1",5200);
 				dataIn = new DataInputStream(sServer.getInputStream());
+				System.out.println("2");
 				
 				message = dataIn.readUTF();
 				
