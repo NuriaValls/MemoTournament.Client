@@ -157,6 +157,7 @@ public class ServerComunication extends Thread{
 	}
 	
 	public static void sendStart(String message){
+		System.out.println(message);
 		try {
 			sServer = new Socket("127.0.0.1",5200);
 			dataIn = new DataInputStream(sServer.getInputStream());
@@ -165,7 +166,7 @@ public class ServerComunication extends Thread{
 			
 			String answer = new String();
 			answer = dataIn.readUTF();
-			if(answer.startsWith("OK:")){
+			if(answer.startsWith("START")){
 				MainViewControllerC.makeDialog("The count back for the competition has started!",true);
 			}
 			

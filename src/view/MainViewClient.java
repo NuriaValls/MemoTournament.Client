@@ -425,7 +425,7 @@ public class MainViewClient extends JFrame{
 
 	}
 	
-	public static void showRegister(){
+	public void showRegister(){
 		cardLayout.show(jpMenu, "2");
 		
 		jbBack.setVisible(true);
@@ -434,7 +434,7 @@ public class MainViewClient extends JFrame{
 		jbGuest.setVisible(false);
 		jbRegister.setVisible(false);
 	}
-	public static void showInitialMenu(){
+	public void showInitialMenu(){
 		cardLayout.show(jpMenu, "3");
 		
 		jbBack.setVisible(false);
@@ -448,7 +448,7 @@ public class MainViewClient extends JFrame{
 		jbLogOut.setVisible(true);
 	}
 	
-	public static void showRanking(){
+	public void showRanking(){
 		cardLayout.show(jpMenu, "6");
 		
 		jbNewGame.setVisible(false);
@@ -459,7 +459,7 @@ public class MainViewClient extends JFrame{
 		jbGoToMenu.setVisible(true);
 	}
 	
-	public static void showLogIn(){
+	public void showLogIn(){
 		cardLayout.show(jpMenu, "1");
 		
 		jbNewGame.setVisible(false);
@@ -473,7 +473,7 @@ public class MainViewClient extends JFrame{
 		jbGuest.setVisible(true);
 	}
 	
-	public static void showSelectGame(){
+	public void showSelectGame(){
 		cardLayout.show(jpMenu, "4");
 		
 		jbNewGame.setVisible(false);
@@ -485,7 +485,7 @@ public class MainViewClient extends JFrame{
 		jbStartGame.setVisible(true);
 	}
 	
-	public static void showGame(){
+	public void showGame(){
 		cardLayout.show(jpMenu, "5");
 		
 		jbStartGame.setVisible(false);
@@ -494,7 +494,7 @@ public class MainViewClient extends JFrame{
 		jbGoToMenu.setVisible(true);
 	}
 	
-	public static void makeDialog(String message, boolean type){
+	public void makeDialog(String message, boolean type){
 		if(type){
 			Dialog.DialogOK(message);
 		}else{

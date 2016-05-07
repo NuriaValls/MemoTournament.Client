@@ -22,7 +22,7 @@ public class MainViewControllerC implements ActionListener{
 		String message = new String();
 		
 		if(((JButton)e.getSource()).getText().equals("Register")){
-			MainViewClient.showRegister();
+			view.showRegister();
 		}
 		
 		if(((JButton)e.getSource()).getText().equals("Log In")){
@@ -30,55 +30,55 @@ public class MainViewControllerC implements ActionListener{
 			//si ho esta:
 			message = "LOG:Ruru/:3";
 			if(ServerComunication.sendLogUser(message)){
-				MainViewClient.showInitialMenu();
+				view.showInitialMenu();
 			}
 		}
 		
 		if(((JButton)e.getSource()).getText().equals("Enter as a Guest")){
 			//entrar directament i no avisar al servidor en cap cas
-			MainViewClient.showInitialMenu();
+			view.showInitialMenu();
 		}
 		
 		if(((JButton)e.getSource()).getText().equals("Register Profile")){
 			//registrar l'usuari i entrar com a usuari al menu
 			message = "ADD:Julia/hola guapa";
 			if (ServerComunication.sendAddUser(message)){
-				MainViewClient.showInitialMenu();
+				view.showInitialMenu();
 			}
 		}
 		
 		if(((JButton)e.getSource()).getText().equals("Show Ranking")){
-			MainViewClient.showRanking();
+			view.showRanking();
 		}
 		
 		if(((JButton)e.getSource()).getText().equals("Menu")){
-			MainViewClient.showInitialMenu();
+			view.showInitialMenu();
 		}
 		
 		if(((JButton)e.getSource()).getText().equals("Log Out")){
-			MainViewClient.showLogIn();
+			view.showLogIn();
 		}
 		
 		if(((JButton)e.getSource()).getText().equals("New Game")){
-			MainViewClient.showSelectGame();
+			view.showSelectGame();
 		}
 		
 		if(((JButton)e.getSource()).getText().equals("Start Game")){
 			//comença la partida
-			MainViewClient.showGame();
+			view.showGame();
 		}
 		
 		if(((JButton)e.getSource()).getText().equals("End Game")){
 			//sortir de la partida sense acabarla
-			MainViewClient.showInitialMenu();
+			view.showInitialMenu();
 		}
 		
 		if(((JButton)e.getSource()).getText().equals("Back")){
-			MainViewClient.showLogIn();
+			view.showLogIn();
 		}
 		
 		if(((JButton)e.getSource()).getText().equals("Back to Menu")){
-			MainViewClient.showInitialMenu();
+			view.showInitialMenu();
 		}
 	}
 	

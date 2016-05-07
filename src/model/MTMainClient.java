@@ -17,6 +17,7 @@ public class MTMainClient {
 			public void run() {
 				
 				MainViewClient clientView = new MainViewClient();
+				Time time = new Time();
 				MainViewControllerC controller = new MainViewControllerC(clientView);
 				
 				clientView.registerController(controller);
