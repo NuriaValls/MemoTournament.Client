@@ -11,17 +11,31 @@ import javax.swing.Timer;
 
 import network.ServerComunication;
 
-public class Time {
+public class Time extends Thread{
+	
+	private Timer timerComp;
+	private Timer timerRank;
 	
 	public Time(){
-		Timer timerComp = new Timer(5000, new ActionListener(){
+		timerComp = new Timer(5000, new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				ServerComunication.sendStart("START");
 			}
 		});
+		
 		timerComp.start();
+		
+		timerRank = new Timer(10000, new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				ServerComunication.sendStart("RANK");
+			}
+		});
+		
+		timerRank.start();
 	}
 	
 	public String getTime(){

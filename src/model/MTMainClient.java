@@ -21,7 +21,7 @@ public class MTMainClient {
 				MainViewControllerC controller = new MainViewControllerC(clientView);
 				
 				clientView.registerController(controller);
-				clientView.setVisible(true); //asdf
+				clientView.setVisible(true);
 				
 			}
 		});

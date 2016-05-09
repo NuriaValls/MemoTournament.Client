@@ -168,6 +168,7 @@ public class ServerComunication extends Thread{
 			answer = dataIn.readUTF();
 			if(answer.startsWith("START")){
 				MainViewControllerC.makeDialog("The count back for the competition has started!",true);
+				
 			}
 			
 			dataOut.close();
