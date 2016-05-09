@@ -35,7 +35,14 @@ public class Time extends Thread{
 			}
 		});
 		
+	}
+	
+	public void startTimerRank(){
 		timerRank.start();
+	}
+	
+	public void stopTimerComp(){
+		timerComp.stop();
 	}
 	
 	public String getTime(){
