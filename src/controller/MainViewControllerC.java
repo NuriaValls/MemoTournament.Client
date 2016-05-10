@@ -5,15 +5,20 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import model.Time;
 import network.ServerComunication;
 import view.MainViewClient;
 
 public class MainViewControllerC implements ActionListener{
 
 	private static MainViewClient view;
+	private Time time;
+	private ServerComunication serverCom;
 	
-	public MainViewControllerC(MainViewClient view){
+	public MainViewControllerC(MainViewClient view, Time time, ServerComunication serverCom){
 		this.view = view;
+		this.time = time;
+		this.serverCom = serverCom;
 	}
 	
 	@Override

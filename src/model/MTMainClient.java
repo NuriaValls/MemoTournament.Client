@@ -4,6 +4,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
+import network.ServerComunication;
 import controller.MainViewControllerC;
 import view.MainViewClient;
 
@@ -18,7 +19,8 @@ public class MTMainClient {
 				
 				MainViewClient clientView = new MainViewClient();
 				Time time = new Time();
-				MainViewControllerC controller = new MainViewControllerC(clientView);
+				ServerComunication serverCom = new ServerComunication();
+				MainViewControllerC controller = new MainViewControllerC(clientView,time,serverCom);
 				
 				clientView.registerController(controller);
 				clientView.setVisible(true);
