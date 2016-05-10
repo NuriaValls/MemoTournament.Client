@@ -425,6 +425,20 @@ public class MainViewClient extends JFrame{
 
 	}
 	
+	public void refreshRanking(String rank){
+		String[] users = new String[10];
+		String[] user = new String[3];
+		
+		users = rank.split("#");
+		
+		for(int i=0; i<users.length; i++){
+			System.out.println(i);
+			user = users[i].split("/");
+			System.out.println(user[0]);
+			System.out.println(user[2]);
+		}
+	}
+	
 	public void showRegister(){
 		cardLayout.show(jpMenu, "2");
 		

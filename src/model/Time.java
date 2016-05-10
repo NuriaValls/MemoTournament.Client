@@ -9,9 +9,12 @@ import java.util.GregorianCalendar;
 
 import javax.swing.Timer;
 
+import controller.MainViewControllerC;
 import network.ServerComunication;
 
 public class Time extends Thread{
+	
+	private MainViewControllerC controller;
 	
 	private Timer timerComp;
 	private Timer timerRank;
@@ -21,7 +24,7 @@ public class Time extends Thread{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				ServerComunication.sendStart("START");
+				controller.sendStartServerC("START");
 			}
 		});
 		
@@ -31,10 +34,14 @@ public class Time extends Thread{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				ServerComunication.sendStart("RANK");
+				controller.sendRankServerC("RANK");
 			}
 		});
 		
+	}
+	
+	public void registerController(MainViewControllerC controller){
+		this.controller = controller;
 	}
 	
 	public void startTimerRank(){

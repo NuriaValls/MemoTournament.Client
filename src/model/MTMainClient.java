@@ -19,10 +19,12 @@ public class MTMainClient {
 				
 				MainViewClient clientView = new MainViewClient();
 				Time time = new Time();
-				ServerComunication serverCom = new ServerComunication();
-				MainViewControllerC controller = new MainViewControllerC(clientView,time,serverCom);
+				ServerComunication serverCom = new ServerComunication(time);
+				MainViewControllerC controller = new MainViewControllerC(clientView,serverCom);
 				
 				clientView.registerController(controller);
+				serverCom.registerController(controller);
+				time.registerController(controller);
 				clientView.setVisible(true);
 				
 			}

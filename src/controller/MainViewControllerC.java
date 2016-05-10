@@ -12,12 +12,10 @@ import view.MainViewClient;
 public class MainViewControllerC implements ActionListener{
 
 	private static MainViewClient view;
-	private Time time;
 	private ServerComunication serverCom;
 	
-	public MainViewControllerC(MainViewClient view, Time time, ServerComunication serverCom){
+	public MainViewControllerC(MainViewClient view, ServerComunication serverCom){
 		this.view = view;
-		this.time = time;
 		this.serverCom = serverCom;
 	}
 	
@@ -34,7 +32,7 @@ public class MainViewControllerC implements ActionListener{
 			//comprovar si l'usuari esta registrat
 			//si ho esta:
 			message = "LOG:Ruru/:3";
-			if(ServerComunication.sendLogUser(message)){
+			if(serverCom.sendLogUser(message)){
 				view.showInitialMenu();
 			}
 		}
@@ -47,7 +45,7 @@ public class MainViewControllerC implements ActionListener{
 		if(((JButton)e.getSource()).getText().equals("Register Profile")){
 			//registrar l'usuari i entrar com a usuari al menu
 			message = "ADD:Julia/hola guapa";
-			if (ServerComunication.sendAddUser(message)){
+			if (serverCom.sendAddUser(message)){
 				view.showInitialMenu();
 			}
 		}
@@ -87,7 +85,20 @@ public class MainViewControllerC implements ActionListener{
 		}
 	}
 	
-	public static void makeDialog(String message, boolean type){
+	public void makeDialog(String message, boolean type){
 		view.makeDialog(message,type);
+	}
+	
+	public void sendStartServerC(String message){
+		serverCom.sendStart(message);
+	}
+	
+	public void sendRankServerC(String message){
+		serverCom.sendRanking(message);
+	}
+	
+	public void refreshRanking(String rank){
+		rank = rank.substring(5);
+		view.refreshRanking(rank);
 	}
 }
