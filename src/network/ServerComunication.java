@@ -98,7 +98,6 @@ public class ServerComunication extends Thread{
 			String answer = new String();
 			answer = dataIn.readUTF();
 			
-			System.out.println(answer);
 			controller.refreshRanking(answer);
 			
 			dataIn.close();
@@ -139,7 +138,6 @@ public class ServerComunication extends Thread{
 	}
 	
 	public void sendStart(String message){
-		System.out.println(message);
 		try {
 			sServer = new Socket("127.0.0.1",5200);
 			dataIn = new DataInputStream(sServer.getInputStream());

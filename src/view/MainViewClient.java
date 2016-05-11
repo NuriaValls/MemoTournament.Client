@@ -426,16 +426,16 @@ public class MainViewClient extends JFrame{
 	}
 	
 	public void refreshRanking(String rank){
-		String[] users = new String[10];
-		String[] user = new String[3];
+		String[] users;
+		String[] user;
 		
+		//System.out.println(rank);
 		users = rank.split("#");
-		
 		for(int i=0; i<users.length; i++){
-			System.out.println(i);
+			//System.out.println(i);
 			user = users[i].split("/");
 			System.out.println(user[0]);
-			System.out.println(user[2]);
+			System.out.println(user[1]);
 		}
 	}
 	
