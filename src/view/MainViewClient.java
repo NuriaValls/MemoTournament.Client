@@ -53,6 +53,10 @@ public class MainViewClient extends JFrame{
 	private static JButton jbGoToMenu = new JButton("Log In");
 	private static JButton jbStartGame = new JButton("Start Game");
 	
+	//atributs de log in
+	private JTextField jtfnickname;
+	private JPasswordField jpfpassword;
+	
 	public MainViewClient(){
 		setTitle("Memory Torunament -Client-");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -224,7 +228,7 @@ public class MainViewClient extends JFrame{
 		
 		JLabel jlnickname = new JLabel("Nickname");
 		jlnickname.setFont(new java.awt.Font("Geneva", 1, 14));
-		JTextField jtfnickname = new JTextField();
+		jtfnickname = new JTextField();
 		JPanel jpnickname = new JPanel();
 		jpnickname.setLayout(new GridLayout(1,6));
 		jpnickname.add(new JPanel());
@@ -237,7 +241,7 @@ public class MainViewClient extends JFrame{
 		
 		JLabel jlpassword = new JLabel("Password");
 		jlpassword.setFont(new java.awt.Font("Geneva", 1, 14));
-		JPasswordField jpfpassword = new JPasswordField();
+		jpfpassword = new JPasswordField();
 		JPanel jppassword = new JPanel();
 		jppassword.setLayout(new GridLayout(1,6));
 		jppassword.add(new JPanel());
@@ -258,6 +262,15 @@ public class MainViewClient extends JFrame{
 		
 		jpLogInCard.add(titol);
 		
+	}
+	
+	public String getLogNickname(){
+		return jtfnickname.getText();
+	}
+	
+	@SuppressWarnings("deprecation")
+	public String getLogPasword(){
+		return jpfpassword.getText();
 	}
 	
 	public void createInitialMenuCard(){
@@ -448,6 +461,7 @@ public class MainViewClient extends JFrame{
 		jbGuest.setVisible(false);
 		jbRegister.setVisible(false);
 	}
+	
 	public void showInitialMenu(){
 		cardLayout.show(jpMenu, "3");
 		
