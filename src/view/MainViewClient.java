@@ -57,6 +57,10 @@ public class MainViewClient extends JFrame{
 	private JTextField jtfnickname;
 	private JPasswordField jpfpassword;
 	
+	//atributs de register
+	private JTextField jtfnicknameR;
+	private JPasswordField jpfpasswordR;
+	
 	public MainViewClient(){
 		setTitle("Memory Torunament -Client-");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -152,22 +156,22 @@ public class MainViewClient extends JFrame{
 		
 		JLabel jlnickname = new JLabel("Nickname");
 		jlnickname.setFont(new java.awt.Font("Geneva", 1, 14));
-		JTextField jtfnickname = new JTextField();
+		jtfnicknameR = new JTextField();
 		JPanel jpnickname = new JPanel();
 		jpnickname.setLayout(new GridLayout(1,4));
 		jpnickname.add(new JPanel());
 		jpnickname.add(jlnickname);
-		jpnickname.add(jtfnickname);
+		jpnickname.add(jtfnicknameR);
 		jpnickname.add(new JPanel());
 		
 		JLabel jlpassword = new JLabel("Password");
 		jlpassword.setFont(new java.awt.Font("Geneva", 1, 14));
-		JPasswordField jpfpassword = new JPasswordField();
+		jpfpasswordR = new JPasswordField();
 		JPanel jppassword = new JPanel();
 		jppassword.setLayout(new GridLayout(1,4));
 		jppassword.add(new JPanel());
 		jppassword.add(jlpassword);
-		jppassword.add(jpfpassword);
+		jppassword.add(jpfpasswordR);
 		jppassword.add(new JPanel());
 		
 		JLabel jlage = new JLabel("Age");
@@ -197,6 +201,15 @@ public class MainViewClient extends JFrame{
 		titol.add(register);
 		
 		jpRegisterCard.add(titol);
+	}
+	
+	public String getRegNickname(){
+		return jtfnicknameR.getText();
+	}
+	
+	@SuppressWarnings("deprecation")
+	public String getRegPasword(){
+		return jpfpasswordR.getText();
 	}
 	
 	public void createLogInCard(){
