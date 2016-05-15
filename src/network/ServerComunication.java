@@ -147,9 +147,35 @@ public class ServerComunication extends Thread{
 			String answer = new String();
 			answer = dataIn.readUTF();
 			if(answer.startsWith("START")){
-				controller.makeDialog("The count back for the competition has started!",true);
+				controller.makeDialog("The countdown for the competition has started!",true);
 				time.stopTimerComp();
 				time.startTimerRank();
+			}
+			
+			dataOut.close();
+			dataIn.close();
+			sServer.close();
+			
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void sendTime(String message){
+		try {
+			sServer = new Socket("127.0.0.1",5200);
+			dataIn = new DataInputStream(sServer.getInputStream());
+			dataOut = new DataOutputStream(sServer.getOutputStream());
+			dataOut.writeUTF(message);
+			
+			String answer = new String();
+			answer = dataIn.readUTF();
+			if(answer.startsWith("COUNTDOWN")){
+				//refreshcountdown
+			}else{//startswith COMPETITION
+				//refreshcompetitionTime
 			}
 			
 			dataOut.close();

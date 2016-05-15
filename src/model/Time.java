@@ -18,10 +18,11 @@ public class Time extends Thread{
 	
 	private Timer timerComp;
 	private Timer timerRank;
+	private Timer timerCompStarted;
 	
 	public Time(){
 		timerComp = new Timer(5000, new ActionListener(){
-
+			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				controller.sendStartServerC("START");
@@ -38,6 +39,14 @@ public class Time extends Thread{
 			}
 		});
 		
+		timerCompStarted = new Timer(1000, new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.sendTimeServerC("TIME");
+			}
+			
+		});
 	}
 	
 	public void registerController(MainViewControllerC controller){

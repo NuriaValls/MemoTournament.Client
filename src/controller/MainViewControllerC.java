@@ -97,6 +97,10 @@ public class MainViewControllerC implements ActionListener{
 		serverCom.sendRanking(message);
 	}
 	
+	public void sendTimeServerC(String message){
+		
+	}
+	
 	public void refreshRanking(String rank){
 		rank = rank.substring(5);
 		view.refreshRanking(rank);
