@@ -18,10 +18,14 @@ public class Time extends Thread{
 	
 	private Timer timerComp;
 	private Timer timerRank;
-	private Timer timerCompStarted;
+	
+	private Timer countdownTimer;
+	private int countdown;
+	private Timer competitionTimer;
+	private int competition;
 	
 	public Time(){
-		timerComp = new Timer(5000, new ActionListener(){
+		timerComp = new Timer(1000, new ActionListener(){
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -39,11 +43,32 @@ public class Time extends Thread{
 			}
 		});
 		
-		timerCompStarted = new Timer(1000, new ActionListener(){
+		countdownTimer = new Timer(1000, new ActionListener(){
 
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				controller.sendTimeServerC("TIME");
+			public void actionPerformed(ActionEvent arg0) {
+				if (countdown > 0){
+					countdown--;
+					System.out.println(countdown);
+				}else{
+					competitionTimer.start();
+					countdownTimer.stop();
+					controller.makeDialog("The competition has started!", true);
+				}
+			}
+			
+		});
+		
+		competitionTimer = new Timer(1000, new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (competition > 0){
+					competition--;
+					System.out.println("comp: "+competition);
+				}else{
+					competitionTimer.stop();
+				}
 			}
 			
 		});
@@ -59,6 +84,12 @@ public class Time extends Thread{
 	
 	public void stopTimerComp(){
 		timerComp.stop();
+	}
+	
+	public void startCountdownTimer(int countdown, int competition){
+		this.countdown = countdown;
+		this.competition = competition;
+		countdownTimer.start();
 	}
 	
 	public String getTime(){

@@ -98,11 +98,15 @@ public class MainViewControllerC implements ActionListener{
 	}
 	
 	public void sendTimeServerC(String message){
-		
+		serverCom.sendTime(message);
 	}
 	
 	public void refreshRanking(String rank){
 		rank = rank.substring(5);
 		view.refreshRanking(rank);
+	}
+	
+	public void refreshTime(String time, boolean comp){
+		//view.refreshTime(time,comp);
 	}
 }

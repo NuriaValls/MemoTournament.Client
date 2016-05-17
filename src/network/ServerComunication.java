@@ -147,8 +147,12 @@ public class ServerComunication extends Thread{
 			String answer = new String();
 			answer = dataIn.readUTF();
 			if(answer.startsWith("START")){
-				controller.makeDialog("The countdown for the competition has started!",true);
+				//controller.makeDialog("The countdown for the competition has started!",true);
+				System.out.println("1");
+				answer = answer.substring(6);
+				String[] array = answer.split("/");
 				time.stopTimerComp();
+				time.startCountdownTimer(Integer.parseInt(array[0]),Integer.parseInt(array[1]));
 				time.startTimerRank();
 			}
 			
@@ -173,9 +177,14 @@ public class ServerComunication extends Thread{
 			String answer = new String();
 			answer = dataIn.readUTF();
 			if(answer.startsWith("COUNTDOWN")){
-				//refreshcountdown
-			}else{//startswith COMPETITION
-				//refreshcompetitionTime
+				controller.makeDialog("The countdown for the competition has started! Now users can log to the competition.",true);
+				message = message.substring(10);
+				controller.refreshTime(message, false);
+			}
+			if(answer.startsWith("COMPETITION")){
+				controller.makeDialog("The competition has started! It's time to get the best score!",true);
+				message = message.substring(12);
+				controller.refreshTime(message, true);
 			}
 			
 			dataOut.close();
