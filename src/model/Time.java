@@ -23,6 +23,7 @@ public class Time extends Thread{
 	private int countdown;
 	private Timer competitionTimer;
 	private int competition;
+	private boolean started = false;
 	
 	public Time(){
 		timerComp = new Timer(1000, new ActionListener(){
@@ -54,6 +55,7 @@ public class Time extends Thread{
 					competitionTimer.start();
 					countdownTimer.stop();
 					controller.makeDialog("The competition has started!", true);
+					started = true;
 				}
 			}
 			
@@ -87,9 +89,9 @@ public class Time extends Thread{
 	}
 	
 	public void startCountdownTimer(int countdown, int competition){
-		this.countdown = countdown;
+		this.countdown = countdown-3;
 		this.competition = competition;
-		countdownTimer.start();
+		countdownTimer.start(); 
 	}
 	
 	public String getTime(){
@@ -98,5 +100,9 @@ public class Time extends Thread{
 		String time= new SimpleDateFormat("dd MMM yyyy HH:mm:ss").format(date.getTime());
 		
 		return time;
+	}
+	
+	public boolean getStarted(){
+		return started;
 	}
 }

@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import model.Time;
+import model.UserClient;
 import network.ServerComunication;
 import view.MainViewClient;
 
@@ -13,10 +14,14 @@ public class MainViewControllerC implements ActionListener{
 
 	private static MainViewClient view;
 	private ServerComunication serverCom;
+	private Time time;
+	public UserClient user;
 	
-	public MainViewControllerC(MainViewClient view, ServerComunication serverCom){
+	
+	public MainViewControllerC(MainViewClient view, ServerComunication serverCom, Time time){
 		this.view = view;
 		this.serverCom = serverCom;
+		this.time = time;
 	}
 	
 	@Override
@@ -25,20 +30,29 @@ public class MainViewControllerC implements ActionListener{
 		String message = new String();
 		
 		if(((JButton)e.getSource()).getText().equals("Register")){
-			view.showRegister();
+			if (serverCom.getCompetition()){
+				view.showRegister();
+			}else{
+				view.makeDialog("You can't Register while there is no competition", true);
+			}
 		}
 		
 		if(((JButton)e.getSource()).getText().equals("Log In")){
 			//comprovar si l'usuari esta registrat
 			//si ho esta:
-			message = "LOG:"+view.getLogNickname()+"/"+view.getLogPasword();
-			if(serverCom.sendLogUser(message)){
-				view.showInitialMenu();
+			if (serverCom.getCompetition()){
+				//message = "LOG:"+view.getLogNickname()+"/"+view.getLogPasword();
+				if(serverCom.sendLogUser(new UserClient(view.getLogNickname(), view.getLogPasword()))){
+					view.showInitialMenu();
+				}
+			}else{
+				view.makeDialog("You can't Log In while there is no competition", true);
 			}
 		}
 		
 		if(((JButton)e.getSource()).getText().equals("Enter as a Guest")){
 			//entrar directament i no avisar al servidor en cap cas
+			user = new UserClient("GUEST","",0);
 			view.showInitialMenu();
 		}
 		
@@ -46,6 +60,7 @@ public class MainViewControllerC implements ActionListener{
 			//registrar l'usuari i entrar com a usuari al menu
 			message = "ADD:"+view.getRegNickname()+"/"+view.getRegPasword();
 			if (serverCom.sendAddUser(message)){
+				user = new UserClient(view.getRegNickname(),view.getRegPasword(),0);
 				view.showInitialMenu();
 			}
 		}
@@ -63,7 +78,11 @@ public class MainViewControllerC implements ActionListener{
 		}
 		
 		if(((JButton)e.getSource()).getText().equals("New Game")){
-			view.showSelectGame();
+			if(user.getNickname().equals("GUEST") || ( !user.getNickname().equals("GUEST") && time.getStarted()) ){
+				view.showSelectGame();
+			}else{
+				view.makeDialog("You can't play until the competition has started!", true);
+			}
 		}
 		
 		if(((JButton)e.getSource()).getText().equals("Start Game")){

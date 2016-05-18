@@ -3,12 +3,19 @@ package model;
 import model.MTMainClient;
 
 public class UserClient {
-	private String nickName;
+	private String nickname;
 	private String password;
-	private int punctuation;
+	private int score;
 	
-	public void userRegistration(String nickName,String password){
-		//Quan inicia el compte enrere l'usuari pot introduir-se a la base de dades mitjançant sockets.
+	public UserClient(String nickname,String password,int score){
+		this.nickname = nickname;
+		this.password = password;
+		this.score = score;
+	}
+	
+	public UserClient(String nickname,String password){
+		this.nickname = nickname;
+		this.password = password;
 	}
 	
 	public void logOut(){
@@ -23,11 +30,11 @@ public class UserClient {
 		
 	}
 	
-	public String getNickName() {
-		return nickName;
+	public String getNickname() {
+		return nickname;
 	}
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 	public String getPassword() {
 		return password;
@@ -35,11 +42,11 @@ public class UserClient {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getPunctuation() {
-		return punctuation;
+	public int getScore() {
+		return score;
 	}
-	public void setPunctuation(int punctuation) {
-		this.punctuation = punctuation;
+	public void setScore(int score) {
+		this.score = score;
 	}
 	
 }

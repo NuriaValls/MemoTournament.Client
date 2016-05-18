@@ -7,6 +7,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 import model.Time;
+import model.UserClient;
 import controller.MainViewControllerC;
 
 public class ServerComunication extends Thread{
@@ -15,7 +16,7 @@ public class ServerComunication extends Thread{
 	private DataInputStream dataIn;
 	private DataOutputStream dataOut;
 	private Time time;
-	private boolean started = false;
+	private boolean competition = false;
 	private MainViewControllerC controller;
 	
 	public ServerComunication(Time time){
@@ -57,9 +58,9 @@ public class ServerComunication extends Thread{
 		return next;
 	}
 	
-	public boolean sendLogUser(String message){
+	public boolean sendLogUser(UserClient user){
 		boolean next = false; 
-		
+		String message = "LOG:"+user.getNickname()+"/"+user.getPassword();
 		try {
 			sServer = new Socket("127.0.0.1",5200);
 			dataIn = new DataInputStream(sServer.getInputStream());
@@ -68,8 +69,9 @@ public class ServerComunication extends Thread{
 			
 			String answer = new String();
 			answer = dataIn.readUTF();
-			if(answer.equals("OK")){
+			if(answer.startsWith("OK")){
 				controller.makeDialog("The user has been successfully logged in!",true);
+				controller.user = new UserClient (user.getNickname(), user.getPassword(), Integer.parseInt(answer.substring(3)));
 				next = true;
 			}else{
 				controller.makeDialog("The user name or password is wrong!",false);
@@ -147,8 +149,7 @@ public class ServerComunication extends Thread{
 			String answer = new String();
 			answer = dataIn.readUTF();
 			if(answer.startsWith("START")){
-				//controller.makeDialog("The countdown for the competition has started!",true);
-				System.out.println("1");
+				competition = true;
 				answer = answer.substring(6);
 				String[] array = answer.split("/");
 				time.stopTimerComp();
@@ -196,5 +197,9 @@ public class ServerComunication extends Thread{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public boolean getCompetition(){
+		return competition;
 	}
 }
