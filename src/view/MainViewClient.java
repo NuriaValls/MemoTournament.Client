@@ -433,6 +433,7 @@ public class MainViewClient extends JFrame{
 		title.add(panell);
 		jpRankingCard.add(title);
 
+		
 	}
 	
 	public void refreshRanking(String sTopTen){
