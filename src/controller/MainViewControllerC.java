@@ -116,10 +116,6 @@ public class MainViewControllerC implements ActionListener{
 		serverCom.sendRanking(message);
 	}
 	
-	/*public void sendTimeServerC(String message){
-		serverCom.sendTime(message);
-	}*/
-	
 	public void refreshRanking(String rank){
 		rank = rank.substring(5);
 		view.refreshRanking(rank);
@@ -151,6 +147,5 @@ public class MainViewControllerC implements ActionListener{
 		}else{
 			print = "The competition will start in: "+hour+min+sec+"hours.";
 		}
-		System.out.println(print);
 	}
 }

@@ -455,13 +455,10 @@ public class MainViewClient extends JFrame{
 		String[] users;
 		String[] user;
 		
-		//System.out.println(rank);
 		users = rank.split("#");
 		for(int i=0; i<users.length; i++){
-			//System.out.println(i);
 			user = users[i].split("/");
-			//System.out.println(user[0]);
-			//System.out.println(user[1]);
+			
 		}
 	}
 	
