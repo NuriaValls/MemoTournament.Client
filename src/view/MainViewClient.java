@@ -15,7 +15,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.MainViewControllerC;
@@ -53,6 +55,12 @@ public class MainViewClient extends JFrame{
 	private static JButton jbBack = new JButton("Back");
 	private static JButton jbGoToMenu = new JButton("Log In");
 	private static JButton jbStartGame = new JButton("Start Game");
+	
+	//atributs menu
+	//s'ha d'afegir la info tot en una label per que quedi tot seguit.
+	//important posar espai abans i despres del text (per que el borde no quedi tan enganxat)
+	private JLabel userinfo = new JLabel("   Hello  (nomusuari),  your punctuation is: (puntuacio)   ");
+	private JLabel comptime = new JLabel("   The competiton time is: (temps competicio)   ");
 	
 	//atributs de log in
 	private JTextField jtfnickname;
@@ -298,11 +306,29 @@ public class MainViewClient extends JFrame{
 		JPanel titol = new JPanel();
 		
 		titol.setLayout(new BoxLayout(titol, BoxLayout.PAGE_AXIS));
+		titol.add(Box.createVerticalStrut(15));
 	
 		JLabel nomtitol = new JLabel("Menu");
 		nomtitol.setFont(new java.awt.Font("Geneva", 1, 40));
-		titol.add(Box.createVerticalStrut(15));
+		nomtitol.setAlignmentX(Component.CENTER_ALIGNMENT);
 		titol.add(nomtitol);
+		titol.add(Box.createVerticalStrut(15));
+		userinfo.setFont(new java.awt.Font("Geneva", 1, 16));
+		Border border = BorderFactory.createLineBorder(Color.ORANGE, 2);
+		userinfo.setBackground(Color.WHITE);
+		userinfo.setOpaque(true);
+		userinfo.setBorder(border);
+		userinfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+		titol.add(userinfo);
+		
+		titol.add(Box.createVerticalStrut(20));
+		comptime.setFont(new java.awt.Font("Geneva", 1, 16));
+		Border border2 = BorderFactory.createLineBorder(Color.CYAN, 2);
+		comptime.setBackground(Color.WHITE);
+		comptime.setOpaque(true);
+		comptime.setBorder(border2);
+		comptime.setAlignmentX(Component.CENTER_ALIGNMENT);
+		titol.add(comptime);
 		
 		jpInitialMenuCard.add(titol);
 	}
