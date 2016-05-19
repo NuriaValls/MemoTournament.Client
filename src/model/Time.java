@@ -50,7 +50,7 @@ public class Time extends Thread{
 			public void actionPerformed(ActionEvent arg0) {
 				if (countdown > 0){
 					countdown--;
-					System.out.println(countdown);
+					controller.refreshTime(countdown, false);
 				}else{
 					competitionTimer.start();
 					countdownTimer.stop();
@@ -67,7 +67,7 @@ public class Time extends Thread{
 			public void actionPerformed(ActionEvent arg0) {
 				if (competition > 0){
 					competition--;
-					System.out.println("comp: "+competition);
+					controller.refreshTime(competition, true);
 				}else{
 					competitionTimer.stop();
 				}

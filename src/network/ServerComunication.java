@@ -168,7 +168,7 @@ public class ServerComunication extends Thread{
 		}
 	}
 	
-	public void sendTime(String message){
+	/*public void sendTime(String message){
 		try {
 			sServer = new Socket("127.0.0.1",5200);
 			dataIn = new DataInputStream(sServer.getInputStream());
@@ -197,7 +197,7 @@ public class ServerComunication extends Thread{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 	
 	public boolean getCompetition(){
 		return competition;

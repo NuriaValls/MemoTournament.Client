@@ -116,16 +116,41 @@ public class MainViewControllerC implements ActionListener{
 		serverCom.sendRanking(message);
 	}
 	
-	public void sendTimeServerC(String message){
+	/*public void sendTimeServerC(String message){
 		serverCom.sendTime(message);
-	}
+	}*/
 	
 	public void refreshRanking(String rank){
 		rank = rank.substring(5);
 		view.refreshRanking(rank);
 	}
 	
-	public void refreshTime(String time, boolean comp){
-		//view.refreshTime(time,comp);
+	public void refreshTime(int time, boolean comp){
+		String print = new String();
+		String hour = new String();
+		String min = new String();
+		String sec = new String();
+		if(time/3600<10){
+			hour = "0"+time/3600+":";
+		}else{
+			hour = time/3600+":";
+		}
+		if((time%3600)/60<10){
+			min = "0"+(time%3600)/60+":";
+		}else{
+			min = (time%3600)/60+":";
+		}
+		if((time%3600)%60<10){
+			sec = "0"+(time%3600)%60+" ";
+		}else{
+			sec = (time%3600)%60+" ";
+		}
+		
+		if(comp){
+			print = "The competition will end in: "+min+sec+"minutes.";
+		}else{
+			print = "The competition will start in: "+hour+min+sec+"hours.";
+		}
+		System.out.println(print);
 	}
 }
