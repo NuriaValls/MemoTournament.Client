@@ -24,6 +24,7 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
@@ -60,6 +61,12 @@ public class MainViewClient extends JFrame{
 	//atributs de register
 	private JTextField jtfnicknameR;
 	private JPasswordField jpfpasswordR;
+	
+	//atributs ranking
+	private JPanel panell;
+	private JTable table;
+	private String[] columnNames = {"NickName","Score",};
+	private JPanel title;
 	
 	public MainViewClient(){
 		setTitle("Memory Torunament -Client-");
@@ -404,62 +411,42 @@ public class MainViewClient extends JFrame{
 	
 	public void createRankingCard(){
 		
-		JPanel title = new JPanel();
+		title = new JPanel();
+		title.setLayout(new BoxLayout(title, BoxLayout.PAGE_AXIS));
 		JLabel nameTitle = new JLabel("Top 10 Ranking");
-		nameTitle.setFont(new java.awt.Font("Geneva", 1, 40));
-		title.add(nameTitle);	
-		title.setLayout(new FlowLayout());
-		jpRankingCard.add(title, BorderLayout.PAGE_START);
+		nameTitle.setFont(new java.awt.Font("Geneva", 1, 34));	
+		title.add(Box.createVerticalStrut(15));
+		nameTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
+		title.add(nameTitle);
+		title.add(Box.createVerticalStrut(15));
 		
-		JPanel pRanking = new JPanel();	
-		GridLayout glRanking = new GridLayout(11,2);
-		pRanking.setLayout(glRanking);
+		panell = new JPanel();
 		
-		//pRanking.add(top10);
-
-		JLabel nickName = new JLabel("NICKNAME");
-		nickName.setBorder(BorderFactory.createLineBorder(Color.black));
-		pRanking.add(nickName);
-		//pRanking.setBorder(new EmptyBorder(10, 10, 10, 10));
-		JLabel punctuation = new JLabel("PUNTUACIO");
-		punctuation.setBorder(BorderFactory.createLineBorder(Color.black));
-		pRanking.add(punctuation);
+		String [][] mTopTen = new String [11][2];
+		table = new JTable(mTopTen, columnNames);
 		
-		
-		for(int i=0; i<20; i++){
-			nickName = new JLabel("POL");
-			//pRanking.add(nickName);
-			nickName.setBorder(BorderFactory.createLineBorder(Color.black));
-			pRanking.add(nickName);
-			i++;
-			punctuation = new JLabel("350");
-			punctuation.setBorder(BorderFactory.createLineBorder(Color.black));
-			pRanking.add(punctuation);
-			//pRanking.add(punctuation);
-		}
-			
-		//JScrollPane scrollPane = new JScrollPane();
-		//scrollPane.setBorder(BorderFactory.createTitledBorder("Llista Paraules"));
-		//pRanking.add(scrollPane);
-		
-		//pRanking.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		//pRanking.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-		//pRanking.setLayout(new FlowLayout());
-		jpRankingCard.setLayout(new BoxLayout(jpRankingCard,BoxLayout.PAGE_AXIS));
-		//jpRankingCard.add(pRanking, BorderLayout.CENTER);
-		jpRankingCard.add(pRanking);
+		table.setPreferredSize(new Dimension(500, 250));
+		table.setOpaque(false);
+		table.setAlignmentX(Component.CENTER_ALIGNMENT);
+		panell.add(table);
+		panell.setAlignmentX(Component.CENTER_ALIGNMENT);
+		title.add(panell);
+		jpRankingCard.add(title);
 
 	}
 	
-	public void refreshRanking(String rank){
-		String[] users;
-		String[] user;
-		
-		users = rank.split("#");
-		for(int i=0; i<users.length; i++){
-			user = users[i].split("/");
-			
+	public void refreshRanking(String sTopTen){
+		String matrix[][] = new String [11][2];
+		String[] users = sTopTen.split("#");
+		int j = 0;
+		for(int i=0;i<users.length;i++){				
+			String[] aux = users[i].split("/");
+			matrix[j] = aux;
+			j++;
 		}
+		DefaultTableModel model = new DefaultTableModel(matrix,columnNames);
+		table.setModel(model);
+		model.fireTableDataChanged();
 	}
 	
 	public void showRegister(){
