@@ -15,7 +15,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.MainViewControllerC;
@@ -24,6 +26,7 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
@@ -52,6 +55,28 @@ public class MainViewClient extends JFrame{
 	private static JButton jbBack = new JButton("Back");
 	private static JButton jbGoToMenu = new JButton("Log In");
 	private static JButton jbStartGame = new JButton("Start Game");
+	
+	//atributs menu
+	//s'ha d'afegir la info tot en una label per que quedi tot seguit.
+	//important posar espai abans i despres del text (per que el borde no quedi tan enganxat)
+	private JLabel userinfo = new JLabel("   Hello  (nomusuari),  your punctuation is: (puntuacio)   ");
+	private JLabel comptime = new JLabel("   The competiton time is: (temps competicio)   ");
+	
+	//atributs de log in
+	private JTextField jtfnickname;
+	private JPasswordField jpfpassword;
+	
+	//atributs de register
+	private JTextField jtfnicknameR;
+	private JPasswordField jpfpasswordR;
+	private JTextField jtfname;
+	private JTextField jtflastname;
+	
+	//atributs ranking
+	private JPanel panell;
+	private JTable table;
+	private String[] columnNames = {"NickName","Score",};
+	private JPanel title;
 	
 	public MainViewClient(){
 		setTitle("Memory Torunament -Client-");
@@ -128,7 +153,7 @@ public class MainViewClient extends JFrame{
 		
 		JLabel jlname = new JLabel("Name");
 		jlname.setFont(new java.awt.Font("Geneva", 1, 14));
-		JTextField jtfname = new JTextField();
+		jtfname = new JTextField();
 		JPanel jpname = new JPanel();
 		jpname.setLayout(new GridLayout(1,4));
 		jpname.add(new JPanel());
@@ -138,7 +163,7 @@ public class MainViewClient extends JFrame{
 		
 		JLabel jllastname = new JLabel("Last Name");
 		jllastname.setFont(new java.awt.Font("Geneva", 1, 14));
-		JTextField jtflastname = new JTextField();
+		jtflastname = new JTextField();
 		JPanel jplastname = new JPanel();
 		jplastname.setLayout(new GridLayout(1,4));
 		jplastname.add(new JPanel());
@@ -148,22 +173,22 @@ public class MainViewClient extends JFrame{
 		
 		JLabel jlnickname = new JLabel("Nickname");
 		jlnickname.setFont(new java.awt.Font("Geneva", 1, 14));
-		JTextField jtfnickname = new JTextField();
+		jtfnicknameR = new JTextField();
 		JPanel jpnickname = new JPanel();
 		jpnickname.setLayout(new GridLayout(1,4));
 		jpnickname.add(new JPanel());
 		jpnickname.add(jlnickname);
-		jpnickname.add(jtfnickname);
+		jpnickname.add(jtfnicknameR);
 		jpnickname.add(new JPanel());
 		
 		JLabel jlpassword = new JLabel("Password");
 		jlpassword.setFont(new java.awt.Font("Geneva", 1, 14));
-		JPasswordField jpfpassword = new JPasswordField();
+		jpfpasswordR = new JPasswordField();
 		JPanel jppassword = new JPanel();
 		jppassword.setLayout(new GridLayout(1,4));
 		jppassword.add(new JPanel());
 		jppassword.add(jlpassword);
-		jppassword.add(jpfpassword);
+		jppassword.add(jpfpasswordR);
 		jppassword.add(new JPanel());
 		
 		JLabel jlage = new JLabel("Age");
@@ -195,6 +220,15 @@ public class MainViewClient extends JFrame{
 		jpRegisterCard.add(titol);
 	}
 	
+	public String getRegNickname(){
+		return jtfnicknameR.getText();
+	}
+	
+	@SuppressWarnings("deprecation")
+	public String getRegPasword(){
+		return jpfpasswordR.getText();
+	}
+	
 	public void createLogInCard(){
 		
 		//jpLogInCard.setBackground( Color.BLUE );
@@ -224,7 +258,7 @@ public class MainViewClient extends JFrame{
 		
 		JLabel jlnickname = new JLabel("Nickname");
 		jlnickname.setFont(new java.awt.Font("Geneva", 1, 14));
-		JTextField jtfnickname = new JTextField();
+		jtfnickname = new JTextField();
 		JPanel jpnickname = new JPanel();
 		jpnickname.setLayout(new GridLayout(1,6));
 		jpnickname.add(new JPanel());
@@ -237,7 +271,7 @@ public class MainViewClient extends JFrame{
 		
 		JLabel jlpassword = new JLabel("Password");
 		jlpassword.setFont(new java.awt.Font("Geneva", 1, 14));
-		JPasswordField jpfpassword = new JPasswordField();
+		jpfpassword = new JPasswordField();
 		JPanel jppassword = new JPanel();
 		jppassword.setLayout(new GridLayout(1,6));
 		jppassword.add(new JPanel());
@@ -260,16 +294,43 @@ public class MainViewClient extends JFrame{
 		
 	}
 	
+	public String getLogNickname(){
+		return jtfnickname.getText();
+	}
+	
+	@SuppressWarnings("deprecation")
+	public String getLogPasword(){
+		return jpfpassword.getText();
+	}
+	
 	public void createInitialMenuCard(){
 
 		JPanel titol = new JPanel();
 		
 		titol.setLayout(new BoxLayout(titol, BoxLayout.PAGE_AXIS));
+		titol.add(Box.createVerticalStrut(15));
 	
 		JLabel nomtitol = new JLabel("Menu");
 		nomtitol.setFont(new java.awt.Font("Geneva", 1, 40));
-		titol.add(Box.createVerticalStrut(15));
+		nomtitol.setAlignmentX(Component.CENTER_ALIGNMENT);
 		titol.add(nomtitol);
+		titol.add(Box.createVerticalStrut(15));
+		userinfo.setFont(new java.awt.Font("Geneva", 1, 16));
+		Border border = BorderFactory.createLineBorder(Color.ORANGE, 2);
+		userinfo.setBackground(Color.WHITE);
+		userinfo.setOpaque(true);
+		userinfo.setBorder(border);
+		userinfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+		titol.add(userinfo);
+		
+		titol.add(Box.createVerticalStrut(20));
+		comptime.setFont(new java.awt.Font("Geneva", 1, 16));
+		Border border2 = BorderFactory.createLineBorder(Color.CYAN, 2);
+		comptime.setBackground(Color.WHITE);
+		comptime.setOpaque(true);
+		comptime.setBorder(border2);
+		comptime.setAlignmentX(Component.CENTER_ALIGNMENT);
+		titol.add(comptime);
 		
 		jpInitialMenuCard.add(titol);
 	}
@@ -378,54 +439,51 @@ public class MainViewClient extends JFrame{
 	
 	public void createRankingCard(){
 		
-		JPanel title = new JPanel();
+		title = new JPanel();
+		title.setLayout(new BoxLayout(title, BoxLayout.PAGE_AXIS));
 		JLabel nameTitle = new JLabel("Top 10 Ranking");
-		nameTitle.setFont(new java.awt.Font("Geneva", 1, 40));
-		title.add(nameTitle);	
-		title.setLayout(new FlowLayout());
-		jpRankingCard.add(title, BorderLayout.PAGE_START);
+		nameTitle.setFont(new java.awt.Font("Geneva", 1, 34));	
+		title.add(Box.createVerticalStrut(15));
+		nameTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
+		title.add(nameTitle);
+		title.add(Box.createVerticalStrut(15));
 		
-		JPanel pRanking = new JPanel();	
-		GridLayout glRanking = new GridLayout(11,2);
-		pRanking.setLayout(glRanking);
+		panell = new JPanel();
 		
-		//pRanking.add(top10);
+		String [][] mTopTen = new String [11][2];
+		table = new JTable(mTopTen, columnNames);
+		
+		table.setPreferredSize(new Dimension(500, 250));
+		table.setOpaque(false);
+		table.setAlignmentX(Component.CENTER_ALIGNMENT);
+		panell.add(table);
+		panell.setAlignmentX(Component.CENTER_ALIGNMENT);
+		title.add(panell);
+		jpRankingCard.add(title);
 
-		JLabel nickName = new JLabel("NICKNAME");
-		nickName.setBorder(BorderFactory.createLineBorder(Color.black));
-		pRanking.add(nickName);
-		//pRanking.setBorder(new EmptyBorder(10, 10, 10, 10));
-		JLabel punctuation = new JLabel("PUNTUACIO");
-		punctuation.setBorder(BorderFactory.createLineBorder(Color.black));
-		pRanking.add(punctuation);
 		
-		
-		for(int i=0; i<20; i++){
-			nickName = new JLabel("POL");
-			//pRanking.add(nickName);
-			nickName.setBorder(BorderFactory.createLineBorder(Color.black));
-			pRanking.add(nickName);
-			i++;
-			punctuation = new JLabel("350");
-			punctuation.setBorder(BorderFactory.createLineBorder(Color.black));
-			pRanking.add(punctuation);
-			//pRanking.add(punctuation);
-		}
-			
-		//JScrollPane scrollPane = new JScrollPane();
-		//scrollPane.setBorder(BorderFactory.createTitledBorder("Llista Paraules"));
-		//pRanking.add(scrollPane);
-		
-		//pRanking.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		//pRanking.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-		//pRanking.setLayout(new FlowLayout());
-		jpRankingCard.setLayout(new BoxLayout(jpRankingCard,BoxLayout.PAGE_AXIS));
-		//jpRankingCard.add(pRanking, BorderLayout.CENTER);
-		jpRankingCard.add(pRanking);
-
 	}
 	
-	public static void showRegister(){
+	public void refreshRanking(String sTopTen){
+		String matrix[][] = new String [11][2];
+		String[] users = sTopTen.split("#");
+		int j = 0;
+		for(int i=0;i<users.length;i++){				
+			String[] aux = users[i].split("/");
+			matrix[j] = aux;
+			j++;
+		}
+		DefaultTableModel model = new DefaultTableModel(matrix,columnNames);
+		table.setModel(model);
+		model.fireTableDataChanged();
+	}
+	
+	public void showRegister(){
+		jtfnicknameR.setText("");
+		jpfpasswordR.setText("");
+		jtfname.setText("");
+		jtflastname.setText("");
+		
 		cardLayout.show(jpMenu, "2");
 		
 		jbBack.setVisible(true);
@@ -434,7 +492,8 @@ public class MainViewClient extends JFrame{
 		jbGuest.setVisible(false);
 		jbRegister.setVisible(false);
 	}
-	public static void showInitialMenu(){
+	
+	public void showInitialMenu(){
 		cardLayout.show(jpMenu, "3");
 		
 		jbBack.setVisible(false);
@@ -448,7 +507,7 @@ public class MainViewClient extends JFrame{
 		jbLogOut.setVisible(true);
 	}
 	
-	public static void showRanking(){
+	public void showRanking(){
 		cardLayout.show(jpMenu, "6");
 		
 		jbNewGame.setVisible(false);
@@ -459,7 +518,10 @@ public class MainViewClient extends JFrame{
 		jbGoToMenu.setVisible(true);
 	}
 	
-	public static void showLogIn(){
+	public void showLogIn(){
+		jtfnickname.setText("");
+		jpfpassword.setText("");
+		
 		cardLayout.show(jpMenu, "1");
 		
 		jbNewGame.setVisible(false);
@@ -473,7 +535,7 @@ public class MainViewClient extends JFrame{
 		jbGuest.setVisible(true);
 	}
 	
-	public static void showSelectGame(){
+	public void showSelectGame(){
 		cardLayout.show(jpMenu, "4");
 		
 		jbNewGame.setVisible(false);
@@ -485,7 +547,7 @@ public class MainViewClient extends JFrame{
 		jbStartGame.setVisible(true);
 	}
 	
-	public static void showGame(){
+	public void showGame(){
 		cardLayout.show(jpMenu, "5");
 		
 		jbStartGame.setVisible(false);
@@ -494,7 +556,7 @@ public class MainViewClient extends JFrame{
 		jbGoToMenu.setVisible(true);
 	}
 	
-	public static void makeDialog(String message, boolean type){
+	public void makeDialog(String message, boolean type){
 		if(type){
 			Dialog.DialogOK(message);
 		}else{

@@ -6,45 +6,28 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import model.Time;
+import model.UserClient;
 import controller.MainViewControllerC;
 
 public class ServerComunication extends Thread{
 	
-	private static Socket sServer;
-	private static DataInputStream dataIn;
-	private static DataOutputStream dataOut;
+	private Socket sServer;
+	private DataInputStream dataIn;
+	private DataOutputStream dataOut;
+	private Time time;
+	private boolean competition = false;
+	private MainViewControllerC controller;
 	
-	public void run(){
-		String message = new String();
-		boolean started = false;
-		
-		while(!started){
-			
-		
-			try {
-				sServer = new Socket("127.0.0.1",5200);
-				dataIn = new DataInputStream(sServer.getInputStream());
-				
-				message = dataIn.readUTF();
-				
-				if(message.startsWith("START")){
-					MainViewControllerC.makeDialog("A new competition has started!",true);
-					started = true;
-				}
-				
-				dataOut.close();
-				dataIn.close();
-				sServer.close();
-				
-			} catch (UnknownHostException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+	public ServerComunication(Time time){
+		this.time = time;
 	}
 	
-	public static boolean sendAddUser(String message){
+	public void registerController(MainViewControllerC controller){
+		this.controller = controller;
+	}
+	
+	public boolean sendAddUser(String message){
 		boolean next = false;
 		
 		try {
@@ -56,10 +39,10 @@ public class ServerComunication extends Thread{
 			String answer = new String();
 			answer = dataIn.readUTF();
 			if(answer.equals("OK")){
-				MainViewControllerC.makeDialog("The user has been successfully registered!",true);
+				controller.makeDialog("The user has been successfully registered!",true);
 				next = true;
 			}else{
-				MainViewControllerC.makeDialog("The user name is already taken!",false);
+				controller.makeDialog("The user name is already taken!",false);
 			}
 			
 			dataOut.close();
@@ -75,9 +58,9 @@ public class ServerComunication extends Thread{
 		return next;
 	}
 	
-	public static boolean sendLogUser(String message){
+	public boolean sendLogUser(UserClient user){
 		boolean next = false; 
-		
+		String message = "LOG:"+user.getNickname()+"/"+user.getPassword();
 		try {
 			sServer = new Socket("127.0.0.1",5200);
 			dataIn = new DataInputStream(sServer.getInputStream());
@@ -86,11 +69,12 @@ public class ServerComunication extends Thread{
 			
 			String answer = new String();
 			answer = dataIn.readUTF();
-			if(answer.equals("OK")){
-				MainViewControllerC.makeDialog("The user has been successfully logged in!",true);
+			if(answer.startsWith("OK")){
+				controller.makeDialog("The user has been successfully logged in!",true);
+				controller.user = new UserClient (user.getNickname(), user.getPassword(), Integer.parseInt(answer.substring(3)));
 				next = true;
 			}else{
-				MainViewControllerC.makeDialog("The user name or password is wrong!",false);
+				controller.makeDialog("The user name or password is wrong!",false);
 			}
 			
 			dataOut.close();
@@ -106,7 +90,7 @@ public class ServerComunication extends Thread{
 		return next;
 	}
 	
-	public static void sendRanking(String message){
+	public void sendRanking(String message){
 		try {
 			sServer = new Socket("127.0.0.1", 5200);
 			dataOut = new DataOutputStream(sServer.getOutputStream());
@@ -115,7 +99,8 @@ public class ServerComunication extends Thread{
 			
 			String answer = new String();
 			answer = dataIn.readUTF();
-			//MainViewControllerC.refreshList(answer);
+			
+			controller.refreshRanking(answer);
 			
 			dataIn.close();
 			dataOut.close();
@@ -128,7 +113,7 @@ public class ServerComunication extends Thread{
 		}
 	}
 	
-	public static void sendUpdate(String message){
+	public void sendUpdate(String message){
 		try {
 			sServer = new Socket("127.0.0.1",5200);
 			dataIn = new DataInputStream(sServer.getInputStream());
@@ -138,9 +123,9 @@ public class ServerComunication extends Thread{
 			String answer = new String();
 			answer = dataIn.readUTF();
 			if(answer.equals("OK")){
-				MainViewControllerC.makeDialog("The user has been successfully updated!",true);
+				controller.makeDialog("The user has been successfully updated!",true);
 			}else{
-				MainViewControllerC.makeDialog("The user could not be updated!",false);
+				controller.makeDialog("The user could not be updated!",false);
 			}
 			
 			dataOut.close();
@@ -154,7 +139,7 @@ public class ServerComunication extends Thread{
 		}
 	}
 	
-	public static void sendStart(String message){
+	public void sendStart(String message){
 		try {
 			sServer = new Socket("127.0.0.1",5200);
 			dataIn = new DataInputStream(sServer.getInputStream());
@@ -163,8 +148,13 @@ public class ServerComunication extends Thread{
 			
 			String answer = new String();
 			answer = dataIn.readUTF();
-			if(answer.startsWith("OK:")){
-				MainViewControllerC.makeDialog("The count back for the competition has started!",true);
+			if(answer.startsWith("START")){
+				competition = true;
+				answer = answer.substring(6);
+				String[] array = answer.split("/");
+				time.stopTimerComp();
+				time.startCountdownTimer(Integer.parseInt(array[0]),Integer.parseInt(array[1]));
+				time.startTimerRank();
 			}
 			
 			dataOut.close();
@@ -176,5 +166,40 @@ public class ServerComunication extends Thread{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/*public void sendTime(String message){
+		try {
+			sServer = new Socket("127.0.0.1",5200);
+			dataIn = new DataInputStream(sServer.getInputStream());
+			dataOut = new DataOutputStream(sServer.getOutputStream());
+			dataOut.writeUTF(message);
+			
+			String answer = new String();
+			answer = dataIn.readUTF();
+			if(answer.startsWith("COUNTDOWN")){
+				controller.makeDialog("The countdown for the competition has started! Now users can log to the competition.",true);
+				message = message.substring(10);
+				controller.refreshTime(message, false);
+			}
+			if(answer.startsWith("COMPETITION")){
+				controller.makeDialog("The competition has started! It's time to get the best score!",true);
+				message = message.substring(12);
+				controller.refreshTime(message, true);
+			}
+			
+			dataOut.close();
+			dataIn.close();
+			sServer.close();
+			
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}*/
+	
+	public boolean getCompetition(){
+		return competition;
 	}
 }

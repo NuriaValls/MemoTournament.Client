@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 public class Dialog extends JDialog{
 
 	public static void DialogOK(String message){
-		JOptionPane.showMessageDialog(null,message, "Information message", JOptionPane.PLAIN_MESSAGE);
+		JOptionPane.showMessageDialog(null,message, "Information message", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 	public static void DialogKO(String message){
