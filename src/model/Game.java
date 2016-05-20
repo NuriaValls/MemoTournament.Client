@@ -11,7 +11,10 @@ public class Game{
 	private static int locy;
 	
     public static void main(String[] args){
-        int difficulty = 1;
+        int difficulty = 3;
+        boolean concentration = false;
+        boolean ai = true;
+        int score;
     	switch (difficulty){
         	case 1: dimx = 600; //easy dimensions
         			dimy = 600;
@@ -23,17 +26,18 @@ public class Game{
         			locx = 350;
         			locy = 75;
         			break;
-        	case 3: dimx = 1000; //hard dimensions
-        			dimy = 800;
-        			locx = 220;
-        			locy = 25;
+        	case 3: dimx = 900; //hard dimensions
+        			dimy = 900;
+        			locx = 270;
+        			locy = 0;
         }
     	
-    	Board b = new Board(difficulty);
+    	Board b = new Board(difficulty, concentration, ai);
         b.setPreferredSize(new Dimension(dimx, dimy)); //creates JFrame
         b.setLocation(locx, locy); //starting position, must be centered in the screen
         b.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         b.pack();
         b.setVisible(true);
+        score = b.getScore()*difficulty;
     }   
 }
