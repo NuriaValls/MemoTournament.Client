@@ -11,7 +11,7 @@ public class Game{
 	private static int locy;
 	
     public static void main(String[] args){
-        int difficulty = 3;
+        int difficulty = 1;
     	switch (difficulty){
         	case 1: dimx = 600; //easy dimensions
         			dimy = 600;

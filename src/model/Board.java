@@ -3,6 +3,7 @@ package model;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class Board extends JFrame{
     private Card c1;
     private Card c2;
     private Timer t;
+    private String[] imagename;
 
     public Board(int difficulty){
 
@@ -32,11 +34,11 @@ public class Board extends JFrame{
         } //HAY QUE CAMBIARLO POR IMAGENES
         
         switch (difficulty){
-        	case 1: setImagesEasy();
+        	case 1: setImagesEasy(imagename);
         			break;
-        	case 2: setImagesNormal();
+        	case 2: setImagesNormal(imagename);
         			break;
-        	case 3: setImagesHard();
+        	case 3: setImagesHard(imagename);
         			break;
         	default: System.out.println("An error has ocurred when determining the difficulty level");		
 			break;
@@ -45,7 +47,7 @@ public class Board extends JFrame{
         Collections.shuffle(cardVals); //suffles the list of elements
 
         for (int val : cardVals){
-            Card c = new Card(val);
+            Card c = new Card(val, imagename[val]);
             c.addActionListener(new ActionListener(){
             	public void actionPerformed(ActionEvent ae){ //creates the button itself
             		selectedCard = c;
@@ -80,13 +82,13 @@ public class Board extends JFrame{
         if (c1 == null && c2 == null){ //player chooses c1
             c1 = selectedCard;
             c1.incrementai();
-            c1.showText();
+            c1.showImage();
         }
 
         if (c1 != null && c1 != selectedCard && c2 == null){ //player chooses c2
             c2 = selectedCard;
             c2.incrementai();
-            c2.showText();
+            c2.showImage();
             t.start();
 
         }
@@ -105,8 +107,8 @@ public class Board extends JFrame{
         }
 
         else{ //if not match 
-            c1.hideText(); 
-            c2.hideText();
+            c1.hideImage(); 
+            c2.hideImage();
         }
         c1 = null; //reset c1 and c2
         c2 = null;
@@ -144,5 +146,19 @@ public class Board extends JFrame{
 					break;
     	}
     }
+    
+    public void setImagesEasy(String[] imagename){
+    	imagename = new String[] {"AUSTRALIA","BRAZIL","CANADA","CHINA","GREATBRITAIN","GREECE",
+    			"JAMAICA","JAPAN","SWEDEN","USA"};
+    }
+    
+    public void setImagesNormal(String[] imagename){
+    	
+    }
+    
+    public void setImagesHard(String[] imagename){
+    	
+    }
 
 }
+

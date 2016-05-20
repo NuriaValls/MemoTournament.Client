@@ -1,5 +1,6 @@
 package model;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class Card extends JButton{
@@ -9,13 +10,15 @@ public class Card extends JButton{
 	private String name;
 	private int ai = 0; //# times shown, for AI purpose
     private boolean matched = false;
-    private boolean faceUp=false;
+    private boolean faceUp = false;
     private ImageIcon imgFace;
     
     private static ImageIcon imgBack = new ImageIcon("back.gif");
 
-    public Card(int id){
+    public Card(int id, String imagename){
     	this.id = id;
+    	name = imagename;
+		imgFace = new ImageIcon(name + ".gif");
     }
 
     public int getId(){
