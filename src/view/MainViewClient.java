@@ -69,6 +69,8 @@ public class MainViewClient extends JFrame{
 	//atributs de register
 	private JTextField jtfnicknameR;
 	private JPasswordField jpfpasswordR;
+	private JTextField jtfname;
+	private JTextField jtflastname;
 	
 	//atributs ranking
 	private JPanel panell;
@@ -151,7 +153,7 @@ public class MainViewClient extends JFrame{
 		
 		JLabel jlname = new JLabel("Name");
 		jlname.setFont(new java.awt.Font("Geneva", 1, 14));
-		JTextField jtfname = new JTextField();
+		jtfname = new JTextField();
 		JPanel jpname = new JPanel();
 		jpname.setLayout(new GridLayout(1,4));
 		jpname.add(new JPanel());
@@ -161,7 +163,7 @@ public class MainViewClient extends JFrame{
 		
 		JLabel jllastname = new JLabel("Last Name");
 		jllastname.setFont(new java.awt.Font("Geneva", 1, 14));
-		JTextField jtflastname = new JTextField();
+		jtflastname = new JTextField();
 		JPanel jplastname = new JPanel();
 		jplastname.setLayout(new GridLayout(1,4));
 		jplastname.add(new JPanel());
@@ -477,6 +479,11 @@ public class MainViewClient extends JFrame{
 	}
 	
 	public void showRegister(){
+		jtfnicknameR.setText("");
+		jpfpasswordR.setText("");
+		jtfname.setText("");
+		jtflastname.setText("");
+		
 		cardLayout.show(jpMenu, "2");
 		
 		jbBack.setVisible(true);
@@ -512,6 +519,9 @@ public class MainViewClient extends JFrame{
 	}
 	
 	public void showLogIn(){
+		jtfnickname.setText("");
+		jpfpassword.setText("");
+		
 		cardLayout.show(jpMenu, "1");
 		
 		jbNewGame.setVisible(false);
