@@ -59,8 +59,8 @@ public class MainViewClient extends JFrame{
 	//atributs menu
 	//s'ha d'afegir la info tot en una label per que quedi tot seguit.
 	//important posar espai abans i despres del text (per que el borde no quedi tan enganxat)
-	private JLabel userinfo = new JLabel("   Hello  (nomusuari),  your punctuation is: (puntuacio)   ");
-	private JLabel comptime = new JLabel("   The competiton time is: (temps competicio)   ");
+	private JLabel userinfo = new JLabel();
+	private JLabel comptime = new JLabel();
 	
 	//atributs de log in
 	private JTextField jtfnickname;
@@ -522,6 +522,14 @@ public class MainViewClient extends JFrame{
 		DefaultTableModel model = new DefaultTableModel(matrix,columnNames);
 		table.setModel(model);
 		model.fireTableDataChanged();
+	}
+	
+	public void refreshUser(UserClient actualUser){
+		userinfo.setText("   Hello  "+actualUser.getNickname()+",  your actual score is: "+actualUser.getScore()+"   ");
+	}
+	
+	public void refreshTime(String time){
+		comptime.setText(time);
 	}
 	
 	public void showRegister(){

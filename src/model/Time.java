@@ -90,7 +90,7 @@ public class Time extends Thread{
 	
 	public void startCountdownTimer(int countdown, int competition){
 		this.countdown = countdown-3;
-		this.competition = competition;
+		this.competition = competition+2;
 		countdownTimer.start(); 
 	}
 	

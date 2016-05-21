@@ -43,6 +43,7 @@ public class MainViewControllerC implements ActionListener{
 			//si ho esta:
 			if (serverCom.getCompetition()){
 				if(serverCom.sendLogUser(new UserClient(view.getLogNickname(), view.getLogPasword()))){
+					view.refreshUser(user);
 					view.showInitialMenu();
 				}
 			}else{
@@ -148,5 +149,6 @@ public class MainViewControllerC implements ActionListener{
 		}else{
 			print = "The competition will start in: "+hour+min+sec+"hours.";
 		}
+		view.refreshTime(print);
 	}
 }
