@@ -90,7 +90,7 @@ public class MainViewControllerC implements ActionListener{
 		
 		if(((JButton)e.getSource()).getText().equals("Start Game")){
 			//comença la partida
-			Game game = new Game();
+			Game game = new Game(new GameWindowController());
 			view.showGame();
 		}
 		

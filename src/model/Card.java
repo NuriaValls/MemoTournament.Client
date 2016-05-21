@@ -17,13 +17,27 @@ public class Card extends JButton implements Comparable<Card>{
     private boolean matched = false;
     private ImageIcon imgFace;
     
-    private static ImageIcon imgBack = new ImageIcon("back.png");
+    private ImageIcon imgBack = new ImageIcon(getClass().getResource("/images/back.png"));
 
     public Card(int id, String imagename, int idCard, int difficulty){
     	this.id = id;
     	this.idCard = idCard;
     	name = imagename;
-		imgFace = new ImageIcon(name + ".png");
+		
+    	switch (difficulty){
+    	case 1:
+    		imgFace = new ImageIcon(getClass().getResource("/images/easy/"+name+".png"));
+    		break;
+    	case 2:
+    		imgFace = new ImageIcon(getClass().getResource("/images/normal/"+name+".png"));
+    		break;
+    	case 3:
+    		imgFace = new ImageIcon(getClass().getResource("/images/hard/"+name+".png"));
+    		break;
+    	default:
+    		break;
+    	}
+    	
 		if(difficulty == 3){	
 			Image img = imgFace.getImage();
 			Image newimg = img.getScaledInstance(95, 130,  java.awt.Image.SCALE_SMOOTH);

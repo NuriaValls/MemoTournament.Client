@@ -5,6 +5,9 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import controller.GameWindowController;
+import controller.MainViewControllerC;
+
 
 public class Game{
 	private static int dimx;
@@ -17,7 +20,7 @@ public class Game{
 	private boolean ai;
 	private int score;
 	
-    public Game(){
+    public Game(GameWindowController controller){
         int difficulty = 3;
         boolean concentration = false;
         boolean ai = true;
@@ -40,12 +43,11 @@ public class Game{
         }
     	
     	Board b = new Board(difficulty, concentration, ai);
-    	b = new Board(difficulty, concentration, ai);
         b.setPreferredSize(new Dimension(dimx, dimy)); //creates JFrame
         b.setLocation(locx, locy); //starting position, must be centered in the screen
-        b.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         b.pack();
         b.setVisible(true);
+        b.addWindowListener(controller);
         score = b.getScore()*difficulty;
     }   
 }

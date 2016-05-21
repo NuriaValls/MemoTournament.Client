@@ -5,6 +5,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import controller.GameWindowController;
+import controller.MainViewControllerC;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -124,7 +127,7 @@ public class Board extends JFrame{
         aith.setRepeats(false);
 
         //creates the board 
-        JPanel pane = new JPanel();
+        Container pane = getContentPane();
         createGrid(difficulty, pane);  //creates the grid depending on the difficulty level
         
         for (Card c : cards){
@@ -209,12 +212,10 @@ public class Board extends JFrame{
     		if (matches[i] == true){
     			match = true;
     			j = i;
-    			System.out.println("parella trobada");
     		}
     	}
     	
     	if(match == true){
-    		System.out.println("parella seleccionada");
     		for (Card m : cards){
     			if (m.getId() == j && !first){
     				c1 = m;
@@ -319,7 +320,6 @@ public class Board extends JFrame{
             			if (c1.compareTo(c) == 1){
             				matches[c1.getId()] = true;
             				match = true;
-            				System.out.println("PARELLA REGISTRADA c1");
             			}
             		}
             	}
@@ -337,7 +337,6 @@ public class Board extends JFrame{
             			if (c2.compareTo(g) == 1){
             				matches[c2.getId()] = true;
             				match = true;
-            				System.out.println("PARELLA REGISTRADA c2");
             			}
             		}
             	}
