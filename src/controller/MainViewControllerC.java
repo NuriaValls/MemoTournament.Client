@@ -42,7 +42,6 @@ public class MainViewControllerC implements ActionListener{
 			//comprovar si l'usuari esta registrat
 			//si ho esta:
 			if (serverCom.getCompetition()){
-				//message = "LOG:"+view.getLogNickname()+"/"+view.getLogPasword();
 				if(serverCom.sendLogUser(new UserClient(view.getLogNickname(), view.getLogPasword()))){
 					view.showInitialMenu();
 				}
