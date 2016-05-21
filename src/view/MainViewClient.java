@@ -15,6 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -68,6 +69,13 @@ public class MainViewClient extends JFrame{
 	//atributs de log in
 	private JTextField jtfnickname;
 	private JPasswordField jpfpassword;
+	
+	//atributs de game card
+	private JLabel timecomp = new JLabel(" Time of Competition ");
+	private JLabel iadifficulty = new JLabel(" I.A. Difficulty ");
+	private JLabel mode = new JLabel(" Mode ");
+	private JLabel yourscore = new JLabel("Your Score",  SwingConstants.CENTER);
+	private JLabel iascore = new JLabel("I.A. Score",  SwingConstants.CENTER);
 	
 	//atributs de register
 	private JTextField jtfnicknameR;
@@ -492,7 +500,89 @@ public class MainViewClient extends JFrame{
 	}
 	
 	public void createGameCard(){
-		jpgame = new JPanel();
+		
+		title = new JPanel();
+		title.setLayout(new BoxLayout(title, BoxLayout.PAGE_AXIS));
+		JLabel nameTitle = new JLabel("Current Game");
+		nameTitle.setFont(new java.awt.Font("Geneva", 1, 34));	
+		title.add(Box.createVerticalStrut(15));
+		nameTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
+		title.add(nameTitle);
+		title.add(Box.createVerticalStrut(20));
+		
+		timecomp.setFont(new java.awt.Font("Geneva", 1, 14));
+		Border border = BorderFactory.createLineBorder(Color.GREEN, 2);
+		timecomp.setBackground(Color.WHITE);
+		timecomp.setOpaque(true);
+		timecomp.setBorder(border);
+		timecomp.setAlignmentX(Component.CENTER_ALIGNMENT);
+		title.add(timecomp);
+		title.add(Box.createVerticalStrut(10));
+		
+		iadifficulty.setFont(new java.awt.Font("Geneva", 1, 14));
+		Border border2 = BorderFactory.createLineBorder(Color.PINK, 2);
+		iadifficulty.setBackground(Color.WHITE);
+		iadifficulty.setOpaque(true);
+		iadifficulty.setBorder(border2);
+		iadifficulty.setAlignmentX(Component.CENTER_ALIGNMENT);
+		title.add(iadifficulty);
+		title.add(Box.createVerticalStrut(10));
+		
+		mode.setFont(new java.awt.Font("Geneva", 1, 14));
+		Border border3 = BorderFactory.createLineBorder(Color.CYAN, 2);
+		mode.setBackground(Color.WHITE);
+		mode.setOpaque(true);
+		mode.setBorder(border3);
+		mode.setAlignmentX(Component.CENTER_ALIGNMENT);
+		title.add(mode);
+		title.add(Box.createVerticalStrut(30));
+		
+		Border border4 = BorderFactory.createLineBorder(Color.DARK_GRAY, 1);
+		JLabel jlscore = new JLabel("Score:");
+		yourscore.setFont(new java.awt.Font("Geneva", 1, 14));
+		yourscore.setBorder(border4);
+		iascore.setFont(new java.awt.Font("Geneva", 1, 14));
+		iascore.setBorder(border4);
+		jlscore.setFont(new java.awt.Font("Geneva", 1, 14));
+		
+		JPanel score = new JPanel();
+		score.setLayout(new GridLayout(1,5));
+		score.add(new JPanel());
+		score.add(jlscore);
+		score.add(new JPanel());
+		score.add(new JPanel());
+		score.add(new JPanel());
+		
+		JPanel scorelabels = new JPanel();
+		scorelabels.setLayout(new GridLayout(1,5));
+		scorelabels.add(new JPanel());
+		scorelabels.add(yourscore);
+		scorelabels.add(new JPanel());
+		scorelabels.add(iascore);
+		scorelabels.add(new JPanel());
+		
+		score.setAlignmentX(Component.CENTER_ALIGNMENT);
+		scorelabels.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		JLabel jltoprank = new JLabel("Top Ranking:");
+		jltoprank.setFont(new java.awt.Font("Geneva", 1, 14));
+		JPanel toprank = new JPanel();
+		toprank.setLayout(new GridLayout(1,5));
+		toprank.add(new JPanel());
+		toprank.add(jltoprank);
+		toprank.add(new JPanel());
+		toprank.add(new JPanel());
+		toprank.add(new JPanel());
+		
+		toprank.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		title.add(score);
+		title.add(Box.createVerticalStrut(5));
+		title.add(scorelabels);
+		title.add(Box.createVerticalStrut(25));
+		title.add(toprank);
+		
+		jpGameCard.add(title);
 	}
 	
 	public void createRankingCard(){
