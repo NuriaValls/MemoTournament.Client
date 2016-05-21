@@ -35,6 +35,8 @@ import model.UserClient;
 
 public class MainViewClient extends JFrame{	
 
+	private boolean isGuest = false;
+	
 	private static JPanel jpMenu;
 	private static CardLayout cardLayout = new CardLayout();
 	
@@ -60,7 +62,7 @@ public class MainViewClient extends JFrame{
 	//s'ha d'afegir la info tot en una label per que quedi tot seguit.
 	//important posar espai abans i despres del text (per que el borde no quedi tan enganxat)
 	private JLabel userinfo = new JLabel();
-	private JLabel comptime = new JLabel();
+	private JLabel comptime = new JLabel("There is no competition running now.");
 	private JLabel bestplayer = new JLabel("Here will appear the best player of the competition.");
 	
 	//atributs de log in
@@ -137,6 +139,10 @@ public class MainViewClient extends JFrame{
 		jbStartGame.addActionListener(actionListener);
 		jbRanking.addActionListener(actionListener);
 		jbLogOut.addActionListener(actionListener);
+	}
+	
+	public void setGuest(boolean guest){
+		this.isGuest = guest;
 	}
 	
 	public void createRegisterCard(){
@@ -539,7 +545,11 @@ public class MainViewClient extends JFrame{
 	}
 	
 	public void refreshUser(UserClient actualUser){
-		userinfo.setText("   Hello  "+actualUser.getNickname()+",  your actual score is: "+actualUser.getScore()+"   ");
+		if(isGuest){
+			userinfo.setText("Hello, you're playing as a  guest.");
+		}else{
+			userinfo.setText("   Hello  "+actualUser.getNickname()+",  your actual score is: "+actualUser.getScore()+"   ");
+		}
 	}
 	
 	public void refreshTime(String time){
@@ -577,6 +587,13 @@ public class MainViewClient extends JFrame{
 		jbNewGame.setVisible(true);
 		jbRanking.setVisible(true);
 		jbLogOut.setVisible(true);
+		
+		bestplayer.setVisible(true);
+		
+		if(isGuest){
+			jbRanking.setVisible(false);
+			bestplayer.setVisible(false);
+		}
 	}
 	
 	public void showRanking(){

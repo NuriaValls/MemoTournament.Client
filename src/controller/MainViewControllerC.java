@@ -54,6 +54,8 @@ public class MainViewControllerC implements ActionListener{
 		if(((JButton)e.getSource()).getText().equals("Enter as a Guest")){
 			//entrar directament i no avisar al servidor en cap cas
 			user = new UserClient("GUEST","",0);
+			view.setGuest(true);
+			view.refreshUser(user);
 			view.showInitialMenu();
 		}
 		
