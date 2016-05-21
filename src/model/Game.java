@@ -1,7 +1,9 @@
 package model;
 
 import java.awt.Dimension;
+
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 
 public class Game{
@@ -10,7 +12,12 @@ public class Game{
 	private static int locx;
 	private static int locy;
 	
-    public static void main(String[] args){
+	private int difficulty;
+	private boolean concentration;
+	private boolean ai;
+	private int score;
+	
+    public Game(){
         int difficulty = 3;
         boolean concentration = false;
         boolean ai = true;
@@ -33,6 +40,7 @@ public class Game{
         }
     	
     	Board b = new Board(difficulty, concentration, ai);
+    	b = new Board(difficulty, concentration, ai);
         b.setPreferredSize(new Dimension(dimx, dimy)); //creates JFrame
         b.setLocation(locx, locy); //starting position, must be centered in the screen
         b.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

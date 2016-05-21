@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import model.Game;
 import model.Time;
 import model.UserClient;
 import network.ServerComunication;
@@ -87,6 +88,7 @@ public class MainViewControllerC implements ActionListener{
 		
 		if(((JButton)e.getSource()).getText().equals("Start Game")){
 			//comença la partida
+			Game game = new Game();
 			view.showGame();
 		}
 		

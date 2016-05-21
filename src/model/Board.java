@@ -2,6 +2,7 @@ package model;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import java.awt.*;
@@ -123,7 +124,7 @@ public class Board extends JFrame{
         aith.setRepeats(false);
 
         //creates the board 
-        Container pane = getContentPane();
+        JPanel pane = new JPanel();
         createGrid(difficulty, pane);  //creates the grid depending on the difficulty level
         
         for (Card c : cards){
@@ -134,7 +135,7 @@ public class Board extends JFrame{
         	showBoard(difficulty);
         }
         
-        setTitle("Memory Match");
+        //setTitle("Memory Match");
         
         ch.start();
     }

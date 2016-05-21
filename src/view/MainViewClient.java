@@ -78,6 +78,9 @@ public class MainViewClient extends JFrame{
 	private String[] columnNames = {"NickName","Score",};
 	private JPanel title;
 	
+	//atributs joc
+	private JPanel jpgame;
+	
 	public MainViewClient(){
 		setTitle("Memory Torunament -Client-");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -434,7 +437,11 @@ public class MainViewClient extends JFrame{
 	}
 	
 	public void createGameCard(){
-		
+		jpgame = new JPanel();
+	}
+	
+	public JPanel getJpgame(){
+		return jpgame;
 	}
 	
 	public void createRankingCard(){
