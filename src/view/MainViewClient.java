@@ -507,8 +507,8 @@ public class MainViewClient extends JFrame{
 		jpSelectGameCard.add(titol);
 	}
 	
-	public boolean getmodeMemoria(){
-		if(jrbmemoria.isSelected()){
+	public boolean getmodeCon(){
+		if(jrbconcentracio.isSelected()){
 			return true;
 		}else{
 			return false;

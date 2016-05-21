@@ -15,16 +15,12 @@ public class Game{
 	private static int locx;
 	private static int locy;
 	
-	private int difficulty;
+	private static int difficulty;
 	private boolean concentration;
 	private boolean ai;
 	private int score;
 	
-    public Game(GameWindowController controller){
-        int difficulty = 3;
-        boolean concentration = false;
-        boolean ai = true;
-        int score;
+    public Game(GameWindowController controller, boolean concentration, boolean ai, int difficulty){
     	switch (difficulty){
         	case 1: dimx = 600; //easy dimensions
         			dimy = 600;
@@ -49,5 +45,11 @@ public class Game{
         b.setVisible(true);
         b.addWindowListener(controller);
         score = b.getScore()*difficulty;
-    }   
+    }
+    
+    public static void setScore(int score, int aiScore){
+    	System.out.println(score * difficulty);
+    	System.out.println("AI:"+aiScore*difficulty);
+    	//MainViewControllerC.refreshUserScore(score*difficulty);
+    }
 }

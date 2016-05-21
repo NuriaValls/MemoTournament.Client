@@ -285,6 +285,8 @@ public class Board extends JFrame{
             c1.setMatched(true);  //flags the button
             c2.setMatched(true);
             score++;
+            System.out.println(score);
+            Game.setScore(score, aiscore);
             numcards = numcards - 2;
             memory.remove(c1);
             cards.remove(c1);
