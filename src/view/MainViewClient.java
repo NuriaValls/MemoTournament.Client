@@ -61,6 +61,7 @@ public class MainViewClient extends JFrame{
 	//important posar espai abans i despres del text (per que el borde no quedi tan enganxat)
 	private JLabel userinfo = new JLabel();
 	private JLabel comptime = new JLabel();
+	private JLabel bestplayer = new JLabel("Here will appear the best player of the competition.");
 	
 	//atributs de log in
 	private JTextField jtfnickname;
@@ -335,6 +336,15 @@ public class MainViewClient extends JFrame{
 		comptime.setAlignmentX(Component.CENTER_ALIGNMENT);
 		titol.add(comptime);
 		
+		titol.add(Box.createVerticalStrut(20));
+		bestplayer.setFont(new java.awt.Font("Geneva", 1, 16));
+		Border border3 = BorderFactory.createLineBorder(Color.GREEN, 2);
+		bestplayer.setBackground(Color.WHITE);
+		bestplayer.setOpaque(true);
+		bestplayer.setBorder(border3);
+		bestplayer.setAlignmentX(Component.CENTER_ALIGNMENT);
+		titol.add(bestplayer);
+		
 		jpInitialMenuCard.add(titol);
 	}
 	
@@ -518,6 +528,10 @@ public class MainViewClient extends JFrame{
 			String[] aux = users[i].split("/");
 			matrix[j] = aux;
 			j++;
+			
+			if(i==0){
+				refreshTop1("The best player of the competition is "+aux[0]+" with "+aux[1]+" points.");
+			}
 		}
 		DefaultTableModel model = new DefaultTableModel(matrix,columnNames);
 		table.setModel(model);
@@ -530,6 +544,10 @@ public class MainViewClient extends JFrame{
 	
 	public void refreshTime(String time){
 		comptime.setText(time);
+	}
+	
+	public void refreshTop1(String top1){
+		bestplayer.setText(top1);
 	}
 	
 	public void showRegister(){
