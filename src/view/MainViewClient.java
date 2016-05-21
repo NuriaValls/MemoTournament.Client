@@ -84,6 +84,15 @@ public class MainViewClient extends JFrame{
 	//atributs joc
 	private JPanel jpgame;
 	
+	//atributs select game
+	private JRadioButton jrbmemoria;
+	private JRadioButton jrbconcentracio;
+	private JRadioButton jrbmachine;
+	private JRadioButton jrbtimetrial;
+	private JRadioButton jrbeasy;
+	private JRadioButton jrbmedium;
+	private JRadioButton jrbhard;
+	
 	public MainViewClient(){
 		setTitle("Memory Torunament -Client-");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -372,7 +381,7 @@ public class MainViewClient extends JFrame{
 		
 		JLabel jlselectmode = new JLabel("Select Mode");
 		jlselectmode.setFont(new java.awt.Font("Geneva", 1, 14));
-		JRadioButton jrbmemoria = new JRadioButton("Memory");
+		jrbmemoria = new JRadioButton("Memory");
 		JPanel jpselectmode = new JPanel();
 		jpselectmode.setLayout(new GridLayout(1,4));
 		jpselectmode.add(new JPanel());
@@ -381,7 +390,7 @@ public class MainViewClient extends JFrame{
 		jpselectmode.add(new JPanel());
 		
 		
-		JRadioButton jrbconcentracio = new JRadioButton("Concentration");
+		jrbconcentracio = new JRadioButton("Concentration");
 		JPanel jpselect = new JPanel();
 		jpselect.setLayout(new GridLayout(1,4));
 		jpselect.add(new JPanel());
@@ -392,7 +401,6 @@ public class MainViewClient extends JFrame{
 		ButtonGroup groupmode = new ButtonGroup();
 	    groupmode.add(jrbmemoria);
 	    groupmode.add(jrbconcentracio);
-		
 		
 		jpselectmode.setAlignmentX(Component.CENTER_ALIGNMENT);
 		jpselect.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -409,7 +417,7 @@ public class MainViewClient extends JFrame{
 		
 		JLabel jlselectgame = new JLabel("Select Game(AI)");
 		jlselectgame.setFont(new java.awt.Font("Geneva", 1, 14));
-		JRadioButton jrbmachine = new JRadioButton("Machine");
+		jrbmachine = new JRadioButton("Machine");
 		
 		JPanel jpselectgame = new JPanel();
 		jpselectgame.setLayout(new GridLayout(1,4));
@@ -419,7 +427,7 @@ public class MainViewClient extends JFrame{
 		jpselectgame.add(new JPanel());
 		
 		
-		JRadioButton jrbtimetrial = new JRadioButton("Time Trial");
+		jrbtimetrial = new JRadioButton("Time Trial");
 		
 		JPanel jptimetrial = new JPanel();
 		jptimetrial.setLayout(new GridLayout(1,4));
@@ -447,7 +455,7 @@ public class MainViewClient extends JFrame{
 		
 		JLabel jlselectdiff = new JLabel("Select Difficulty");
 		jlselectdiff.setFont(new java.awt.Font("Geneva", 1, 14));
-		JRadioButton jrbeasy = new JRadioButton("Easy");
+		jrbeasy = new JRadioButton("Easy");
 		JPanel jpeasy = new JPanel();
 		jpeasy.setLayout(new GridLayout(1,4));
 		jpeasy.add(new JPanel());
@@ -456,7 +464,7 @@ public class MainViewClient extends JFrame{
 		jpeasy.add(new JPanel());
 		
 		
-		JRadioButton jrbmedium = new JRadioButton("Medium");
+		jrbmedium = new JRadioButton("Medium");
 		JPanel jpmedium = new JPanel();
 		jpmedium.setLayout(new GridLayout(1,4));
 		jpmedium.add(new JPanel());
@@ -464,7 +472,7 @@ public class MainViewClient extends JFrame{
 		jpmedium.add(jrbmedium);
 		jpmedium.add(new JPanel());
 		
-		JRadioButton jrbhard = new JRadioButton("Hard");
+		jrbhard = new JRadioButton("Hard");
 		JPanel jphard = new JPanel();
 		jphard.setLayout(new GridLayout(1,4));
 		jphard.add(new JPanel());
@@ -489,6 +497,35 @@ public class MainViewClient extends JFrame{
 		titol.add(difficulty);
 		
 		jpSelectGameCard.add(titol);
+	}
+	
+	public boolean getmodeMemoria(){
+		if(jrbmemoria.isSelected()){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public boolean getIA(){
+		if(jrbmachine.isSelected()){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public int getDifficulty(){
+		if(jrbeasy.isSelected()){
+			return 1;
+		}
+		if(jrbmedium.isSelected()){
+			return 2;
+		}
+		if(jrbhard.isSelected()){
+			return 3;
+		}
+		return -1;
 	}
 	
 	public void createGameCard(){
