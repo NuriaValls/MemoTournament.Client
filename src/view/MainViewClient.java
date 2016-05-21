@@ -576,11 +576,25 @@ public class MainViewClient extends JFrame{
 		
 		toprank.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
+		panell = new JPanel();
+		
+		String [][] mTopTen = new String [11][2];
+		table = new JTable(mTopTen, columnNames);
+		
+		table.setPreferredSize(new Dimension(250, 125));
+		table.setOpaque(false);
+		table.setAlignmentX(Component.CENTER_ALIGNMENT);
+		panell.add(table);
+		panell.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		
 		title.add(score);
 		title.add(Box.createVerticalStrut(5));
 		title.add(scorelabels);
 		title.add(Box.createVerticalStrut(25));
 		title.add(toprank);
+		title.add(panell);
+		
 		
 		jpGameCard.add(title);
 	}
