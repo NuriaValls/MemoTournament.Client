@@ -347,16 +347,16 @@ public class MainViewClient extends JFrame{
 		JLabel nomtitol = new JLabel("New Game");
 		nomtitol.setFont(new java.awt.Font("Geneva", 1, 40));
 		nomtitol.setAlignmentX(Component.CENTER_ALIGNMENT);
-		titol.add(Box.createVerticalStrut(15));
+		titol.add(Box.createVerticalStrut(25));
 		titol.add(nomtitol);
-		titol.add(Box.createVerticalStrut(65));
+		titol.add(Box.createVerticalStrut(55));
 		
-		JPanel mode = new JPanel();
+	    JPanel mode = new JPanel();
 		mode.setLayout(new BoxLayout(mode, BoxLayout.PAGE_AXIS));
 		
 		JLabel jlselectmode = new JLabel("Select Mode");
 		jlselectmode.setFont(new java.awt.Font("Geneva", 1, 14));
-		JRadioButton jrbmemoria = new JRadioButton("Memoria");
+		JRadioButton jrbmemoria = new JRadioButton("Memory");
 		JPanel jpselectmode = new JPanel();
 		jpselectmode.setLayout(new GridLayout(1,4));
 		jpselectmode.add(new JPanel());
@@ -365,17 +365,17 @@ public class MainViewClient extends JFrame{
 		jpselectmode.add(new JPanel());
 		
 		
-		JRadioButton jrbcontra = new JRadioButton("Contrarellotge");
+		JRadioButton jrbconcentracio = new JRadioButton("Concentration");
 		JPanel jpselect = new JPanel();
 		jpselect.setLayout(new GridLayout(1,4));
 		jpselect.add(new JPanel());
 		jpselect.add(new JPanel());
-		jpselect.add(jrbcontra);
+		jpselect.add(jrbconcentracio);
 		jpselect.add(new JPanel());
 		
 		ButtonGroup groupmode = new ButtonGroup();
 	    groupmode.add(jrbmemoria);
-	    groupmode.add(jrbcontra);
+	    groupmode.add(jrbconcentracio);
 		
 		
 		jpselectmode.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -385,6 +385,45 @@ public class MainViewClient extends JFrame{
 		
 		mode.setAlignmentX(Component.CENTER_ALIGNMENT);
 		titol.add(mode);
+		titol.add(Box.createVerticalStrut(25));
+		
+		
+		JPanel game = new JPanel();
+		game.setLayout(new BoxLayout(game, BoxLayout.PAGE_AXIS));
+		
+		JLabel jlselectgame = new JLabel("Select Game(AI)");
+		jlselectgame.setFont(new java.awt.Font("Geneva", 1, 14));
+		JRadioButton jrbmachine = new JRadioButton("Machine");
+		
+		JPanel jpselectgame = new JPanel();
+		jpselectgame.setLayout(new GridLayout(1,4));
+		jpselectgame.add(new JPanel());
+		jpselectgame.add(jlselectgame);
+		jpselectgame.add(jrbmachine);
+		jpselectgame.add(new JPanel());
+		
+		
+		JRadioButton jrbtimetrial = new JRadioButton("Time Trial");
+		
+		JPanel jptimetrial = new JPanel();
+		jptimetrial.setLayout(new GridLayout(1,4));
+		jptimetrial.add(new JPanel());
+		jptimetrial.add(new JPanel());
+		jptimetrial.add(jrbtimetrial);
+		jptimetrial.add(new JPanel());
+		
+		ButtonGroup groupgame2 = new ButtonGroup();
+	    groupgame2.add(jrbmachine);
+	    groupgame2.add(jrbtimetrial);
+		
+		
+		jpselectgame.setAlignmentX(Component.CENTER_ALIGNMENT);
+		jptimetrial.setAlignmentX(Component.CENTER_ALIGNMENT);
+		game.add(jpselectgame);
+		game.add(jptimetrial);
+		
+		game.setAlignmentX(Component.CENTER_ALIGNMENT);
+		titol.add(game);
 		titol.add(Box.createVerticalStrut(25));
 		
 		JPanel difficulty = new JPanel();
