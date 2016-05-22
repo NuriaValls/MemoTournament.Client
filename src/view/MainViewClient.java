@@ -59,15 +59,27 @@ public class MainViewClient extends JFrame{
 	private static JButton jbGoToMenu = new JButton("Log In");
 	private static JButton jbStartGame = new JButton("Start Game");
 	
+	/**
+	 * Atributs que serveixen per poder actualitzar la informacio 
+	 * com ara el nom i puntuacio de l'usuari, temps de competicio i millor judador.
+	 */
 	//atributs menu
 	private JLabel userinfo = new JLabel();
 	private JLabel comptime = new JLabel(" There is no competition running now. ");
 	private JLabel bestplayer = new JLabel(" Here will appear the best player of the competition. ");
 	
+	
+	/**
+	 * Atributs que serveixen per estcriure el nom i la paraula de pas de l'usuari
+	 */
 	//atributs de log in
 	private JTextField jtfnickname;
 	private JPasswordField jpfpassword;
 	
+	
+	/**
+	 * Atributs que serveixen per mostrar les caracteristiques de la partida seleccionada, puntuacio i un ranking.
+	 */
 	//atributs de game card
 	private JLabel timecomp = new JLabel(" There is no competition running now. ");
 	private JLabel iadifficulty = new JLabel(" A.I. Difficulty ");
@@ -76,12 +88,20 @@ public class MainViewClient extends JFrame{
 	private JLabel iascore = new JLabel("I.A. Score",  SwingConstants.CENTER);
 	private JTable tableGame;
 	
+	
+	/***
+	 * Atributs del registre per poder registrar un usuari introduint les seves dades.
+	 */
 	//atributs de register
 	private JTextField jtfnicknameR;
 	private JPasswordField jpfpasswordR;
 	private JTextField jtfname;
 	private JTextField jtflastname;
 	
+	
+	/**
+	 * Atributs del ranking
+	 */
 	//atributs ranking
 	private JPanel panell;
 	private JTable table;
@@ -91,7 +111,10 @@ public class MainViewClient extends JFrame{
 	//atributs joc
 	private JPanel jpgame;
 	
-
+	
+	/**
+	 * Atributs que serveixen per posar els radio buttons quan seleccionem les caracteristiques de la partida.
+	 */
 	//atributs select game
 	private JRadioButton jrbmemoria;
 	private JRadioButton jrbconcentracio;
