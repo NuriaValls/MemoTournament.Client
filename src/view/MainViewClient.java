@@ -686,7 +686,7 @@ public class MainViewClient extends JFrame{
 	
 	/**
 	 * Es comunica amb el servidor per a rebre en una String(sTopTen) l'informació dels usuaris actualitzada.
-	 * @param sTopTen
+	 * @param sTopTen : String amb l'informacio de tots els usuaris
 	 */
 	public void refreshRanking(String sTopTen){
 		String matrix[][] = new String [11][2];
