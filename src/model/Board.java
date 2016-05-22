@@ -16,7 +16,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Collections;
 
-
+/**
+ * Classe que s'encarrega de generar el taulell de joc i coordinar la logica de la partida.
+ * @author Luis Recolons
+ * 
+ */
 public class Board extends JFrame{
 
 	private static final long serialVersionUID = 1L;
@@ -37,7 +41,12 @@ public class Board extends JFrame{
     private static int timegame;
     
     private GameWindowController controller;
-
+    /**
+     * Constructor de la classe. Crea el taulell, distribuint-ne les cartes seguint els parametres dels diferents nivells de dificultat. Es declaran els timers que controlan les accions dels torns.
+     * @param difficulty serveix per determinar diferents caracteristiques de la partida.
+     * @param concentration indica si es juga Memoria o Concentracio.
+     * @param ai indica si es juga contra la Maquina.
+     */
     public Board(int difficulty, boolean concentration, boolean ai, GameWindowController controller){
     	
     	this.controller = controller;
@@ -139,11 +148,17 @@ public class Board extends JFrame{
         //setTitle("Memory Match");
         
     }
-
+    /**
+	 * Para el cronometre de la partida.
+	 */
     public static void stopTimer(){
     	ch.stop();
     }
-    
+    /**
+     * Gira la carta seleccionada per l'usuari, controlant si es la primera o la segona del torn
+     * @param ai indica si es juga amb IA
+     * @param difficulty indica el nivell de dificultat
+     */ 
     public void doTurn(boolean ai, int difficulty){
         if (c1 == null && c2 == null){ //player chooses c1
             c1 = selectedCard;
@@ -156,7 +171,10 @@ public class Board extends JFrame{
             t.start();
         }
     }
-    
+    /**
+     * S'encarrega de cridar el Turn segons la dificultat per que sigui executat per la maquina
+     * @param difficulty serveix per triar quin tipus de Turn s'ha de realitzar
+     */
     public void doAiTurn(int difficulty){
     	
     	switch (difficulty){
@@ -170,7 +188,9 @@ public class Board extends JFrame{
     				break;
     	}
     }
-    
+    /**
+     * Fa un gir de cartes en dificultat facil, escollides aleatoriament
+     */
     public void easyTurn(){
     	int randCard1;
     	int randCard2;
@@ -191,7 +211,10 @@ public class Board extends JFrame{
 
         ait.start();
     }    	
-    
+    /**
+     * Fa un gir en dificultat normal, pel que pot ser un facil o un dificil en una proporcio 50/50
+     * @param pairs nombre de parelles de cartes
+     */
     public void normalTurn(int pairs){
     	int rand;
     	
@@ -203,7 +226,10 @@ public class Board extends JFrame{
     		easyTurn();
     	}
     }
-    
+    /**
+     * Fa un gir en dificultat dificil, tenint en compte la memoria que es va actualitzant amb la informacio que rep durant la partida.
+     * @param pairs nombre de parelles de cartes
+     */
     public void hardTurn(int pairs){
     	int i, j=-1, randCard1, randCard2;
     	boolean match = false, first = false;
@@ -261,7 +287,9 @@ public class Board extends JFrame{
 
         aith.start();
     }
-    
+    /**
+     * Fa un gir de cartes en el mode concentracio, sense mostrar-les
+     */
     public void doConTurn(){
         if (c1 == null && c2 == null){ //player chooses c1
             c1 = selectedCard;
@@ -272,7 +300,12 @@ public class Board extends JFrame{
             t.start();
         }
     }
-
+    /**
+     * S'encarrega de comprovar si la parella de cartes escollida es correcte. Si ho es s'encarrega de marcar-les com seleccionades i actualitzar la puntuacio i la memoria si es juga amb IA, o si no ho son les torna a amagar i actualitza la memoria en el cas que es jugui contra la maquina.
+     * @param concentration indica si es juga el mode Concentracio.
+     * @param ai indica si es juga contra la maquina.
+     * @param player indica si la seleccio de cartes ho la ha feta el jugador o la maquina.
+     */
     public void checkCards(boolean concentration, boolean ai, boolean player){
     	boolean match = false;
     	Card aux;
@@ -372,13 +405,18 @@ public class Board extends JFrame{
         c1 = null; //reset c1 and c2
         c2 = null;
     }
-    
-   
-    
+    /**
+     * comprova si es s'ha acabat la partida.
+     * @return true si totes les parelles estan encertades
+     */
     public boolean gameWon(){
         return this.cards.stream().allMatch(c -> c.getMatched()); //game finished
     }
-    
+    /**
+     * Asigna el numero de parelles segons la dificultat.
+     * @param difficulty indica el nivell de dificultat que es juga.
+     * @return el numero de parelles
+     */
     public int assignPairs(int difficulty){
     	switch (difficulty){
     		case 1: return 10; //easy 10 pairs
@@ -393,7 +431,11 @@ public class Board extends JFrame{
     				
     	}
     }
-    
+    /**
+     * Crea el taulell segons la dificultat.
+     * @param difficulty indica la dificultat de la partida.
+     * @param pane la graella de les cartes.
+     */
     public void createGrid(int difficulty, Container pane){
     	switch (difficulty){
 			case 1: pane.setLayout(new GridLayout(4, 5));//easy 20 
@@ -409,24 +451,33 @@ public class Board extends JFrame{
     				System.exit(0);
     	}
     }
-    
+    /**
+     * Asigna les imatges a les cartes en dificultat facil.
+     */
     public void setImagesEasy(){ //easy images
     	imagename = new String[] {"AUSTRALIA","BRAZIL","CANADA","CHINA","GREATBRITAIN","GREECE",
     			"JAMAICA","JAPAN","SWEDEN","USA"};
     }
-    
+    /**
+     * Asigna les imatges a les cartes en dificultat normal.
+     */
     public void setImagesNormal(){ //normal images
     	imagename = new String[] {"ADIDAS","APPLE","COCACOLA","DISNEY","GOOGLE","INTEL","LEGO",
     			"MCDONALDS","MERCEDES","MICROSOFT","NIKE","SHELL","UBISOFT","VOLKSWAGEN","WARNER"};
     }
-    
+    /**
+     * Asigna les imatges a les cartes en dificultat dificil.
+     */
     public void setImagesHard(){ //hard images
     	imagename = new String[] {"2_of_clubs","2_of_hearts","3_of_diamonds","4_of_clubs","4_of_hearts",
     			"5_of_spades","6_of_clubs","7_of_diamonds","7_of_spades","8_of_hearts","9_of_spades",
     			"10_of_clubs","10_of_diamonds","ace_of_spades","ace_of_hearts","jack_of_hearts","king_of_clubs",
     			"king_of_diamonds","queen_of_diamonds","queen_of_spades","red_joker"};
     }
-    
+    /**
+     * Enseña el taulell en el mode Concentracio un temps determinat per la dificultat.
+     * @param difficulty indica el nivell de dificultat de la partida.
+     */
     public void showBoard(int difficulty){ //shows board in the concentration mode
     	Timer con;
     	for (Card c : cards){ //shows cards
@@ -466,7 +517,11 @@ public class Board extends JFrame{
 					break;    		
     	}
     }
-    
+    /**
+     * Asigna el temps de la partida segons la dificultat.
+     * @param difficulty indica la dificultat de la partida
+     * @return el temps maxim que durara la partida
+     */
     public int setTimer(int difficulty){ //time limit depending on the difficulty
     	switch (difficulty){
     		case 1: return 90000; //9 sec for pair
@@ -477,7 +532,10 @@ public class Board extends JFrame{
     				return -1;
     	}
     }
-    
+    /**
+     * Retorna la puntuacio de la partida.
+     * @return la puntuacio de la partida.
+     */
     public int getScore(){
     	return score;
     }

@@ -8,7 +8,11 @@ import javax.swing.JPanel;
 import controller.GameWindowController;
 import controller.MainViewControllerC;
 
-
+/**
+ * Classe mes alta a la jerarquia de la partida.
+ * @author Luis Recolons
+ *
+ */
 public class Game{
 	private static int dimx;
 	private static int dimy;
@@ -19,7 +23,12 @@ public class Game{
 	private boolean concentration;
 	private boolean ai;
 	private int score;
-	
+	/**
+	 * El procediment "main" de la partida, crea el JFrame i fa les crides a la classe Board. 
+	 * @param difficulty indica la dificultat amb la que es jugara el nivell per generar les característiques apropiades.
+	 * @param concentration indica si es jugara Concentracia.
+	 * @param ai indica si es jugara contra la maquina.
+	 */
     public Game(GameWindowController controller, boolean concentration, boolean ai, int difficulty){
     	this.difficulty = difficulty;
     	switch (difficulty){

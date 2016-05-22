@@ -7,7 +7,11 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-
+/**
+ * Classe que representa cadascuna de les cartes de la partida. Cada carta te una serie d'atributs propi que la diferencien de les altres.
+ * @author Luis Recolons
+ *
+ */
 public class Card extends JButton implements Comparable<Card>{
    
 	private static final long serialVersionUID = 1L;
@@ -18,7 +22,13 @@ public class Card extends JButton implements Comparable<Card>{
     private ImageIcon imgFace;
     
     private ImageIcon imgBack = new ImageIcon(getClass().getResource("/images/back.png"));
-
+    /**
+     * El constructor de carta, s'encarrega d'afegir-li els seus atributs, coordinats des de la classe Board.
+     * @param id identificacio de la parella de cartes, segons el número de parelles determinat per la dificultat de la partida.
+     * @param imagename nom de la imatge que li correspon.
+     * @param idCard identificacio propia de la carta, independent de la parella.
+     * @param difficulty nivell amb el que es jugara la partida.
+     */
     public Card(int id, String imagename, int idCard, int difficulty){
     	this.id = id;
     	this.idCard = idCard;
@@ -53,19 +63,29 @@ public class Card extends JButton implements Comparable<Card>{
     public int getIdCard(){
     	return this.idCard;
     }
-
+    /**
+     * Canvia l'estat de la carta a endevinada.
+     * @param matched l'estat al que es vol canviar la carta (es passa com true).
+     */
     public void setMatched(boolean matched){
         this.matched = matched;
     }
-
+    /**
+     * getter de l'estat de la carta.
+     * @return si la carta esta endevinada o no.
+     */
     public boolean getMatched(){
         return this.matched; 
     }
-    
+    /**
+     * Gira la carta per mostrar la seva imatge.
+     */
     public void showImage(){
     	super.setIcon(imgFace);
     }
-    
+    /**
+     * Gira la carta per amagar l'imatge.
+     */
     public void hideImage(){
     	super.setIcon(imgBack);
     }
@@ -80,7 +100,11 @@ public class Card extends JButton implements Comparable<Card>{
         }
         return dbi;
     }
-
+    /**
+	 * Compara aquesta carta amb la que es passa i diu si son iguals.
+	 * @c la carta que es vol comparar.
+	 * @return un 1 si son iguals o un -1 si no ho son.
+	 */
 	@Override
 	public int compareTo(Card c) {
 		if(this.getId() == c.getId()){
@@ -91,7 +115,10 @@ public class Card extends JButton implements Comparable<Card>{
 		}
 		return -1;
 	}
-	
+	/**
+	 * Canvia un integer a String.
+	 * @return el String amb la id de la carta.
+	 */
 	@Override
 	public String toString(){
 		return Integer.toString(id);
