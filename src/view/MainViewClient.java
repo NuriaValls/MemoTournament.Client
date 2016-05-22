@@ -384,8 +384,8 @@ public class MainViewClient extends JFrame{
 	
 	
 	/**
-	 * Crea la vista de la carta de seleccio del joc
-	 * aqui l'usuari ha d'escollir la modalitat del joc i la dificultat.
+	 * Crea la vista de la carta de seleccio del joc.
+	 * Aqui l'usuari ha d'escollir la modalitat del joc i la dificultat.
 	 */
 	public void createSelectGameCard(){
 		
