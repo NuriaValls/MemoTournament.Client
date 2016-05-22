@@ -261,6 +261,9 @@ public class MainViewClient extends JFrame{
 		return jpfpasswordR.getText();
 	}
 	
+	/**
+	 * Crea la vista de la carta de Log In on l'usuari nomes ha de posar nom i contrasenya si ja esta registrat.
+	 */
 	public void createLogInCard(){
 		
 		//jpLogInCard.setBackground( Color.BLUE );
@@ -335,6 +338,9 @@ public class MainViewClient extends JFrame{
 		return jpfpassword.getText();
 	}
 	
+	/**
+	 * crea la vista del Menu principal on apareix informacio rellevant com ara el nom i puntuacio de l'usuari, temps de competicio i el millor jugador.
+	 */
 	public void createInitialMenuCard(){
 
 		JPanel titol = new JPanel();
@@ -376,6 +382,11 @@ public class MainViewClient extends JFrame{
 		jpInitialMenuCard.add(titol);
 	}
 	
+	
+	/**
+	 * Crea la vista de la carta de seleccio del joc
+	 * aqui l'usuari ha d'escollir la modalitat del joc i la dificultat.
+	 */
 	public void createSelectGameCard(){
 		
 		JPanel titol = new JPanel();
@@ -541,6 +552,9 @@ public class MainViewClient extends JFrame{
 		return -1;
 	}
 	
+	/**
+	 * Crea la pantalla del joc on es mostra a l'usuari els parametres de configuracio del joc que ha escollit, la puntuacio obtinguda i un ranking de jugadors.
+	 */
 	public void createGameCard(){
 		
 		title = new JPanel();
