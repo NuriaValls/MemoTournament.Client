@@ -19,8 +19,11 @@ public class ServerComunication extends Thread{
 	private boolean competition = false;
 	private MainViewControllerC controller;
 	
-	public ServerComunication(Time time){
+	private int portServer;
+	
+	public ServerComunication(Time time, String ip, int portServer){
 		this.time = time;
+		this.portServer = portServer;
 	}
 	
 	public void registerController(MainViewControllerC controller){
@@ -31,7 +34,7 @@ public class ServerComunication extends Thread{
 		boolean next = false;
 		
 		try {
-			sServer = new Socket("127.0.0.1",5200);
+			sServer = new Socket("127.0.0.1",portServer);
 			dataIn = new DataInputStream(sServer.getInputStream());
 			dataOut = new DataOutputStream(sServer.getOutputStream());
 			dataOut.writeUTF(message);
@@ -50,9 +53,9 @@ public class ServerComunication extends Thread{
 			sServer.close();
 			
 		} catch (UnknownHostException e) {
-			e.printStackTrace();
+			controller.makeDialog("Coudn't connect with server", false);
 		} catch (IOException e) {
-			e.printStackTrace();
+			controller.makeDialog("Coudn't connect with server", false);
 		}
 		
 		return next;
@@ -62,7 +65,7 @@ public class ServerComunication extends Thread{
 		boolean next = false; 
 		String message = "LOG:"+user.getNickname()+"/"+user.getPassword();
 		try {
-			sServer = new Socket("127.0.0.1",5200);
+			sServer = new Socket("127.0.0.1",portServer);
 			dataIn = new DataInputStream(sServer.getInputStream());
 			dataOut = new DataOutputStream(sServer.getOutputStream());
 			dataOut.writeUTF(message);
@@ -82,9 +85,9 @@ public class ServerComunication extends Thread{
 			sServer.close();
 			
 		} catch (UnknownHostException e) {
-			e.printStackTrace();
+			controller.makeDialog("Coudn't connect with server", false);
 		} catch (IOException e) {
-			e.printStackTrace();
+			controller.makeDialog("Coudn't connect with server", false);
 		}
 		
 		return next;
@@ -92,7 +95,7 @@ public class ServerComunication extends Thread{
 	
 	public void sendRanking(String message){
 		try {
-			sServer = new Socket("127.0.0.1", 5200);
+			sServer = new Socket("127.0.0.1", portServer);
 			dataOut = new DataOutputStream(sServer.getOutputStream());
 			dataIn = new DataInputStream(sServer.getInputStream());
 			dataOut.writeUTF(message);
@@ -107,15 +110,15 @@ public class ServerComunication extends Thread{
 			sServer.close();
 			
 		} catch (UnknownHostException e) {
-			e.printStackTrace();
+			controller.makeDialog("Coudn't connect with server", false);
 		} catch (IOException e) {
-			e.printStackTrace();
+			controller.makeDialog("Coudn't connect with server", false);
 		}
 	}
 	
 	public void sendUpdate(String message){
 		try {
-			sServer = new Socket("127.0.0.1",5200);
+			sServer = new Socket("127.0.0.1",portServer);
 			dataIn = new DataInputStream(sServer.getInputStream());
 			dataOut = new DataOutputStream(sServer.getOutputStream());
 			dataOut.writeUTF(message);
@@ -133,15 +136,15 @@ public class ServerComunication extends Thread{
 			sServer.close();
 			
 		} catch (UnknownHostException e) {
-			e.printStackTrace();
+			controller.makeDialog("Coudn't connect with server", false);
 		} catch (IOException e) {
-			e.printStackTrace();
+			controller.makeDialog("Coudn't connect with server", false);
 		}
 	}
 	
 	public void sendStart(String message){
 		try {
-			sServer = new Socket("127.0.0.1",5200);
+			sServer = new Socket("127.0.0.1",portServer);
 			dataIn = new DataInputStream(sServer.getInputStream());
 			dataOut = new DataOutputStream(sServer.getOutputStream());
 			dataOut.writeUTF(message);
@@ -162,15 +165,15 @@ public class ServerComunication extends Thread{
 			sServer.close();
 			
 		} catch (UnknownHostException e) {
-			e.printStackTrace();
+			controller.makeDialog("Coudn't connect with server", false);
 		} catch (IOException e) {
-			e.printStackTrace();
+			controller.makeDialog("Coudn't connect with server", false);
 		}
 	}
 	
 	public void sendBlockedUser(String message){
 		try {
-			sServer = new Socket("127.0.0.1",5200);
+			sServer = new Socket("127.0.0.1",portServer);
 			dataIn = new DataInputStream(sServer.getInputStream());
 			dataOut = new DataOutputStream(sServer.getOutputStream());
 			dataOut.writeUTF(message);
@@ -188,9 +191,9 @@ public class ServerComunication extends Thread{
 			sServer.close();
 			
 		} catch (UnknownHostException e) {
-			e.printStackTrace();
+			controller.makeDialog("Coudn't connect with server", false);
 		} catch (IOException e) {
-			e.printStackTrace();
+			controller.makeDialog("Coudn't connect with server", false);
 		}
 	}
 	

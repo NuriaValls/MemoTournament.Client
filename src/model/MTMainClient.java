@@ -17,16 +17,20 @@ public class MTMainClient {
 			@Override
 			public void run() {
 				
-				MainViewClient clientView = new MainViewClient();
-				Time time = new Time();
-				ServerComunication serverCom = new ServerComunication(time);
-				MainViewControllerC controller = new MainViewControllerC(clientView,serverCom,time);
-				
-				clientView.registerController(controller);
-				serverCom.registerController(controller);
-				time.registerController(controller);
-				clientView.setVisible(true);
-				
+				Configuration config = new Configuration();
+				if (config.configurate()){
+					
+					MainViewClient clientView = new MainViewClient();
+					Time time = new Time();
+					ServerComunication serverCom = new ServerComunication(time, config.getIp(), config.getPortServer());
+					MainViewControllerC controller = new MainViewControllerC(clientView,serverCom,time);
+					
+					clientView.registerController(controller);
+					serverCom.registerController(controller);
+					time.registerController(controller);
+					clientView.setVisible(true);
+					
+				}
 			}
 		});
 	}
