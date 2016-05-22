@@ -1,11 +1,29 @@
 package model;
 
+import java.net.Socket;
+
 import model.MTMainClient;
 
+/**
+ * Aquesta clase serveix per tenir registre d'un usuari amb el seu nom, contrassenya, puntuacio i si esta bloquejat o no.
+ * Aquest usuaru conte la informacio de l'usuari que esta actualment connectat al programa client en cas de no ser un convidat.
+ */
 public class UserClient {
+	/**
+	 * String que guarda el nickname de l'usuari actual
+	 */
 	private String nickname;
+	/**
+	 * String que conte la contrassenya de l'usuari actual.
+	 */
 	private String password;
+	/**
+	 * int que conte la puntuacio total dins la competicio de l'usuari actual.
+	 */
 	private int score;
+	/**
+	 * Boolea que indica si l'usuari esta bloquejat o no.
+	 */
 	private boolean blocked = false;
 	
 	public UserClient(String nickname,String password,int score){
@@ -26,19 +44,7 @@ public class UserClient {
 	public void setBlocked(boolean blocked){
 		this.blocked = blocked;
 	}
-	
-	public void logOut(){
-		
-	}
-	
-	public void play(){
-		//2 modalitats
-	}
-	
-	public void showRanking(){
-		
-	}
-	
+
 	public String getNickname() {
 		return nickname;
 	}

@@ -6,15 +6,15 @@ import java.awt.event.WindowEvent;
 
 import model.Board;
 import model.Time;
-
+/**
+ * Classe que permet gestionar el listener vingulat al frame de la pantlala de joc.
+ */
 public class GameWindowController extends WindowAdapter{
-	
+	/**
+	 * Metode que tanca el frame si s'ha acabat la partida o l'usuari prem el boto de tancar.
+	 */
 	public void closeGame(WindowEvent e){
-		System.out.println("ruru noob");
 		Frame gameFrame = (Frame)e.getSource();
-		//actualitzar partida
-		System.out.println(gameFrame.getFrames()[0].toString());
-		//Board.stopTimer();
 		Time.stopGameTimer();
 		gameFrame.dispose();
 	}

@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.Socket;
 
 import javax.swing.JButton;
 
@@ -10,12 +11,25 @@ import model.Time;
 import model.UserClient;
 import network.ServerComunication;
 import view.MainViewClient;
-
+/**
+ * Classe que s'encarrega de gestionar els listeners de la vista i respondre amb diferentses accions a les peticicons d'aquests.
+ */
 public class MainViewControllerC implements ActionListener{
-
+	/**
+	 * Atribut que instancia un objecte de la classe MainViewClient.
+	 */
 	private static MainViewClient view;
+	/**
+	 * Atribut que instancia un objecte per la comunicacio amb el servidor.
+	 */
 	private static ServerComunication serverCom;
+	/**
+	 * Atribut que instancia un objecte per controlar els timers.
+	 */
 	private Time time;
+	/**
+	 * Atribut que guard al ainformacio de l'usuari actual connectat al client.
+	 */
 	public static UserClient user;
 	
 	
@@ -24,7 +38,9 @@ public class MainViewControllerC implements ActionListener{
 		this.serverCom = serverCom;
 		this.time = time;
 	}
-	
+	/**
+	 * Metode que escolta els listeners de la vista i gestiona cadascun dels events.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -117,24 +133,35 @@ public class MainViewControllerC implements ActionListener{
 			view.showInitialMenu();
 		}
 	}
-	
+	/**
+	 * Medote que llança un diàleg a lal vista amb el missatge  per referència i del tipus del bolea.
+	 */
 	public void makeDialog(String message, boolean type){
 		view.makeDialog(message,type);
 	}
 	
+	/**
+	 * metode que pregunta al servidor si s'ha  iniciat una competicio.
+	 */
 	public void sendStartServerC(String message){
 		serverCom.sendStart(message);
 	}
-	
+	/**
+	 * Metode que pregunta al servidor el ranquing actuall de la competicio.
+	 */
 	public void sendRankServerC(String message){
 		serverCom.sendRanking(message);
 	}
-	
+	/**
+	 * Metode que actualitza la informacio del ranquing que rep per referència a la vista.
+	 */
 	public void refreshRanking(String rank){
 		rank = rank.substring(5);
 		view.refreshRanking(rank);
 	}
-	
+	/**
+	 * mtode que actualitza  el temps de competicio o de compta enrere segons el bolea a la vista.
+	 */
 	public void refreshTime(int time, boolean comp){
 		String print = new String();
 		String hour = new String();
@@ -164,15 +191,22 @@ public class MainViewControllerC implements ActionListener{
 		view.refreshTime(print);
 	}
 	
+	/**
+	 * Metode quemarca un usuair com a bloquejat o desbloquejat segons boolea.
+	 */
 	public void setBlocked(boolean blocked){
 		user.setBlocked(blocked);
 	}
-	
+	/**
+	 * Metode que actualitza la puntuacio de l'usuari actual a la vista.
+	 */
 	public static void refreshScore(int score, int aiscore){
 		user.setScore(user.getScore()+score);
 		view.refreshScore(score, aiscore);
 	}
-	
+	/**
+	 * Metode que actualitza el temps actual del joc a la vista, segons el temps que rep per referencia.
+	 */
 	public static void refreshGameTime(int gameTime){
 		String print = new String();
 		String min = new String();
@@ -193,7 +227,9 @@ public class MainViewControllerC implements ActionListener{
 
 		view.refreshGameTime(print);
 	}
-	
+	/**
+	 * Metode que envia la informacio de la partida un cop acabada al servidor si l'usuari acutal no ha entrat com a  convidat.
+	 */
 	public static void gameEnded(int score){
 		if (!user.getNickname().equals("GUEST")){
 			String mode = new String();
