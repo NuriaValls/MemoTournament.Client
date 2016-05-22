@@ -14,9 +14,9 @@ import view.MainViewClient;
 public class MainViewControllerC implements ActionListener{
 
 	private static MainViewClient view;
-	private ServerComunication serverCom;
+	private static ServerComunication serverCom;
 	private Time time;
-	public UserClient user;
+	public static UserClient user;
 	
 	
 	public MainViewControllerC(MainViewClient view, ServerComunication serverCom, Time time){
@@ -169,6 +169,7 @@ public class MainViewControllerC implements ActionListener{
 	}
 	
 	public static void refreshScore(int score, int aiscore){
+		user.setScore(user.getScore()+score);
 		view.refreshScore(score, aiscore);
 	}
 	
@@ -191,5 +192,17 @@ public class MainViewControllerC implements ActionListener{
 		print = min+sec+" ";
 
 		view.refreshGameTime(print);
+	}
+	
+	public static void gameEnded(int score){
+		if (!user.getNickname().equals("GUEST")){
+			String mode = new String();
+			if (view.getmodeCon()){
+				mode = "concentracio";
+			}else{
+				mode = "memoria";
+			}
+			serverCom.sendUpdate("UPDATE:"+user.getNickname()+"/"+mode+"/"+score);
+		}
 	}
 }

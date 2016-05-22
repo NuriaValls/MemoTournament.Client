@@ -298,7 +298,8 @@ public class Board extends JFrame{
             cards.remove(c2);
             matches[c1.getId()] = false;
             if (this.gameWon()){
-                if(ai == true){
+                Time.stopGameTimer();
+            	if(ai == true){
                 	if(score == aiscore){
                 		//JOptionPane.showMessageDialog(this, "Draw!");
                 		JOptionPane pane = new JOptionPane("Draw!", JOptionPane.INFORMATION_MESSAGE, JOptionPane.DEFAULT_OPTION);
@@ -328,6 +329,7 @@ public class Board extends JFrame{
                     dialog.addWindowListener(controller);
                     dialog.setVisible(true);
                 }
+            	MainViewControllerC.gameEnded(score);
             }
         }
         else{ //if not match 

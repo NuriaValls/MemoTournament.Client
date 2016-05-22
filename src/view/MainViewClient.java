@@ -668,19 +668,21 @@ public class MainViewClient extends JFrame{
 		String matrix[][] = new String [11][2];
 		String[] users = sTopTen.split("#");
 		int j = 0;
-		for(int i=0;i<users.length;i++){				
-			String[] aux = users[i].split("/");
-			matrix[j] = aux;
-			j++;
-			
-			if(i==0 && !isGuest && aux[0]!=null ){
-				refreshTop1("The best player of the competition is "+aux[0]+" with "+aux[1]+" points.");
+		if (!sTopTen.equals(" ")){
+			for(int i=0;i<users.length;i++){				
+				String[] aux = users[i].split("/");
+				matrix[j] = aux;
+				j++;
+				
+				if(i==0 && !isGuest ){
+					refreshTop1("The best player of the competition is "+aux[0]+" with "+aux[1]+" points.");
+				}
 			}
+			DefaultTableModel model = new DefaultTableModel(matrix,columnNames);
+			table.setModel(model);
+			tableGame.setModel(model);
+			model.fireTableDataChanged();
 		}
-		DefaultTableModel model = new DefaultTableModel(matrix,columnNames);
-		table.setModel(model);
-		tableGame.setModel(model);
-		model.fireTableDataChanged();
 	}
 	
 	public void refreshUser(UserClient actualUser){
