@@ -63,19 +63,20 @@ public class MainViewClient extends JFrame{
 	//s'ha d'afegir la info tot en una label per que quedi tot seguit.
 	//important posar espai abans i despres del text (per que el borde no quedi tan enganxat)
 	private JLabel userinfo = new JLabel();
-	private JLabel comptime = new JLabel("There is no competition running now.");
-	private JLabel bestplayer = new JLabel("Here will appear the best player of the competition.");
+	private JLabel comptime = new JLabel(" There is no competition running now. ");
+	private JLabel bestplayer = new JLabel(" Here will appear the best player of the competition. ");
 	
 	//atributs de log in
 	private JTextField jtfnickname;
 	private JPasswordField jpfpassword;
 	
 	//atributs de game card
-	private JLabel timecomp = new JLabel(" Time of Competition ");
-	private JLabel iadifficulty = new JLabel(" I.A. Difficulty ");
+	private JLabel timecomp = new JLabel(" There is no competition running now. ");
+	private JLabel iadifficulty = new JLabel(" A.I. Difficulty ");
 	private JLabel mode = new JLabel(" Mode ");
 	private JLabel yourscore = new JLabel("Your Score",  SwingConstants.CENTER);
 	private JLabel iascore = new JLabel("I.A. Score",  SwingConstants.CENTER);
+	private JTable tableGame;
 	
 	//atributs de register
 	private JTextField jtfnicknameR;
@@ -616,12 +617,12 @@ public class MainViewClient extends JFrame{
 		panell = new JPanel();
 		
 		String [][] mTopTen = new String [11][2];
-		table = new JTable(mTopTen, columnNames);
+		tableGame = new JTable(mTopTen, columnNames);
 		
-		table.setPreferredSize(new Dimension(250, 125));
-		table.setOpaque(false);
-		table.setAlignmentX(Component.CENTER_ALIGNMENT);
-		panell.add(table);
+		tableGame.setPreferredSize(new Dimension(250, 125));
+		tableGame.setOpaque(false);
+		tableGame.setAlignmentX(Component.CENTER_ALIGNMENT);
+		panell.add(tableGame);
 		panell.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		
@@ -678,23 +679,75 @@ public class MainViewClient extends JFrame{
 		}
 		DefaultTableModel model = new DefaultTableModel(matrix,columnNames);
 		table.setModel(model);
+		tableGame.setModel(model);
 		model.fireTableDataChanged();
 	}
 	
 	public void refreshUser(UserClient actualUser){
 		if(isGuest){
-			userinfo.setText("Hello, you're playing as a  guest.");
+			userinfo.setText(" Hello, you're playing as a  guest. ");
 		}else{
-			userinfo.setText("   Hello  "+actualUser.getNickname()+",  your actual score is: "+actualUser.getScore()+"   ");
+			userinfo.setText(" Hello "+actualUser.getNickname()+", your actual score is: "+actualUser.getScore()+" ");
 		}
 	}
 	
 	public void refreshTime(String time){
-		comptime.setText(time);
+		comptime.setText(" "+time+" ");
+		timecomp.setText(" "+time+" ");
 	}
 	
 	public void refreshTop1(String top1){
 		bestplayer.setText(top1);
+	}
+	
+	public void refreshMode(){
+		
+		switch (getDifficulty()){
+		
+		case 1:
+			if (getmodeCon()){
+				mode.setText(" Concentration mode : EASY ");
+			}else{
+				mode.setText(" Memory mode : EASY ");
+			}
+			break;
+		
+		case 2:
+			if (getmodeCon()){
+				mode.setText(" Concentration mode : MEDIUM ");
+			}else{
+				mode.setText(" Memory mode : MEDIUM ");
+			}
+			break;
+			
+		case 3:
+			if (getmodeCon()){
+				mode.setText(" Concentration mode : HARD ");
+			}else{
+				mode.setText(" Memory mode : HARD ");
+			}
+			break;
+		}
+		
+		if (getIA()){
+			iadifficulty.setText(" Against A.I. ");
+		}
+	}
+
+	public void refreshScore(int score, int aiscore){
+		yourscore.setText(" Your score : "+score);
+		if (getIA()){
+			iascore.setVisible(true);
+			iascore.setText(" A.I. score : "+aiscore);
+		}else{
+			iascore.setVisible(false);
+		}
+	}
+	
+	public void refreshGameTime(String time){
+		if (!getIA()){
+			iadifficulty.setText(" Time Trial : "+time);
+		}
 	}
 	
 	public void showRegister(){
@@ -771,6 +824,14 @@ public class MainViewClient extends JFrame{
 		jbGoToMenu.setText("Back to Menu");
 		jbGoToMenu.setVisible(true);
 		jbStartGame.setVisible(true);
+		
+		jrbmemoria.setSelected(false);
+		jrbconcentracio.setSelected(false);
+		jrbmachine.setSelected(false);
+		jrbtimetrial.setSelected(false);
+		jrbeasy.setSelected(false);
+		jrbmedium.setSelected(false);
+		jrbhard.setSelected(false);
 	}
 	
 	public void showGame(){

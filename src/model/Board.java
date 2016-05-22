@@ -1,5 +1,6 @@
 package model;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -24,7 +25,7 @@ public class Board extends JFrame{
     private Card c1;
     private Card c2;
     private Timer t;
-    private Timer ch;
+    private static Timer ch;
     private Timer ait;
     private Timer aith;
     private String[] imagename;
@@ -33,8 +34,13 @@ public class Board extends JFrame{
     private int aiscore;
     private LinkedList<Card> memory;
     private boolean[] matches;
+    private static int timegame;
+    
+    private GameWindowController controller;
 
-    public Board(int difficulty, boolean concentration, boolean ai){
+    public Board(int difficulty, boolean concentration, boolean ai, GameWindowController controller){
+    	
+    	this.controller = controller;
     	
     	int pairs = assignPairs(difficulty); //pairs depending on the difficulty level
         numcards = pairs*2;
@@ -91,8 +97,8 @@ public class Board extends JFrame{
         
         t = new Timer(750, new ActionListener(){ //timer for delay when showing cards
             public void actionPerformed(ActionEvent ae){
-                checkCards(concentration, ai);
-                if(ai == true){
+                checkCards(concentration, ai, true);
+                if(ai == true && numcards!=0){
                 	doAiTurn(difficulty);
                 }
             }
@@ -103,24 +109,16 @@ public class Board extends JFrame{
         
         ait = new Timer(750, new ActionListener(){ //timer for delay when showing cards
             public void actionPerformed(ActionEvent ao){
-                checkCards(false, true);
+                checkCards(false, true, false);
             }
         });
         ait.setRepeats(false);
         
-        
-        ch = new Timer(setTimer(difficulty), new ActionListener(){ //timer for the game
-            public void actionPerformed(ActionEvent ae){
-            	JOptionPane.showMessageDialog(null, "Time's up! You loose!","",JOptionPane.ERROR_MESSAGE);
-                System.exit(0);
-            }
-        });
-        ch.setRepeats(false);
-        
+        Time.startGameTimer(setTimer(difficulty));
     	
         aith = new Timer(750, new ActionListener(){ //timer for delay when showing cards
             public void actionPerformed(ActionEvent au){
-                checkCards(false, true);
+                checkCards(false, true, false);
             }
         });
         
@@ -140,9 +138,12 @@ public class Board extends JFrame{
         
         //setTitle("Memory Match");
         
-        ch.start();
     }
 
+    public static void stopTimer(){
+    	ch.stop();
+    }
+    
     public void doTurn(boolean ai, int difficulty){
         if (c1 == null && c2 == null){ //player chooses c1
             c1 = selectedCard;
@@ -272,7 +273,7 @@ public class Board extends JFrame{
         }
     }
 
-    public void checkCards(boolean concentration, boolean ai){
+    public void checkCards(boolean concentration, boolean ai, boolean player){
     	boolean match = false;
     	Card aux;
         if (c1.getId() == c2.getId() /*&& c1.getIdCard() != c2.getIdCard()*/){ //if match 
@@ -284,8 +285,11 @@ public class Board extends JFrame{
             c2.setEnabled(false);
             c1.setMatched(true);  //flags the button
             c2.setMatched(true);
-            score++;
-            System.out.println(score);
+            if (player){
+            	score++;
+            }else{
+            	aiscore++;
+            }
             Game.setScore(score, aiscore);
             numcards = numcards - 2;
             memory.remove(c1);
@@ -296,20 +300,33 @@ public class Board extends JFrame{
             if (this.gameWon()){
                 if(ai == true){
                 	if(score == aiscore){
-                		JOptionPane.showMessageDialog(this, "Draw!");
-                		System.exit(0);
+                		//JOptionPane.showMessageDialog(this, "Draw!");
+                		JOptionPane pane = new JOptionPane("Draw!", JOptionPane.INFORMATION_MESSAGE, JOptionPane.DEFAULT_OPTION);
+                        JDialog dialog = pane.createDialog(new JFrame(), "Game ended!");
+                        dialog.setModalityType(JDialog.ModalityType.MODELESS);
+                        dialog.addWindowListener(controller);
+                        dialog.setVisible(true);
                 	}
                 	if(score < aiscore){
-                		JOptionPane.showMessageDialog(this, "You loose! The AI has scored more points than you.");
-                		System.exit(0);
+                		JOptionPane pane = new JOptionPane("You've lost!", JOptionPane.INFORMATION_MESSAGE, JOptionPane.DEFAULT_OPTION);
+                        JDialog dialog = pane.createDialog(new JFrame(), "Game ended!");
+                        dialog.setModalityType(JDialog.ModalityType.MODELESS);
+                        dialog.addWindowListener(controller);
+                        dialog.setVisible(true);
                 	}
                 	if(score > aiscore){
-                		JOptionPane.showMessageDialog(this, "You win! You beat the AI!");
-                		System.exit(0);
+                		JOptionPane pane = new JOptionPane("You've won!", JOptionPane.INFORMATION_MESSAGE, JOptionPane.DEFAULT_OPTION);
+                        JDialog dialog = pane.createDialog(new JFrame(), "Game ended!");
+                        dialog.setModalityType(JDialog.ModalityType.MODELESS);
+                        dialog.addWindowListener(controller);
+                        dialog.setVisible(true);
                 	}
                 }else{
-            		JOptionPane.showMessageDialog(this, "You completed the level!");
-            		System.exit(0);
+                	JOptionPane pane = new JOptionPane("You've completed the level!", JOptionPane.INFORMATION_MESSAGE, JOptionPane.DEFAULT_OPTION);
+                    JDialog dialog = pane.createDialog(new JFrame(), "Game ended!");
+                    dialog.setModalityType(JDialog.ModalityType.MODELESS);
+                    dialog.addWindowListener(controller);
+                    dialog.setVisible(true);
                 }
             }
         }
@@ -398,7 +415,7 @@ public class Board extends JFrame{
     
     public void setImagesNormal(){ //normal images
     	imagename = new String[] {"ADIDAS","APPLE","COCACOLA","DISNEY","GOOGLE","INTEL","LEGO",
-    			"MCDONALDS","MERCEDES","MICROSOFT","NIKE","SHELL","UBISOFT","VOLSWAGEN","WARNERBROS"};
+    			"MCDONALDS","MERCEDES","MICROSOFT","NIKE","SHELL","UBISOFT","VOLKSWAGEN","WARNER"};
     }
     
     public void setImagesHard(){ //hard images

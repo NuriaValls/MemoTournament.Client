@@ -29,6 +29,7 @@ public class Card extends JButton implements Comparable<Card>{
     		imgFace = new ImageIcon(getClass().getResource("/images/easy/"+name+".png"));
     		break;
     	case 2:
+    		System.out.println("/images/normal/"+name+".png");
     		imgFace = new ImageIcon(getClass().getResource("/images/normal/"+name+".png"));
     		break;
     	case 3:

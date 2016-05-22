@@ -7,6 +7,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 import controller.MainViewControllerC;
@@ -24,6 +27,9 @@ public class Time extends Thread{
 	private Timer competitionTimer;
 	private int competition;
 	private boolean started = false;
+	
+	private static int timeG;
+	private static Timer game;
 	
 	public Time(){
 		timerComp = new Timer(1000, new ActionListener(){
@@ -74,6 +80,32 @@ public class Time extends Thread{
 			}
 			
 		});
+		
+		game = new Timer(1000, new ActionListener(){ //timer for the game
+            
+			@Override
+			public void actionPerformed(ActionEvent arg0){
+            	if (timeG > 0){
+            		timeG--;
+            		MainViewControllerC.refreshGameTime(timeG);
+            	}else{
+            		game.stop();
+            		JOptionPane pane = new JOptionPane("Time is over!", JOptionPane.INFORMATION_MESSAGE, JOptionPane.DEFAULT_OPTION);
+                    JDialog dialog = pane.createDialog(new JFrame(), "Game ended!");
+                    dialog.setModalityType(JDialog.ModalityType.MODELESS);
+                    dialog.setVisible(true);
+            	}
+            }
+        });
+	}
+	
+	public static void startGameTimer(int timegame){
+		timeG = timegame/60;
+		game.start();
+	}
+	
+	public static void stopGameTimer(){
+		game.stop();
 	}
 	
 	public void registerController(MainViewControllerC controller){

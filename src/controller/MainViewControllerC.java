@@ -100,6 +100,7 @@ public class MainViewControllerC implements ActionListener{
 		if(((JButton)e.getSource()).getText().equals("Start Game")){
 			//comença la partida
 			Game game = new Game(new GameWindowController(), view.getmodeCon(), view.getIA(), view.getDifficulty());
+			view.refreshMode();
 			view.showGame();
 		}
 		
@@ -165,5 +166,30 @@ public class MainViewControllerC implements ActionListener{
 	
 	public void setBlocked(boolean blocked){
 		user.setBlocked(blocked);
+	}
+	
+	public static void refreshScore(int score, int aiscore){
+		view.refreshScore(score, aiscore);
+	}
+	
+	public static void refreshGameTime(int gameTime){
+		String print = new String();
+		String min = new String();
+		String sec = new String();
+		
+		if((gameTime%3600)/60<10){
+			min = "0"+(gameTime%3600)/60+":";
+		}else{
+			min = (gameTime%3600)/60+":";
+		}
+		if((gameTime%3600)%60<10){
+			sec = "0"+(gameTime%3600)%60+" ";
+		}else{
+			sec = (gameTime%3600)%60+" ";
+		}
+		
+		print = min+sec+" ";
+
+		view.refreshGameTime(print);
 	}
 }

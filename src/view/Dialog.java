@@ -1,12 +1,17 @@
 package view;
 
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class Dialog extends JDialog{
 
 	public static void DialogOK(String message){
-		JOptionPane.showMessageDialog(null,message, "Information message", JOptionPane.INFORMATION_MESSAGE);
+		//JOptionPane.showMessageDialog(null,message, "Information message", JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane pane = new JOptionPane(message, JOptionPane.INFORMATION_MESSAGE, JOptionPane.DEFAULT_OPTION);
+        JDialog dialog = pane.createDialog(new JFrame(), "Has Perdut!");
+        dialog.setModalityType(JDialog.ModalityType.MODELESS);
+        dialog.setVisible(true);
 	}
 	
 	public static void DialogKO(String message){

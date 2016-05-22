@@ -21,6 +21,7 @@ public class Game{
 	private int score;
 	
     public Game(GameWindowController controller, boolean concentration, boolean ai, int difficulty){
+    	this.difficulty = difficulty;
     	switch (difficulty){
         	case 1: dimx = 600; //easy dimensions
         			dimy = 600;
@@ -38,7 +39,7 @@ public class Game{
         			locy = 0;
         }
     	
-    	Board b = new Board(difficulty, concentration, ai);
+    	Board b = new Board(difficulty, concentration, ai, controller);
         b.setPreferredSize(new Dimension(dimx, dimy)); //creates JFrame
         b.setLocation(locx, locy); //starting position, must be centered in the screen
         b.pack();
@@ -48,8 +49,6 @@ public class Game{
     }
     
     public static void setScore(int score, int aiScore){
-    	System.out.println(score * difficulty);
-    	System.out.println("AI:"+aiScore*difficulty);
-    	//MainViewControllerC.refreshUserScore(score*difficulty);
+    	MainViewControllerC.refreshScore(score*difficulty, aiScore*difficulty);
     }
 }
