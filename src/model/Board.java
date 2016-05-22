@@ -77,7 +77,7 @@ public class Board extends JFrame{
         			break;
         	case 3: setImagesHard();
         			break;
-        	default: System.out.println("An error has ocurred when determining the difficulty level");		
+        	default:		
 					break;
         }
        

@@ -102,7 +102,7 @@ public class Card extends JButton implements Comparable<Card>{
     }
     /**
 	 * Compara aquesta carta amb la que es passa i diu si son iguals.
-	 * @c la carta que es vol comparar.
+	 * @param c la carta que es vol comparar.
 	 * @return un 1 si son iguals o un -1 si no ho son.
 	 */
 	@Override

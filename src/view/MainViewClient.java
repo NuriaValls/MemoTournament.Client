@@ -35,21 +35,31 @@ import model.MTMainClient;
 import model.UserClient;
 
 public class MainViewClient extends JFrame{	
-
+	/**
+	 * indica si l'usuari actual es un convidat o no.
+	 */
 	private boolean isGuest = false;
-	
+	/**
+	 * Panell que conte les cards.
+	 */
 	private static JPanel jpMenu;
 	private static CardLayout cardLayout = new CardLayout();
-	
+	/**
+	 * panells que corresponenn a les cards.
+	 */
 	private static JPanel jpLogInCard = new JPanel();
 	private static JPanel jpRegisterCard = new JPanel();
 	private static JPanel jpInitialMenuCard = new JPanel();
 	private static JPanel jpSelectGameCard = new JPanel();
 	private static JPanel jpGameCard = new JPanel();
 	private static JPanel jpRankingCard = new JPanel();
-	
+	/**
+	 * panell que conte els botons que canvien les cards.
+	 */
 	private JPanel jpButtonMenu;
-	
+	/**
+	 * butons que canvien les cards.
+	 */
 	private static JButton jbRegister = new JButton("Register");
 	private static JButton jbGuest = new JButton("Enter as a Guest");
 	private static JButton jbNewGame = new JButton("New Game");
@@ -169,7 +179,9 @@ public class MainViewClient extends JFrame{
 		add(jpButtonMenu, BorderLayout.SOUTH);
 		add(jpMenu, BorderLayout.NORTH);
 	}
-	
+	/**
+	 * metode que vingula un listener del controlador amb els botons que mostren les cards.
+	 */
 	public void registerController(MainViewControllerC actionListener){
 		jbGoToMenu.addActionListener(actionListener);
 		jbRegister.addActionListener(actionListener);
@@ -274,11 +286,15 @@ public class MainViewClient extends JFrame{
 		
 		jpRegisterCard.add(titol);
 	}
-	
+	/**
+	 * retorna el nom d'usuari inserit.
+	 */
 	public String getRegNickname(){
 		return jtfnicknameR.getText();
 	}
-	
+	/**
+	 * retorna la contrassenya escrita per l'usuari.
+	 */
 	@SuppressWarnings("deprecation")
 	public String getRegPasword(){
 		return jpfpasswordR.getText();
@@ -351,11 +367,15 @@ public class MainViewClient extends JFrame{
 		jpLogInCard.add(titol);
 		
 	}
-	
+	/**
+	 * retorna el nom d'usuari inserit.
+	 */
 	public String getLogNickname(){
 		return jtfnickname.getText();
 	}
-	
+	/**
+	 * retonra la contrassenya inserida.
+	 */
 	@SuppressWarnings("deprecation")
 	public String getLogPasword(){
 		return jpfpassword.getText();
@@ -545,7 +565,9 @@ public class MainViewClient extends JFrame{
 		
 		jpSelectGameCard.add(titol);
 	}
-	
+	/**
+	 * retonra true si el mode seleccionat es concentracio.
+	 */
 	public boolean getmodeCon(){
 		if(jrbconcentracio.isSelected()){
 			return true;
@@ -553,7 +575,9 @@ public class MainViewClient extends JFrame{
 			return false;
 		}
 	}
-	
+	/**
+	 * retonra true si s'ha selecconat IA.
+	 */
 	public boolean getIA(){
 		if(jrbmachine.isSelected()){
 			return true;
@@ -561,7 +585,9 @@ public class MainViewClient extends JFrame{
 			return false;
 		}
 	}
-	
+	/**
+	 * retonra el valor d ela dificultat deleccionada.
+	 */
 	public int getDifficulty(){
 		if(jrbeasy.isSelected()){
 			return 1;
@@ -731,7 +757,9 @@ public class MainViewClient extends JFrame{
 			model.fireTableDataChanged();
 		}
 	}
-	
+	/**
+	 * actualitza el nom de l'usuari que esta acrualment connectat.
+	 */
 	public void refreshUser(UserClient actualUser){
 		if(isGuest){
 			userinfo.setText(" Hello, you're playing as a  guest. ");
@@ -739,16 +767,22 @@ public class MainViewClient extends JFrame{
 			userinfo.setText(" Hello "+actualUser.getNickname()+", your actual score is: "+actualUser.getScore()+" ");
 		}
 	}
-	
+	/**
+	 * actualita el temps de la competicio.
+	 */
 	public void refreshTime(String time){
 		comptime.setText(" "+time+" ");
 		timecomp.setText(" "+time+" ");
 	}
-	
+	/**
+	 * actualitza el millor jugador de la competicio.
+	 */
 	public void refreshTop1(String top1){
 		bestplayer.setText(top1);
 	}
-	
+	/**
+	 * actualitza el mode de joc de la partida.
+	 */
 	public void refreshMode(){
 		
 		switch (getDifficulty()){
@@ -782,7 +816,9 @@ public class MainViewClient extends JFrame{
 			iadifficulty.setText(" Against A.I. ");
 		}
 	}
-
+	/**
+	 * actualitza la puntuacio de la partida.
+	 */
 	public void refreshScore(int score, int aiscore){
 		yourscore.setText(" Your score : "+score);
 		if (getIA()){
@@ -792,13 +828,17 @@ public class MainViewClient extends JFrame{
 			iascore.setVisible(false);
 		}
 	}
-	
+	/**
+	 * actualitza el temps de la partida.
+	 */
 	public void refreshGameTime(String time){
 		if (!getIA()){
 			iadifficulty.setText(" Time Trial : "+time);
 		}
 	}
-	
+	/**
+	 *mostra la carta de registre. 
+	 */
 	public void showRegister(){
 		jtfnicknameR.setText("");
 		jpfpasswordR.setText("");
@@ -813,7 +853,9 @@ public class MainViewClient extends JFrame{
 		jbGuest.setVisible(false);
 		jbRegister.setVisible(false);
 	}
-	
+	/**
+	 * mostra la carta de menu.
+	 */
 	public void showInitialMenu(){
 		cardLayout.show(jpMenu, "3");
 		
@@ -836,7 +878,7 @@ public class MainViewClient extends JFrame{
 	}
 	
 	/**
-	 * Fa visible la vista del ranking del client.
+	 * mostra la carta de ranking.
 	 */
 	public void showRanking(){
 		cardLayout.show(jpMenu, "6");
@@ -848,7 +890,9 @@ public class MainViewClient extends JFrame{
 		jbGoToMenu.setText("Menu");
 		jbGoToMenu.setVisible(true);
 	}
-	
+	/**
+	 * mostra la carta de log in.
+	 */
 	public void showLogIn(){
 		jtfnickname.setText("");
 		jpfpassword.setText("");
@@ -865,7 +909,9 @@ public class MainViewClient extends JFrame{
 		jbRegister.setVisible(true);
 		jbGuest.setVisible(true);
 	}
-	
+	/**
+	 * mostra la carta de seleccion de joc.
+	 */
 	public void showSelectGame(){
 		cardLayout.show(jpMenu, "4");
 		
@@ -885,7 +931,9 @@ public class MainViewClient extends JFrame{
 		jrbmedium.setSelected(false);
 		jrbhard.setSelected(false);
 	}
-	
+	/**
+	 * mostra la carta del joc.
+	 */
 	public void showGame(){
 		cardLayout.show(jpMenu, "5");
 		
@@ -894,7 +942,9 @@ public class MainViewClient extends JFrame{
 		jbGoToMenu.setText("End Game");
 		jbGoToMenu.setVisible(true);
 	}
-	
+	/**
+	 * mostra un dialeg amb un missatge concret i un format concret.
+	 */
 	public void makeDialog(String message, boolean type){
 		if(type){
 			Dialog.DialogOK(message);
