@@ -636,7 +636,9 @@ public class MainViewClient extends JFrame{
 		
 		jpGameCard.add(title);
 	}
-	
+	/**
+	 * Crea la vista del Ranking dels 10  millors jugadors en ordre descendent de puntuació.
+	 */
 	public void createRankingCard(){
 		
 		title = new JPanel();
@@ -664,6 +666,10 @@ public class MainViewClient extends JFrame{
 		
 	}
 	
+	/**
+	 * Es comunica amb el servidor per a rebre en una String(sTopTen) l'informació dels usuaris actualitzada.
+	 * @param sTopTen
+	 */
 	public void refreshRanking(String sTopTen){
 		String matrix[][] = new String [11][2];
 		String[] users = sTopTen.split("#");
@@ -788,6 +794,9 @@ public class MainViewClient extends JFrame{
 		}
 	}
 	
+	/**
+	 * Fa visible la vista del ranking del client.
+	 */
 	public void showRanking(){
 		cardLayout.show(jpMenu, "6");
 		
