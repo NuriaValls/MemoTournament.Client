@@ -81,10 +81,19 @@ public class MainViewControllerC implements ActionListener{
 		}
 		
 		if(((JButton)e.getSource()).getText().equals("New Game")){
-			if(user.getNickname().equals("GUEST") || ( !user.getNickname().equals("GUEST") && time.getStarted()) ){
+			if(user.getNickname().equals("GUEST")){
 				view.showSelectGame();
 			}else{
-				view.makeDialog("You can't play until the competition has started!", true);
+				if(time.getStarted()){
+					serverCom.sendBlockedUser("BLOCKED:"+user.getNickname());
+					if(!user.isBlocked()){
+						view.showSelectGame();
+					}else{
+						view.makeDialog("You can't play until until you're unlocked.", false);
+					}
+				}else{
+					view.makeDialog("You can't play until the competition has started!", true);
+				}
 			}
 		}
 		
@@ -152,5 +161,9 @@ public class MainViewControllerC implements ActionListener{
 			print = "The competition will start in: "+hour+min+sec+"hours.";
 		}
 		view.refreshTime(print);
+	}
+	
+	public void setBlocked(boolean blocked){
+		user.setBlocked(blocked);
 	}
 }

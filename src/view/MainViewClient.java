@@ -672,7 +672,7 @@ public class MainViewClient extends JFrame{
 			matrix[j] = aux;
 			j++;
 			
-			if(i==0 && !isGuest){
+			if(i==0 && !isGuest && aux[0]!=null ){
 				refreshTop1("The best player of the competition is "+aux[0]+" with "+aux[1]+" points.");
 			}
 		}

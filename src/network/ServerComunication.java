@@ -168,7 +168,7 @@ public class ServerComunication extends Thread{
 		}
 	}
 	
-	/*public void sendTime(String message){
+	public void sendBlockedUser(String message){
 		try {
 			sServer = new Socket("127.0.0.1",5200);
 			dataIn = new DataInputStream(sServer.getInputStream());
@@ -177,15 +177,10 @@ public class ServerComunication extends Thread{
 			
 			String answer = new String();
 			answer = dataIn.readUTF();
-			if(answer.startsWith("COUNTDOWN")){
-				controller.makeDialog("The countdown for the competition has started! Now users can log to the competition.",true);
-				message = message.substring(10);
-				controller.refreshTime(message, false);
-			}
-			if(answer.startsWith("COMPETITION")){
-				controller.makeDialog("The competition has started! It's time to get the best score!",true);
-				message = message.substring(12);
-				controller.refreshTime(message, true);
+			if(answer.equals("BLOCKED")){
+				controller.setBlocked(true);
+			}else{
+				controller.setBlocked(false);
 			}
 			
 			dataOut.close();
@@ -197,7 +192,7 @@ public class ServerComunication extends Thread{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}*/
+	}
 	
 	public boolean getCompetition(){
 		return competition;

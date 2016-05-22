@@ -35,7 +35,7 @@ public class Board extends JFrame{
     private boolean[] matches;
 
     public Board(int difficulty, boolean concentration, boolean ai){
-
+    	
     	int pairs = assignPairs(difficulty); //pairs depending on the difficulty level
         numcards = pairs*2;
         

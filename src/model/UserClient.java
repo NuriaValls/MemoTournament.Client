@@ -6,6 +6,7 @@ public class UserClient {
 	private String nickname;
 	private String password;
 	private int score;
+	private boolean blocked = false;
 	
 	public UserClient(String nickname,String password,int score){
 		this.nickname = nickname;
@@ -16,6 +17,14 @@ public class UserClient {
 	public UserClient(String nickname,String password){
 		this.nickname = nickname;
 		this.password = password;
+	}
+	
+	public boolean isBlocked(){
+		return blocked;
+	}
+	
+	public void setBlocked(boolean blocked){
+		this.blocked = blocked;
 	}
 	
 	public void logOut(){
