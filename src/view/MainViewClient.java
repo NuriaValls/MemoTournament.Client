@@ -60,8 +60,6 @@ public class MainViewClient extends JFrame{
 	private static JButton jbStartGame = new JButton("Start Game");
 	
 	//atributs menu
-	//s'ha d'afegir la info tot en una label per que quedi tot seguit.
-	//important posar espai abans i despres del text (per que el borde no quedi tan enganxat)
 	private JLabel userinfo = new JLabel();
 	private JLabel comptime = new JLabel(" There is no competition running now. ");
 	private JLabel bestplayer = new JLabel(" Here will appear the best player of the competition. ");
@@ -93,6 +91,7 @@ public class MainViewClient extends JFrame{
 	//atributs joc
 	private JPanel jpgame;
 	
+
 	//atributs select game
 	private JRadioButton jrbmemoria;
 	private JRadioButton jrbconcentracio;
@@ -107,7 +106,7 @@ public class MainViewClient extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(1000,550);
 		setLocationRelativeTo(null);
-		
+	
 		createLogInCard();
 		createRegisterCard();
 		createInitialMenuCard();
@@ -163,6 +162,11 @@ public class MainViewClient extends JFrame{
 		this.isGuest = guest;
 	}
 	
+	
+	/**
+	 * Crea la vista de la carta del registre on es demana a l'usuari que ompli les seves dades.
+	 * 
+	 */
 	public void createRegisterCard(){
 		
 		JPanel titol = new JPanel();
