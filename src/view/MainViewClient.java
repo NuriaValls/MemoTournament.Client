@@ -641,7 +641,7 @@ public class MainViewClient extends JFrame{
 		jpGameCard.add(title);
 	}
 	/**
-	 * Crea la vista del Ranking dels 10  millors jugadors en ordre descendent de puntuació.
+	 * Crea la vista del Ranking dels 10  millors jugadors en ordre descendent de puntuacio.
 	 */
 	public void createRankingCard(){
 		
