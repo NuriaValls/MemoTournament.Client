@@ -384,8 +384,8 @@ public class MainViewClient extends JFrame{
 	
 	
 	/**
-	 * Crea la vista de la carta de seleccio del joc
-	 * aqui l'usuari ha d'escollir la modalitat del joc i la dificultat.
+	 * Crea la vista de la carta de seleccio del joc.
+	 * Aqui l'usuari ha d'escollir la modalitat del joc i la dificultat.
 	 */
 	public void createSelectGameCard(){
 		
@@ -655,7 +655,7 @@ public class MainViewClient extends JFrame{
 		jpGameCard.add(title);
 	}
 	/**
-	 * Crea la vista del Ranking dels 10  millors jugadors en ordre descendent de puntuació.
+	 * Crea la vista del Ranking dels 10  millors jugadors en ordre descendent de puntuacio.
 	 */
 	public void createRankingCard(){
 		
@@ -686,7 +686,7 @@ public class MainViewClient extends JFrame{
 	
 	/**
 	 * Es comunica amb el servidor per a rebre en una String(sTopTen) l'informació dels usuaris actualitzada.
-	 * @param sTopTen
+	 * @param sTopTen : String amb l'informacio de tots els usuaris
 	 */
 	public void refreshRanking(String sTopTen){
 		String matrix[][] = new String [11][2];
