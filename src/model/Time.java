@@ -118,7 +118,7 @@ public class Time extends Thread{
 			public void actionPerformed(ActionEvent arg0){
             	if (timeG > 0){
             		timeG--;
-            		MainViewControllerC.refreshGameTime(timeG);
+            		controller.refreshGameTime(timeG);
             	}else{
             		game.stop();
             		JOptionPane pane = new JOptionPane("Time is over!", JOptionPane.INFORMATION_MESSAGE, JOptionPane.DEFAULT_OPTION);

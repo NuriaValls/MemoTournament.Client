@@ -741,7 +741,7 @@ public class MainViewClient extends JFrame{
 		String matrix[][] = new String [11][2];
 		String[] users = sTopTen.split("#");
 		int j = 0;
-		if (!sTopTen.equals(" ")){
+		if (!sTopTen.equals("")){
 			for(int i=0;i<users.length;i++){				
 				String[] aux = users[i].split("/");
 				matrix[j] = aux;
